@@ -2968,15 +2968,15 @@ function App() {
             setSaveError(null);
             _context7.p = 1;
             _context7.n = 2;
-            return sb.auth.getSession();
+            return sb.auth.getUser();
           case 2:
             _yield$sb$auth$getSes2 = _context7.v;
-            existingSession = _yield$sb$auth$getSes2.data.session;
+            existingSession = _yield$sb$auth$getSes2.data.user;
             if (!existingSession) {
               _context7.n = 3;
               break;
             }
-            userId = existingSession.user.id;
+            userId = existingSession.id;
             _context7.n = 8;
             break;
           case 3:
