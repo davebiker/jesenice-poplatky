@@ -1522,7 +1522,9 @@ function StepDone(_ref22) {
   var data = _ref22.data,
     rates = _ref22.rates,
     onEdit = _ref22.onEdit,
-    onAddProperty = _ref22.onAddProperty;
+    onAddProperty = _ref22.onAddProperty,
+    isReturning = _ref22.isReturning,
+    onLogout = _ref22.onLogout;
   var _calc2 = calc(data, rates),
     odpad = _calc2.odpad,
     pes = _calc2.pes,
@@ -1535,7 +1537,7 @@ function StepDone(_ref22) {
   })) === null || _REMINDER_DATES$find2 === void 0 ? void 0 : _REMINDER_DATES$find2.label;
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
     style: {
-      background: C.success,
+      background: isReturning ? C.red : C.success,
       padding: "24px 20px 20px",
       textAlign: "center"
     }
@@ -1552,21 +1554,21 @@ function StepDone(_ref22) {
       margin: "0 auto 14px",
       color: "#fff"
     }
-  }, "\u2713"), /*#__PURE__*/React.createElement("h2", {
+  }, isReturning ? "\uD83C\uDFE0" : "\u2713"), /*#__PURE__*/React.createElement("h2", {
     style: {
       margin: 0,
       fontSize: 20,
       fontWeight: 800,
       color: "#fff"
     }
-  }, "Registrace dokon\u010Dena!"), /*#__PURE__*/React.createElement("p", {
+  }, isReturning ? "P\u0159ehled poplatk\u016F" : "Registrace dokon\u010Dena!"), /*#__PURE__*/React.createElement("p", {
     style: {
       margin: "6px 0 0",
       fontSize: 13,
       color: "rgba(255,255,255,.75)",
       lineHeight: 1.5
     }
-  }, "Ka\u017Ed\xFD rok v\xE1m po\u0161leme platbu p\u0159ipravenou k zaplacen\xED")), /*#__PURE__*/React.createElement("div", {
+  }, isReturning ? "Va\u0161e registrovan\xE9 nemovitosti a poplatky" : "Ka\u017Ed\xFD rok v\xE1m po\u0161leme platbu p\u0159ipravenou k zaplacen\xED")), /*#__PURE__*/React.createElement("div", {
     style: {
       padding: "20px 20px 28px"
     }
@@ -1602,7 +1604,7 @@ function StepDone(_ref22) {
       fontSize: 11,
       color: C.muted
     }
-  }, "VS: ", vs, " \xB7 3725111/0100")), /*#__PURE__*/React.createElement("div", {
+  }, "VS: ", vs, " \xB7 3725111/0100")), !isReturning && /*#__PURE__*/React.createElement("div", {
     style: {
       marginBottom: 20
     }
@@ -1733,7 +1735,22 @@ function StepDone(_ref22) {
       cursor: "pointer",
       fontFamily: font
     }
-  }, "+ P\u0159idat dal\u0161\xED nemovitost")));
+  }, "+ P\u0159idat dal\u0161\xED nemovitost"), onLogout && /*#__PURE__*/React.createElement("button", {
+    onClick: onLogout,
+    style: {
+      width: "100%",
+      padding: "11px",
+      borderRadius: 5,
+      border: "none",
+      background: "transparent",
+      color: C.muted,
+      fontSize: 13,
+      fontWeight: 500,
+      cursor: "pointer",
+      fontFamily: font,
+      marginTop: 8
+    }
+  }, "Odhl\xE1sit se")));
 }
 
 // ─────────────────────────────────────────────────────────────────────
@@ -2937,7 +2954,7 @@ function App() {
             setActivePropIdx(0);
             setData(allProps[0]);
             setStep(3);
-            setMode("register");
+            setMode("dashboard");
             _context6.n = 6;
             break;
           case 5:
@@ -2947,7 +2964,7 @@ function App() {
               email: user.email
             });
             setStep(3);
-            setMode("register");
+            setMode("dashboard");
           case 6:
             return _context6.a(2);
         }
@@ -3375,6 +3392,82 @@ function App() {
       });
       setStep(1);
     } : null
+  })), mode === "dashboard" && /*#__PURE__*/React.createElement(React.Fragment, null, properties.length > 1 && /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: "14px 16px 0",
+      display: "flex",
+      gap: 8,
+      flexWrap: "wrap"
+    }
+  }, properties.map(function (p, i) {
+    return /*#__PURE__*/React.createElement("button", {
+      key: i,
+      onClick: function onClick() {
+        setActivePropIdx(i);
+        setData(properties[i]);
+      },
+      style: {
+        padding: "6px 12px",
+        borderRadius: 20,
+        fontSize: 12,
+        fontWeight: 700,
+        border: "2px solid ".concat(i === activePropIdx ? C.red : C.border),
+        background: i === activePropIdx ? C.redLight : "#fff",
+        color: i === activePropIdx ? C.red : C.textSoft,
+        cursor: "pointer",
+        fontFamily: font
+      }
+    }, p.castObce ? "".concat(p.castObce.charAt(0).toUpperCase() + p.castObce.slice(1), " \u010D.p. ").concat(p.cp) : "Nemovitost ".concat(i + 1));
+  }), /*#__PURE__*/React.createElement("button", {
+    onClick: function onClick() {
+      setData({
+        email: data.email,
+        typSubjektu: data.typSubjektu,
+        nazevSVJ: data.nazevSVJ,
+        ico: data.ico,
+        reminderDate: data.reminderDate,
+        extra: data.extra
+      });
+      setStep(1);
+      setMode("register");
+    },
+    style: {
+      padding: "6px 12px",
+      borderRadius: 20,
+      fontSize: 12,
+      fontWeight: 700,
+      border: "2px dashed ".concat(C.border),
+      background: "#fff",
+      color: C.muted,
+      cursor: "pointer",
+      fontFamily: font
+    }
+  }, "+ P\u0159idat")), /*#__PURE__*/React.createElement(StepDone, {
+    data: data,
+    rates: rates,
+    isReturning: true,
+    onEdit: function onEdit() {
+      return setMode("edit");
+    },
+    onLogout: function onLogout() {
+      sb.auth.signOut();
+      setMode("login");
+      setStep(0);
+      setProperties([]);
+      setData({});
+    },
+    onAddProperty: properties.length <= 1 ? function () {
+      setData({
+        email: data.email,
+        typSubjektu: data.typSubjektu,
+        nazevSVJ: data.nazevSVJ,
+        ico: data.ico,
+        reminderDate: data.reminderDate,
+        extra: data.extra
+      });
+      setStep(1);
+      setMode("register");
+    } : null
   })), mode === "edit" && /*#__PURE__*/React.createElement(StepEdit, {
     data: data,
     rates: rates,
@@ -3384,11 +3477,11 @@ function App() {
       });
       setProperties(updated);
       setData(newData);
-      setMode("register");
+      setMode(properties.length ? "dashboard" : "register");
       setStep(3);
     },
     onCancel: function onCancel() {
-      return setMode("register");
+      return setMode(properties.length ? "dashboard" : "register");
     }
   }))), /*#__PURE__*/React.createElement("div", {
     style: {
