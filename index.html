@@ -17,15 +17,15 @@ var QRCode;!function(){function a(a){this.mode=c.MODE_8BIT_BYTE,this.data=a,this
 
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 var _excluded = ["label", "hint", "error", "onFocus", "onBlur"];
+function _regenerator() { /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE */ var e, t, r = "function" == typeof Symbol ? Symbol : {}, n = r.iterator || "@@iterator", o = r.toStringTag || "@@toStringTag"; function i(r, n, o, i) { var c = n && n.prototype instanceof Generator ? n : Generator, u = Object.create(c.prototype); return _regeneratorDefine2(u, "_invoke", function (r, n, o) { var i, c, u, f = 0, p = o || [], y = !1, G = { p: 0, n: 0, v: e, a: d, f: d.bind(e, 4), d: function d(t, r) { return i = t, c = 0, u = e, G.n = r, a; } }; function d(r, n) { for (c = r, u = n, t = 0; !y && f && !o && t < p.length; t++) { var o, i = p[t], d = G.p, l = i[2]; r > 3 ? (o = l === n) && (u = i[(c = i[4]) ? 5 : (c = 3, 3)], i[4] = i[5] = e) : i[0] <= d && ((o = r < 2 && d < i[1]) ? (c = 0, G.v = n, G.n = i[1]) : d < l && (o = r < 3 || i[0] > n || n > l) && (i[4] = r, i[5] = n, G.n = l, c = 0)); } if (o || r > 1) return a; throw y = !0, n; } return function (o, p, l) { if (f > 1) throw TypeError("Generator is already running"); for (y && 1 === p && d(p, l), c = p, u = l; (t = c < 2 ? e : u) || !y;) { i || (c ? c < 3 ? (c > 1 && (G.n = -1), d(c, u)) : G.n = u : G.v = u); try { if (f = 2, i) { if (c || (o = "next"), t = i[o]) { if (!(t = t.call(i, u))) throw TypeError("iterator result is not an object"); if (!t.done) return t; u = t.value, c < 2 && (c = 0); } else 1 === c && (t = i["return"]) && t.call(i), c < 2 && (u = TypeError("The iterator does not provide a '" + o + "' method"), c = 1); i = e; } else if ((t = (y = G.n < 0) ? u : r.call(n, G)) !== a) break; } catch (t) { i = e, c = 1, u = t; } finally { f = 1; } } return { value: t, done: y }; }; }(r, o, i), !0), u; } var a = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} t = Object.getPrototypeOf; var c = [][n] ? t(t([][n]())) : (_regeneratorDefine2(t = {}, n, function () { return this; }), t), u = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(c); function f(e) { return Object.setPrototypeOf ? Object.setPrototypeOf(e, GeneratorFunctionPrototype) : (e.__proto__ = GeneratorFunctionPrototype, _regeneratorDefine2(e, o, "GeneratorFunction")), e.prototype = Object.create(u), e; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, _regeneratorDefine2(u, "constructor", GeneratorFunctionPrototype), _regeneratorDefine2(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = "GeneratorFunction", _regeneratorDefine2(GeneratorFunctionPrototype, o, "GeneratorFunction"), _regeneratorDefine2(u), _regeneratorDefine2(u, o, "Generator"), _regeneratorDefine2(u, n, function () { return this; }), _regeneratorDefine2(u, "toString", function () { return "[object Generator]"; }), (_regenerator = function _regenerator() { return { w: i, m: f }; })(); }
+function _regeneratorDefine2(e, r, n, t) { var i = Object.defineProperty; try { i({}, "", {}); } catch (e) { i = 0; } _regeneratorDefine2 = function _regeneratorDefine(e, r, n, t) { function o(r, n) { _regeneratorDefine2(e, r, function (e) { return this._invoke(r, n, e); }); } r ? i ? i(e, r, { value: n, enumerable: !t, configurable: !t, writable: !t }) : e[r] = n : (o("next", 0), o("throw", 1), o("return", 2)); }, _regeneratorDefine2(e, r, n, t); }
+function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
+function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
 function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
-function _regenerator() { /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE */ var e, t, r = "function" == typeof Symbol ? Symbol : {}, n = r.iterator || "@@iterator", o = r.toStringTag || "@@toStringTag"; function i(r, n, o, i) { var c = n && n.prototype instanceof Generator ? n : Generator, u = Object.create(c.prototype); return _regeneratorDefine2(u, "_invoke", function (r, n, o) { var i, c, u, f = 0, p = o || [], y = !1, G = { p: 0, n: 0, v: e, a: d, f: d.bind(e, 4), d: function d(t, r) { return i = t, c = 0, u = e, G.n = r, a; } }; function d(r, n) { for (c = r, u = n, t = 0; !y && f && !o && t < p.length; t++) { var o, i = p[t], d = G.p, l = i[2]; r > 3 ? (o = l === n) && (u = i[(c = i[4]) ? 5 : (c = 3, 3)], i[4] = i[5] = e) : i[0] <= d && ((o = r < 2 && d < i[1]) ? (c = 0, G.v = n, G.n = i[1]) : d < l && (o = r < 3 || i[0] > n || n > l) && (i[4] = r, i[5] = n, G.n = l, c = 0)); } if (o || r > 1) return a; throw y = !0, n; } return function (o, p, l) { if (f > 1) throw TypeError("Generator is already running"); for (y && 1 === p && d(p, l), c = p, u = l; (t = c < 2 ? e : u) || !y;) { i || (c ? c < 3 ? (c > 1 && (G.n = -1), d(c, u)) : G.n = u : G.v = u); try { if (f = 2, i) { if (c || (o = "next"), t = i[o]) { if (!(t = t.call(i, u))) throw TypeError("iterator result is not an object"); if (!t.done) return t; u = t.value, c < 2 && (c = 0); } else 1 === c && (t = i["return"]) && t.call(i), c < 2 && (u = TypeError("The iterator does not provide a '" + o + "' method"), c = 1); i = e; } else if ((t = (y = G.n < 0) ? u : r.call(n, G)) !== a) break; } catch (t) { i = e, c = 1, u = t; } finally { f = 1; } } return { value: t, done: y }; }; }(r, o, i), !0), u; } var a = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} t = Object.getPrototypeOf; var c = [][n] ? t(t([][n]())) : (_regeneratorDefine2(t = {}, n, function () { return this; }), t), u = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(c); function f(e) { return Object.setPrototypeOf ? Object.setPrototypeOf(e, GeneratorFunctionPrototype) : (e.__proto__ = GeneratorFunctionPrototype, _regeneratorDefine2(e, o, "GeneratorFunction")), e.prototype = Object.create(u), e; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, _regeneratorDefine2(u, "constructor", GeneratorFunctionPrototype), _regeneratorDefine2(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = "GeneratorFunction", _regeneratorDefine2(GeneratorFunctionPrototype, o, "GeneratorFunction"), _regeneratorDefine2(u), _regeneratorDefine2(u, o, "Generator"), _regeneratorDefine2(u, n, function () { return this; }), _regeneratorDefine2(u, "toString", function () { return "[object Generator]"; }), (_regenerator = function _regenerator() { return { w: i, m: f }; })(); }
-function _regeneratorDefine2(e, r, n, t) { var i = Object.defineProperty; try { i({}, "", {}); } catch (e) { i = 0; } _regeneratorDefine2 = function _regeneratorDefine(e, r, n, t) { function o(r, n) { _regeneratorDefine2(e, r, function (e) { return this._invoke(r, n, e); }); } r ? i ? i(e, r, { value: n, enumerable: !t, configurable: !t, writable: !t }) : e[r] = n : (o("next", 0), o("throw", 1), o("return", 2)); }, _regeneratorDefine2(e, r, n, t); }
-function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
-function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
 function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
@@ -817,8 +817,14 @@ function Step1(_ref15) {
       return setPass(e.target.value);
     },
     error: err.pass
-  }), /*#__PURE__*/React.createElement(Input, {
+  }), /*#__PURE__*/React.createElement(FieldWrap, {
     label: "Heslo znovu",
+    error: err.pass2
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: "relative"
+    }
+  }, /*#__PURE__*/React.createElement("input", {
     type: "password",
     autoComplete: "new-password",
     placeholder: "Zopakujte heslo",
@@ -826,8 +832,45 @@ function Step1(_ref15) {
     onChange: function onChange(e) {
       return setPass2(e.target.value);
     },
-    error: err.pass2
-  }), /*#__PURE__*/React.createElement(Divider, {
+    style: {
+      width: "100%",
+      boxSizing: "border-box",
+      padding: "10px 40px 10px 12px",
+      fontSize: 16,
+      border: "1.5px solid ".concat(err.pass2 ? C.error : pass2 && pass === pass2 ? "#16A34A" : C.border),
+      borderRadius: 5,
+      outline: "none",
+      background: pass2 && pass === pass2 ? "#F0FDF4" : "#FAFAFA",
+      color: C.text,
+      fontFamily: font,
+      transition: "border-color .15s, background .15s"
+    }
+  }), pass2 && pass === pass2 && /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: "absolute",
+      right: 12,
+      top: "50%",
+      transform: "translateY(-50%)",
+      width: 22,
+      height: 22,
+      borderRadius: "50%",
+      background: "#16A34A",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center"
+    }
+  }, /*#__PURE__*/React.createElement("svg", {
+    width: "12",
+    height: "10",
+    viewBox: "0 0 12 10",
+    fill: "none"
+  }, /*#__PURE__*/React.createElement("path", {
+    d: "M1 5L4.5 8.5L11 1",
+    stroke: "white",
+    strokeWidth: "2",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }))))), /*#__PURE__*/React.createElement(Divider, {
     label: "\uD83D\uDD14 P\u0159ipom\xEDnky platby"
   }), /*#__PURE__*/React.createElement("p", {
     style: {
@@ -1504,7 +1547,8 @@ function QRCode(_ref21) {
 function StepDone(_ref22) {
   var _REMINDER_DATES$find2;
   var data = _ref22.data,
-    rates = _ref22.rates;
+    rates = _ref22.rates,
+    onEdit = _ref22.onEdit;
   var _calc2 = calc(data, rates),
     odpad = _calc2.odpad,
     pes = _calc2.pes,
@@ -1687,6 +1731,7 @@ function StepDone(_ref22) {
       color: C.red
     }
   }, celkem.toLocaleString("cs-CZ"), " K\u010D"))), /*#__PURE__*/React.createElement("button", {
+    onClick: onEdit,
     style: {
       width: "100%",
       padding: "11px",
@@ -1703,107 +1748,1247 @@ function StepDone(_ref22) {
 }
 
 // ─────────────────────────────────────────────────────────────────────
+// STEP EDIT – Správa nastavení přihlášeného uživatele
+// ─────────────────────────────────────────────────────────────────────
+function StepEdit(_ref25) {
+  var data = _ref25.data,
+    rates = _ref25.rates,
+    onSaved = _ref25.onSaved,
+    onCancel = _ref25.onCancel;
+  var isSVJ = data.typSubjektu === "svj";
+  var isRec = ["rekreace_trvala", "rekreace_chata"].includes(data.typNemovitosti);
+
+  // Editovatelné hodnoty
+  var _useState43 = useState(data.nadoba || ""),
+    _useState44 = _slicedToArray(_useState43, 2),
+    nadoba = _useState44[0],
+    setNadoba = _useState44[1];
+  var _useState45 = useState(data.cetnost || ""),
+    _useState46 = _slicedToArray(_useState45, 2),
+    cetnost = _useState46[0],
+    setCetnost = _useState46[1];
+  var _useState47 = useState(data.psi || "0"),
+    _useState48 = _slicedToArray(_useState47, 2),
+    psi = _useState48[0],
+    setPsi = _useState48[1];
+  var _useState49 = useState(data.typDrzitele || "dum"),
+    _useState50 = _slicedToArray(_useState49, 2),
+    typDrzitele = _useState50[0],
+    setTypDrzitele = _useState50[1];
+  var _useState51 = useState(data.bioodpad || false),
+    _useState52 = _slicedToArray(_useState51, 2),
+    bioodpad = _useState52[0],
+    setBioodpad = _useState52[1];
+  var _useState53 = useState(data.bioodpadNadoba || ""),
+    _useState54 = _slicedToArray(_useState53, 2),
+    bioodpadNadoba = _useState54[0],
+    setBioodpadNadoba = _useState54[1];
+  var _useState55 = useState(data.reminderDate || ""),
+    _useState56 = _slicedToArray(_useState55, 2),
+    reminderDate = _useState56[0],
+    setReminderDate = _useState56[1];
+  var _useState57 = useState(data.extra || 0),
+    _useState58 = _slicedToArray(_useState57, 2),
+    extra = _useState58[0],
+    setExtra = _useState58[1];
+  var _useState59 = useState(false),
+    _useState60 = _slicedToArray(_useState59, 2),
+    saving = _useState60[0],
+    setSaving = _useState60[1];
+  var _useState61 = useState(null),
+    _useState62 = _slicedToArray(_useState61, 2),
+    error = _useState62[0],
+    setError = _useState62[1];
+  var previewData = _objectSpread(_objectSpread({}, data), {}, {
+    nadoba: nadoba,
+    cetnost: cetnost,
+    psi: psi,
+    typDrzitele: typDrzitele,
+    bioodpad: bioodpad,
+    bioodpadNadoba: bioodpadNadoba
+  });
+  var _calc3 = calc(previewData, rates),
+    odpad = _calc3.odpad,
+    pes = _calc3.pes,
+    bio = _calc3.bio,
+    celkem = _calc3.celkem;
+  function handleSave() {
+    return _handleSave.apply(this, arguments);
+  }
+  function _handleSave() {
+    _handleSave = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee() {
+      var _yield$sb$auth$getSes, session, userId, _yield$sb$from$update, propErr, _yield$sb$from$select, prop, _yield$sb$from$update2, remErr, _t;
+      return _regenerator().w(function (_context) {
+        while (1) switch (_context.p = _context.n) {
+          case 0:
+            setError(null);
+            setSaving(true);
+            _context.p = 1;
+            _context.n = 2;
+            return sb.auth.getSession();
+          case 2:
+            _yield$sb$auth$getSes = _context.v;
+            session = _yield$sb$auth$getSes.data.session;
+            if (session) {
+              _context.n = 3;
+              break;
+            }
+            throw new Error("Nejste přihlášeni.");
+          case 3:
+            userId = session.user.id; // Aktualizuj property
+            _context.n = 4;
+            return sb.from("properties").update({
+              nadoba: nadoba || null,
+              cetnost: cetnost || null,
+              pocet_psu: parseInt(psi) || 0,
+              typ_drzitele: typDrzitele || null,
+              bioodpad: bioodpad,
+              bioodpad_nadoba: bioodpad ? bioodpadNadoba : null
+            }).eq("user_id", userId);
+          case 4:
+            _yield$sb$from$update = _context.v;
+            propErr = _yield$sb$from$update.error;
+            if (!propErr) {
+              _context.n = 5;
+              break;
+            }
+            throw propErr;
+          case 5:
+            _context.n = 6;
+            return sb.from("properties").select("id").eq("user_id", userId).single();
+          case 6:
+            _yield$sb$from$select = _context.v;
+            prop = _yield$sb$from$select.data;
+            if (!prop) {
+              _context.n = 8;
+              break;
+            }
+            _context.n = 7;
+            return sb.from("reminders").update({
+              reminder_date: reminderDate,
+              extra_count: extra
+            }).eq("property_id", prop.id);
+          case 7:
+            _yield$sb$from$update2 = _context.v;
+            remErr = _yield$sb$from$update2.error;
+            if (!remErr) {
+              _context.n = 8;
+              break;
+            }
+            throw remErr;
+          case 8:
+            onSaved(_objectSpread(_objectSpread({}, data), {}, {
+              nadoba: nadoba,
+              cetnost: cetnost,
+              psi: psi,
+              typDrzitele: typDrzitele,
+              bioodpad: bioodpad,
+              bioodpadNadoba: bioodpadNadoba,
+              reminderDate: reminderDate,
+              extra: extra
+            }));
+            _context.n = 10;
+            break;
+          case 9:
+            _context.p = 9;
+            _t = _context.v;
+            setError(_t.message || "Chyba při ukládání.");
+          case 10:
+            _context.p = 10;
+            setSaving(false);
+            return _context.f(10);
+          case 11:
+            return _context.a(2);
+        }
+      }, _callee, null, [[1, 9, 10, 11]]);
+    }));
+    return _handleSave.apply(this, arguments);
+  }
+  var NADOBY = [{
+    v: "80",
+    label: "80 l"
+  }, {
+    v: "120",
+    label: "120 l"
+  }, {
+    v: "240",
+    label: "240 l"
+  }, {
+    v: "1100",
+    label: "1100 l"
+  }];
+  var CETNOSTI = isSVJ ? [{
+    v: "52",
+    label: "52× ročně (týdně)"
+  }, {
+    v: "104",
+    label: "104× ročně (2× týdně)"
+  }] : [{
+    v: "52",
+    label: "52× ročně (týdně)"
+  }, {
+    v: "26",
+    label: "26× ročně (á 2 týdny)"
+  }];
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: "24px 20px 28px"
+    }
+  }, /*#__PURE__*/React.createElement("h2", {
+    style: {
+      margin: "0 0 4px",
+      fontSize: 20,
+      fontWeight: 800,
+      color: C.text
+    }
+  }, "Upravit nastaven\xED"), /*#__PURE__*/React.createElement("p", {
+    style: {
+      margin: "0 0 20px",
+      fontSize: 13,
+      color: C.muted
+    }
+  }, data.castObce && data.cp ? "".concat(data.castObce.charAt(0).toUpperCase() + data.castObce.slice(1), " \u010D.p. ").concat(data.cp) : "Vaše nemovitost"), !isRec && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Divider, {
+    label: "\uD83D\uDDD1 Komun\xE1ln\xED odpad"
+  }), /*#__PURE__*/React.createElement(Select, {
+    label: "N\xE1doba",
+    value: nadoba,
+    onChange: function onChange(e) {
+      return setNadoba(e.target.value);
+    }
+  }, /*#__PURE__*/React.createElement("option", {
+    value: ""
+  }, "Vyberte n\xE1dobu\u2026"), NADOBY.map(function (n) {
+    return /*#__PURE__*/React.createElement("option", {
+      key: n.v,
+      value: n.v
+    }, n.label);
+  })), /*#__PURE__*/React.createElement(Select, {
+    label: "\u010Cetnost svozu",
+    value: cetnost,
+    onChange: function onChange(e) {
+      return setCetnost(e.target.value);
+    }
+  }, /*#__PURE__*/React.createElement("option", {
+    value: ""
+  }, "Vyberte \u010Detnost\u2026"), CETNOSTI.map(function (c) {
+    return /*#__PURE__*/React.createElement("option", {
+      key: c.v,
+      value: c.v
+    }, c.label);
+  }))), !isSVJ && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Divider, {
+    label: "\uD83D\uDC15 Poplatek za psy"
+  }), /*#__PURE__*/React.createElement(Select, {
+    label: "Po\u010Det ps\u016F",
+    value: psi,
+    onChange: function onChange(e) {
+      return setPsi(e.target.value);
+    }
+  }, ["0", "1", "2", "3", "4", "5"].map(function (n) {
+    return /*#__PURE__*/React.createElement("option", {
+      key: n,
+      value: n
+    }, n === "0" ? "Bez psa" : "".concat(n, " ").concat(n === "1" ? "pes" : n < 5 ? "psi" : "psů"));
+  })), parseInt(psi) > 0 && /*#__PURE__*/React.createElement(Select, {
+    label: "Typ dr\u017Eitele",
+    value: typDrzitele,
+    onChange: function onChange(e) {
+      return setTypDrzitele(e.target.value);
+    }
+  }, /*#__PURE__*/React.createElement("option", {
+    value: "dum"
+  }, "Rodinn\xFD d\u016Fm"), /*#__PURE__*/React.createElement("option", {
+    value: "byt"
+  }, "Byt"), /*#__PURE__*/React.createElement("option", {
+    value: "senior"
+  }, "Senior 65+"))), /*#__PURE__*/React.createElement(Divider, {
+    label: "\uD83C\uDF3F Bioodpad"
+  }), /*#__PURE__*/React.createElement(FieldWrap, null, /*#__PURE__*/React.createElement("div", {
+    onClick: function onClick() {
+      return setBioodpad(function (v) {
+        return !v;
+      });
+    },
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 12,
+      cursor: "pointer",
+      padding: "11px 13px",
+      borderRadius: 5,
+      border: "1.5px solid ".concat(bioodpad ? C.red : C.border),
+      background: bioodpad ? C.redLight : "#FAFAFA",
+      WebkitTapHighlightColor: "transparent"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: 22,
+      height: 22,
+      borderRadius: 4,
+      flexShrink: 0,
+      border: "2px solid ".concat(bioodpad ? C.red : C.borderDark),
+      background: bioodpad ? C.red : "transparent",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center"
+    }
+  }, bioodpad && /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: "#fff",
+      fontSize: 13,
+      fontWeight: 700
+    }
+  }, "\u2713")), /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 13,
+      fontWeight: 600,
+      color: C.text
+    }
+  }, "M\xE1m z\xE1jem o bioodpadov\xFD svoz"))), bioodpad && /*#__PURE__*/React.createElement(Select, {
+    label: "N\xE1doba na bioodpad",
+    value: bioodpadNadoba,
+    onChange: function onChange(e) {
+      return setBioodpadNadoba(e.target.value);
+    }
+  }, /*#__PURE__*/React.createElement("option", {
+    value: ""
+  }, "Vyberte n\xE1dobu\u2026"), /*#__PURE__*/React.createElement("option", {
+    value: "120"
+  }, "120 l \u2014 ", 1517 .toLocaleString("cs-CZ"), " K\u010D/rok"), /*#__PURE__*/React.createElement("option", {
+    value: "240"
+  }, "240 l \u2014 ", 2525 .toLocaleString("cs-CZ"), " K\u010D/rok")), /*#__PURE__*/React.createElement(Divider, {
+    label: "\uD83D\uDD14 P\u0159ipom\xEDnky"
+  }), /*#__PURE__*/React.createElement(Select, {
+    label: "Datum prvn\xED p\u0159ipom\xEDnky",
+    value: reminderDate,
+    onChange: function onChange(e) {
+      return setReminderDate(e.target.value);
+    }
+  }, /*#__PURE__*/React.createElement("option", {
+    value: ""
+  }, "Vyberte datum..."), REMINDER_DATES.map(function (d) {
+    return /*#__PURE__*/React.createElement("option", {
+      key: d.value,
+      value: d.value
+    }, d.label, " \u2014 ", d.note);
+  })), /*#__PURE__*/React.createElement(FieldWrap, {
+    label: "Dal\u0161\xED p\u0159ipom\xEDnky"
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 8
+    }
+  }, [{
+    v: 0,
+    label: "Žádná",
+    sub: "Jen 1 e-mail"
+  }, {
+    v: 1,
+    label: "1 další",
+    sub: "Celkem 2×"
+  }, {
+    v: 2,
+    label: "2 další",
+    sub: "Celkem 3×"
+  }].map(function (opt) {
+    return /*#__PURE__*/React.createElement("div", {
+      key: opt.v,
+      onClick: function onClick() {
+        return setExtra(opt.v);
+      },
+      style: {
+        flex: 1,
+        padding: "10px 6px",
+        borderRadius: 5,
+        textAlign: "center",
+        cursor: "pointer",
+        border: "2px solid ".concat(extra === opt.v ? C.red : C.border),
+        background: extra === opt.v ? C.redLight : "#FAFAFA",
+        WebkitTapHighlightColor: "transparent"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 13,
+        fontWeight: 700,
+        color: extra === opt.v ? C.red : C.text
+      }
+    }, opt.label), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        color: C.muted
+      }
+    }, opt.sub));
+  }))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: C.redLight,
+      border: "1px solid ".concat(C.redBorder),
+      borderRadius: 6,
+      padding: "12px 15px",
+      margin: "16px 0"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      fontWeight: 700,
+      color: C.red,
+      textTransform: "uppercase",
+      letterSpacing: ".07em",
+      marginBottom: 8
+    }
+  }, "Nov\xE1 v\xFD\u0161e poplatk\u016F 2026"), odpad > 0 && /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      justifyContent: "space-between",
+      fontSize: 13,
+      marginBottom: 4
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: C.muted
+    }
+  }, "Komun\xE1ln\xED odpad"), /*#__PURE__*/React.createElement("span", null, odpad.toLocaleString("cs-CZ"), " K\u010D")), pes > 0 && /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      justifyContent: "space-between",
+      fontSize: 13,
+      marginBottom: 4
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: C.muted
+    }
+  }, "Poplatek za psa"), /*#__PURE__*/React.createElement("span", null, pes.toLocaleString("cs-CZ"), " K\u010D")), bio > 0 && /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      justifyContent: "space-between",
+      fontSize: 13,
+      marginBottom: 4
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: C.muted
+    }
+  }, "Bioodpad"), /*#__PURE__*/React.createElement("span", null, bio.toLocaleString("cs-CZ"), " K\u010D")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      justifyContent: "space-between",
+      fontSize: 15,
+      fontWeight: 800,
+      color: C.red,
+      borderTop: "1px solid ".concat(C.redBorder),
+      paddingTop: 8,
+      marginTop: 4
+    }
+  }, /*#__PURE__*/React.createElement("span", null, "Celkem"), /*#__PURE__*/React.createElement("span", null, celkem.toLocaleString("cs-CZ"), " K\u010D"))), error && /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: C.redLight,
+      border: "1px solid ".concat(C.redBorder),
+      borderRadius: 5,
+      padding: "10px 13px",
+      marginBottom: 16,
+      fontSize: 13,
+      color: C.error
+    }
+  }, "\u26A0 ", error), /*#__PURE__*/React.createElement("button", {
+    onClick: handleSave,
+    disabled: saving,
+    style: {
+      width: "100%",
+      padding: "13px",
+      borderRadius: 5,
+      border: "none",
+      background: saving ? C.muted : C.red,
+      color: "#fff",
+      fontSize: 16,
+      fontWeight: 700,
+      cursor: saving ? "not-allowed" : "pointer",
+      fontFamily: font,
+      marginBottom: 10
+    }
+  }, saving ? "Ukládám…" : "✓ Uložit změny"), /*#__PURE__*/React.createElement("button", {
+    onClick: onCancel,
+    style: {
+      width: "100%",
+      padding: "11px",
+      borderRadius: 5,
+      border: "1.5px solid ".concat(C.borderDark),
+      background: "transparent",
+      color: C.textSoft,
+      fontSize: 14,
+      fontWeight: 500,
+      cursor: "pointer",
+      fontFamily: font
+    }
+  }, "Zru\u0161it"));
+}
+
+// ─────────────────────────────────────────────────────────────────────
+// STEP LOGIN – Přihlášení existujícího uživatele
+// ─────────────────────────────────────────────────────────────────────
+function StepLogin(_ref26) {
+  var onSuccess = _ref26.onSuccess,
+    onForgot = _ref26.onForgot,
+    onRegister = _ref26.onRegister;
+  var _useState63 = useState(""),
+    _useState64 = _slicedToArray(_useState63, 2),
+    email = _useState64[0],
+    setEmail = _useState64[1];
+  var _useState65 = useState(""),
+    _useState66 = _slicedToArray(_useState65, 2),
+    pass = _useState66[0],
+    setPass = _useState66[1];
+  var _useState67 = useState(false),
+    _useState68 = _slicedToArray(_useState67, 2),
+    loading = _useState68[0],
+    setLoading = _useState68[1];
+  var _useState69 = useState(null),
+    _useState70 = _slicedToArray(_useState69, 2),
+    error = _useState70[0],
+    setError = _useState70[1];
+  function handleLogin() {
+    return _handleLogin.apply(this, arguments);
+  }
+  function _handleLogin() {
+    _handleLogin = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee2() {
+      var _yield$sb$auth$signIn, data, err, _t2;
+      return _regenerator().w(function (_context2) {
+        while (1) switch (_context2.p = _context2.n) {
+          case 0:
+            setError(null);
+            if (email.includes("@")) {
+              _context2.n = 1;
+              break;
+            }
+            setError("Zadejte platný e-mail.");
+            return _context2.a(2);
+          case 1:
+            if (pass) {
+              _context2.n = 2;
+              break;
+            }
+            setError("Zadejte heslo.");
+            return _context2.a(2);
+          case 2:
+            setLoading(true);
+            _context2.p = 3;
+            _context2.n = 4;
+            return sb.auth.signInWithPassword({
+              email: email,
+              password: pass
+            });
+          case 4:
+            _yield$sb$auth$signIn = _context2.v;
+            data = _yield$sb$auth$signIn.data;
+            err = _yield$sb$auth$signIn.error;
+            if (!err) {
+              _context2.n = 5;
+              break;
+            }
+            throw err;
+          case 5:
+            onSuccess(data.user);
+            _context2.n = 7;
+            break;
+          case 6:
+            _context2.p = 6;
+            _t2 = _context2.v;
+            setError("Nesprávný e-mail nebo heslo.");
+          case 7:
+            _context2.p = 7;
+            setLoading(false);
+            return _context2.f(7);
+          case 8:
+            return _context2.a(2);
+        }
+      }, _callee2, null, [[3, 6, 7, 8]]);
+    }));
+    return _handleLogin.apply(this, arguments);
+  }
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: "24px 20px"
+    }
+  }, /*#__PURE__*/React.createElement("h2", {
+    style: {
+      margin: "0 0 4px",
+      fontSize: 20,
+      fontWeight: 800,
+      color: C.text
+    }
+  }, "P\u0159ihl\xE1\u0161en\xED"), /*#__PURE__*/React.createElement("p", {
+    style: {
+      margin: "0 0 20px",
+      fontSize: 13,
+      color: C.muted
+    }
+  }, "P\u0159ihlaste se ke spr\xE1v\u011B va\u0161ich poplatk\u016F"), /*#__PURE__*/React.createElement(Input, {
+    label: "E-mail",
+    type: "email",
+    value: email,
+    onChange: function onChange(e) {
+      return setEmail(e.target.value);
+    },
+    autoComplete: "email",
+    placeholder: "vas@email.cz"
+  }), /*#__PURE__*/React.createElement(Input, {
+    label: "Heslo",
+    type: "password",
+    value: pass,
+    onChange: function onChange(e) {
+      return setPass(e.target.value);
+    },
+    autoComplete: "current-password",
+    placeholder: "\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022"
+  }), error && /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: C.redLight,
+      border: "1px solid ".concat(C.redBorder),
+      borderRadius: 5,
+      padding: "10px 13px",
+      marginBottom: 16,
+      fontSize: 13,
+      color: C.error
+    }
+  }, "\u26A0 ", error), /*#__PURE__*/React.createElement("button", {
+    onClick: handleLogin,
+    disabled: loading,
+    style: {
+      width: "100%",
+      padding: "13px",
+      borderRadius: 5,
+      border: "none",
+      background: loading ? C.muted : C.red,
+      color: "#fff",
+      fontSize: 16,
+      fontWeight: 700,
+      cursor: loading ? "not-allowed" : "pointer",
+      fontFamily: font,
+      marginBottom: 12
+    }
+  }, loading ? "Přihlašuji…" : "→ Přihlásit se"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      textAlign: "center",
+      fontSize: 13
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    onClick: onForgot,
+    style: {
+      color: C.red,
+      cursor: "pointer",
+      textDecoration: "underline"
+    }
+  }, "Zapomenut\xE9 heslo"), /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: C.muted,
+      margin: "0 10px"
+    }
+  }, "\xB7"), /*#__PURE__*/React.createElement("span", {
+    onClick: onRegister,
+    style: {
+      color: C.red,
+      cursor: "pointer",
+      textDecoration: "underline"
+    }
+  }, "Nov\xE1 registrace")));
+}
+
+// ─────────────────────────────────────────────────────────────────────
+// STEP FORGOT PASSWORD
+// ─────────────────────────────────────────────────────────────────────
+function StepForgotPassword(_ref27) {
+  var onBack = _ref27.onBack,
+    onSent = _ref27.onSent;
+  var _useState71 = useState(""),
+    _useState72 = _slicedToArray(_useState71, 2),
+    email = _useState72[0],
+    setEmail = _useState72[1];
+  var _useState73 = useState(false),
+    _useState74 = _slicedToArray(_useState73, 2),
+    loading = _useState74[0],
+    setLoading = _useState74[1];
+  var _useState75 = useState(null),
+    _useState76 = _slicedToArray(_useState75, 2),
+    error = _useState76[0],
+    setError = _useState76[1];
+  function handleReset() {
+    return _handleReset.apply(this, arguments);
+  }
+  function _handleReset() {
+    _handleReset = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee3() {
+      var _yield$sb$auth$resetP, err, _t3;
+      return _regenerator().w(function (_context3) {
+        while (1) switch (_context3.p = _context3.n) {
+          case 0:
+            setError(null);
+            if (email.includes("@")) {
+              _context3.n = 1;
+              break;
+            }
+            setError("Zadejte platný e-mail.");
+            return _context3.a(2);
+          case 1:
+            setLoading(true);
+            _context3.p = 2;
+            _context3.n = 3;
+            return sb.auth.resetPasswordForEmail(email, {
+              redirectTo: window.location.origin + window.location.pathname + "?reset=1"
+            });
+          case 3:
+            _yield$sb$auth$resetP = _context3.v;
+            err = _yield$sb$auth$resetP.error;
+            if (!err) {
+              _context3.n = 4;
+              break;
+            }
+            throw err;
+          case 4:
+            onSent(email);
+            _context3.n = 6;
+            break;
+          case 5:
+            _context3.p = 5;
+            _t3 = _context3.v;
+            setError(_t3.message || "Chyba při odesílání e-mailu.");
+          case 6:
+            _context3.p = 6;
+            setLoading(false);
+            return _context3.f(6);
+          case 7:
+            return _context3.a(2);
+        }
+      }, _callee3, null, [[2, 5, 6, 7]]);
+    }));
+    return _handleReset.apply(this, arguments);
+  }
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: "24px 20px"
+    }
+  }, /*#__PURE__*/React.createElement("h2", {
+    style: {
+      margin: "0 0 4px",
+      fontSize: 20,
+      fontWeight: 800,
+      color: C.text
+    }
+  }, "Zapomenut\xE9 heslo"), /*#__PURE__*/React.createElement("p", {
+    style: {
+      margin: "0 0 20px",
+      fontSize: 13,
+      color: C.muted
+    }
+  }, "Zadejte v\xE1\u0161 e-mail a po\u0161leme v\xE1m odkaz pro obnoven\xED hesla."), /*#__PURE__*/React.createElement(Input, {
+    label: "E-mail",
+    type: "email",
+    value: email,
+    onChange: function onChange(e) {
+      return setEmail(e.target.value);
+    },
+    autoComplete: "email",
+    placeholder: "vas@email.cz"
+  }), error && /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: C.redLight,
+      border: "1px solid ".concat(C.redBorder),
+      borderRadius: 5,
+      padding: "10px 13px",
+      marginBottom: 16,
+      fontSize: 13,
+      color: C.error
+    }
+  }, "\u26A0 ", error), /*#__PURE__*/React.createElement("button", {
+    onClick: handleReset,
+    disabled: loading,
+    style: {
+      width: "100%",
+      padding: "13px",
+      borderRadius: 5,
+      border: "none",
+      background: loading ? C.muted : C.red,
+      color: "#fff",
+      fontSize: 16,
+      fontWeight: 700,
+      cursor: loading ? "not-allowed" : "pointer",
+      fontFamily: font,
+      marginBottom: 12
+    }
+  }, loading ? "Odesílám…" : "📧 Odeslat odkaz"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      textAlign: "center"
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    onClick: onBack,
+    style: {
+      fontSize: 13,
+      color: C.red,
+      cursor: "pointer",
+      textDecoration: "underline"
+    }
+  }, "\u2190 Zp\u011Bt na p\u0159ihl\xE1\u0161en\xED")));
+}
+
+// ─────────────────────────────────────────────────────────────────────
+// STEP RESET SENT
+// ─────────────────────────────────────────────────────────────────────
+function StepResetSent(_ref28) {
+  var email = _ref28.email,
+    onBack = _ref28.onBack;
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: "32px 20px",
+      textAlign: "center"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 48,
+      marginBottom: 12
+    }
+  }, "\uD83D\uDCE7"), /*#__PURE__*/React.createElement("h2", {
+    style: {
+      margin: "0 0 8px",
+      fontSize: 20,
+      fontWeight: 800,
+      color: C.text
+    }
+  }, "E-mail odesl\xE1n"), /*#__PURE__*/React.createElement("p", {
+    style: {
+      fontSize: 14,
+      color: C.muted,
+      marginBottom: 24
+    }
+  }, "Odkaz pro obnoven\xED hesla jsme odeslali na", /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("strong", {
+    style: {
+      color: C.text
+    }
+  }, email)), /*#__PURE__*/React.createElement("p", {
+    style: {
+      fontSize: 12,
+      color: C.muted,
+      marginBottom: 24
+    }
+  }, "Zkontrolujte i slo\u017Eku spam. Odkaz je platn\xFD 1 hodinu."), /*#__PURE__*/React.createElement("span", {
+    onClick: onBack,
+    style: {
+      fontSize: 13,
+      color: C.red,
+      cursor: "pointer",
+      textDecoration: "underline"
+    }
+  }, "\u2190 Zp\u011Bt na p\u0159ihl\xE1\u0161en\xED"));
+}
+
+// ─────────────────────────────────────────────────────────────────────
+// STEP NEW PASSWORD – Nastavení nového hesla po reset linku
+// ─────────────────────────────────────────────────────────────────────
+function StepNewPassword(_ref29) {
+  var onDone = _ref29.onDone;
+  var _useState77 = useState(""),
+    _useState78 = _slicedToArray(_useState77, 2),
+    pass = _useState78[0],
+    setPass = _useState78[1];
+  var _useState79 = useState(""),
+    _useState80 = _slicedToArray(_useState79, 2),
+    pass2 = _useState80[0],
+    setPass2 = _useState80[1];
+  var _useState81 = useState(false),
+    _useState82 = _slicedToArray(_useState81, 2),
+    loading = _useState82[0],
+    setLoading = _useState82[1];
+  var _useState83 = useState(null),
+    _useState84 = _slicedToArray(_useState83, 2),
+    error = _useState84[0],
+    setError = _useState84[1];
+  var _useState85 = useState(false),
+    _useState86 = _slicedToArray(_useState85, 2),
+    done = _useState86[0],
+    setDone = _useState86[1];
+  function handleSave() {
+    return _handleSave2.apply(this, arguments);
+  }
+  function _handleSave2() {
+    _handleSave2 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee4() {
+      var _yield$sb$auth$update, err, _t4;
+      return _regenerator().w(function (_context4) {
+        while (1) switch (_context4.p = _context4.n) {
+          case 0:
+            setError(null);
+            if (!(pass.length < 8)) {
+              _context4.n = 1;
+              break;
+            }
+            setError("Heslo musí mít alespoň 8 znaků.");
+            return _context4.a(2);
+          case 1:
+            if (!(pass !== pass2)) {
+              _context4.n = 2;
+              break;
+            }
+            setError("Hesla se neshodují.");
+            return _context4.a(2);
+          case 2:
+            setLoading(true);
+            _context4.p = 3;
+            _context4.n = 4;
+            return sb.auth.updateUser({
+              password: pass
+            });
+          case 4:
+            _yield$sb$auth$update = _context4.v;
+            err = _yield$sb$auth$update.error;
+            if (!err) {
+              _context4.n = 5;
+              break;
+            }
+            throw err;
+          case 5:
+            setDone(true);
+            setTimeout(function () {
+              return onDone();
+            }, 2500);
+            _context4.n = 7;
+            break;
+          case 6:
+            _context4.p = 6;
+            _t4 = _context4.v;
+            setError(_t4.message || "Chyba při ukládání hesla.");
+          case 7:
+            _context4.p = 7;
+            setLoading(false);
+            return _context4.f(7);
+          case 8:
+            return _context4.a(2);
+        }
+      }, _callee4, null, [[3, 6, 7, 8]]);
+    }));
+    return _handleSave2.apply(this, arguments);
+  }
+  if (done) return /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: "32px 20px",
+      textAlign: "center"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 48,
+      marginBottom: 12
+    }
+  }, "\u2705"), /*#__PURE__*/React.createElement("h2", {
+    style: {
+      margin: "0 0 8px",
+      fontSize: 20,
+      fontWeight: 800,
+      color: C.text
+    }
+  }, "Heslo zm\u011Bn\u011Bno"), /*#__PURE__*/React.createElement("p", {
+    style: {
+      fontSize: 14,
+      color: C.muted
+    }
+  }, "P\u0159ihla\u0161ujeme v\xE1s\u2026"));
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: "24px 20px"
+    }
+  }, /*#__PURE__*/React.createElement("h2", {
+    style: {
+      margin: "0 0 4px",
+      fontSize: 20,
+      fontWeight: 800,
+      color: C.text
+    }
+  }, "Nov\xE9 heslo"), /*#__PURE__*/React.createElement("p", {
+    style: {
+      margin: "0 0 20px",
+      fontSize: 13,
+      color: C.muted
+    }
+  }, "Zadejte nov\xE9 heslo pro v\xE1\u0161 \xFA\u010Det."), /*#__PURE__*/React.createElement(Input, {
+    label: "Nov\xE9 heslo",
+    type: "password",
+    autoComplete: "new-password",
+    placeholder: "Minim\xE1ln\u011B 8 znak\u016F",
+    value: pass,
+    onChange: function onChange(e) {
+      return setPass(e.target.value);
+    }
+  }), /*#__PURE__*/React.createElement(FieldWrap, {
+    label: "Nov\xE9 heslo znovu"
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: "relative"
+    }
+  }, /*#__PURE__*/React.createElement("input", {
+    type: "password",
+    autoComplete: "new-password",
+    placeholder: "Zopakujte heslo",
+    value: pass2,
+    onChange: function onChange(e) {
+      return setPass2(e.target.value);
+    },
+    style: {
+      width: "100%",
+      boxSizing: "border-box",
+      padding: "10px 40px 10px 12px",
+      fontSize: 16,
+      border: "1.5px solid ".concat(pass2 && pass === pass2 ? "#16A34A" : C.border),
+      borderRadius: 5,
+      outline: "none",
+      background: pass2 && pass === pass2 ? "#F0FDF4" : "#FAFAFA",
+      color: C.text,
+      fontFamily: font,
+      transition: "border-color .15s, background .15s"
+    }
+  }), pass2 && pass === pass2 && /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: "absolute",
+      right: 12,
+      top: "50%",
+      transform: "translateY(-50%)",
+      width: 22,
+      height: 22,
+      borderRadius: "50%",
+      background: "#16A34A",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center"
+    }
+  }, /*#__PURE__*/React.createElement("svg", {
+    width: "12",
+    height: "10",
+    viewBox: "0 0 12 10",
+    fill: "none"
+  }, /*#__PURE__*/React.createElement("path", {
+    d: "M1 5L4.5 8.5L11 1",
+    stroke: "white",
+    strokeWidth: "2",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }))))), error && /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: C.redLight,
+      border: "1px solid ".concat(C.redBorder),
+      borderRadius: 5,
+      padding: "10px 13px",
+      marginBottom: 16,
+      fontSize: 13,
+      color: C.error
+    }
+  }, "\u26A0 ", error), /*#__PURE__*/React.createElement("button", {
+    onClick: handleSave,
+    disabled: loading,
+    style: {
+      width: "100%",
+      padding: "13px",
+      borderRadius: 5,
+      border: "none",
+      background: loading ? C.muted : C.red,
+      color: "#fff",
+      fontSize: 16,
+      fontWeight: 700,
+      cursor: loading ? "not-allowed" : "pointer",
+      fontFamily: font
+    }
+  }, loading ? "Ukládám…" : "✓ Uložit nové heslo"));
+}
+
+// ─────────────────────────────────────────────────────────────────────
 // APP SHELL
 // ─────────────────────────────────────────────────────────────────────
 function App() {
-  var _useState43 = useState(0),
-    _useState44 = _slicedToArray(_useState43, 2),
-    step = _useState44[0],
-    setStep = _useState44[1];
-  var _useState45 = useState({}),
-    _useState46 = _slicedToArray(_useState45, 2),
-    data = _useState46[0],
-    setData = _useState46[1];
-  var _useState47 = useState(null),
-    _useState48 = _slicedToArray(_useState47, 2),
-    rates = _useState48[0],
-    setRates = _useState48[1]; // sazby z DB
-  var _useState49 = useState(false),
-    _useState50 = _slicedToArray(_useState49, 2),
-    saving = _useState50[0],
-    setSaving = _useState50[1]; // probíhá ukládání
-  var _useState51 = useState(null),
-    _useState52 = _slicedToArray(_useState51, 2),
-    saveError = _useState52[0],
-    setSaveError = _useState52[1]; // chyba při ukládání
+  // mode: "register" | "login" | "forgot" | "reset-sent" | "new-password"
+  var _useState87 = useState("register"),
+    _useState88 = _slicedToArray(_useState87, 2),
+    mode = _useState88[0],
+    setMode = _useState88[1];
+  var _useState89 = useState(0),
+    _useState90 = _slicedToArray(_useState89, 2),
+    step = _useState90[0],
+    setStep = _useState90[1];
+  var _useState91 = useState({}),
+    _useState92 = _slicedToArray(_useState91, 2),
+    data = _useState92[0],
+    setData = _useState92[1];
+  var _useState93 = useState(null),
+    _useState94 = _slicedToArray(_useState93, 2),
+    rates = _useState94[0],
+    setRates = _useState94[1];
+  var _useState95 = useState(false),
+    _useState96 = _slicedToArray(_useState95, 2),
+    saving = _useState96[0],
+    setSaving = _useState96[1];
+  var _useState97 = useState(null),
+    _useState98 = _slicedToArray(_useState97, 2),
+    saveError = _useState98[0],
+    setSaveError = _useState98[1];
+  var _useState99 = useState(""),
+    _useState100 = _slicedToArray(_useState99, 2),
+    resetEmail = _useState100[0],
+    setResetEmail = _useState100[1];
 
-  // Načtení sazeb z DB při startu aplikace
+  // Načtení sazeb + detekce reset tokenu v URL hash
   useEffect(function () {
+    // Supabase vloží #access_token=...&type=recovery do URL po kliknutí na reset link
+    var hash = window.location.hash;
+    if (hash.includes("type=recovery") || hash.includes("type=signup")) {
+      // Supabase SDK automaticky zpracuje token z hashe a vytvoří session
+      sb.auth.getSession().then(function (_ref30) {
+        var session = _ref30.data.session;
+        if (session) {
+          // Vymaž token z URL aby to nevypadalo divně
+          window.history.replaceState(null, "", window.location.pathname);
+          setMode("new-password");
+        }
+      });
+    }
     function loadRates() {
       return _loadRates.apply(this, arguments);
     }
     function _loadRates() {
-      _loadRates = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee() {
-        var _yield$sb$from$select, rows, error;
-        return _regenerator().w(function (_context) {
-          while (1) switch (_context.n) {
+      _loadRates = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee5() {
+        var _yield$sb$from$select2, rows, error;
+        return _regenerator().w(function (_context5) {
+          while (1) switch (_context5.n) {
             case 0:
-              _context.n = 1;
+              _context5.n = 1;
               return sb.from("fee_rates").select("fee_type, key, amount").eq("year", 2026);
             case 1:
-              _yield$sb$from$select = _context.v;
-              rows = _yield$sb$from$select.data;
-              error = _yield$sb$from$select.error;
-              if (!error && rows !== null && rows !== void 0 && rows.length) {
-                setRates(buildRateLookup(rows));
-              }
-              // Při chybě zůstane rates=null → calc() použije FALLBACK_RATES
+              _yield$sb$from$select2 = _context5.v;
+              rows = _yield$sb$from$select2.data;
+              error = _yield$sb$from$select2.error;
+              if (!error && rows !== null && rows !== void 0 && rows.length) setRates(buildRateLookup(rows));
             case 2:
-              return _context.a(2);
+              return _context5.a(2);
           }
-        }, _callee);
+        }, _callee5);
       }));
       return _loadRates.apply(this, arguments);
     }
     loadRates();
   }, []);
 
-  // Volá se po kliknutí "Dokončit registraci" v Step3
+  // Po úspěšném přihlášení — načti data uživatele a zobraz StepDone
+  function handleLoginSuccess(_x) {
+    return _handleLoginSuccess.apply(this, arguments);
+  } // Volá se po kliknutí "Dokončit registraci" v Step3
+  function _handleLoginSuccess() {
+    _handleLoginSuccess = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee6(user) {
+      var _yield$sb$from$select3, profile, _yield$sb$from$select4, prop, _yield$sb$from$select5, rem, loadedData, _t5;
+      return _regenerator().w(function (_context6) {
+        while (1) switch (_context6.p = _context6.n) {
+          case 0:
+            _context6.p = 0;
+            _context6.n = 1;
+            return sb.from("profiles").select("*").eq("id", user.id).single();
+          case 1:
+            _yield$sb$from$select3 = _context6.v;
+            profile = _yield$sb$from$select3.data;
+            _context6.n = 2;
+            return sb.from("properties").select("*").eq("user_id", user.id).order("created_at").limit(1).single();
+          case 2:
+            _yield$sb$from$select4 = _context6.v;
+            prop = _yield$sb$from$select4.data;
+            _context6.n = 3;
+            return sb.from("reminders").select("*").eq("property_id", prop === null || prop === void 0 ? void 0 : prop.id).single();
+          case 3:
+            _yield$sb$from$select5 = _context6.v;
+            rem = _yield$sb$from$select5.data;
+            if (prop) {
+              _context6.n = 4;
+              break;
+            }
+            // Uživatel existuje ale nemá nemovitost → nová registrace od step 1
+            setData({
+              email: user.email,
+              typSubjektu: (profile === null || profile === void 0 ? void 0 : profile.typ_subjektu) || "fo"
+            });
+            setStep(1);
+            setMode("register");
+            return _context6.a(2);
+          case 4:
+            // Sestav data objekt ze DB záznamů
+            loadedData = {
+              email: user.email,
+              typSubjektu: (profile === null || profile === void 0 ? void 0 : profile.typ_subjektu) || "fo",
+              nazevSVJ: (profile === null || profile === void 0 ? void 0 : profile.nazev_svj) || "",
+              ico: (profile === null || profile === void 0 ? void 0 : profile.ico) || "",
+              castObce: prop.cast_obce,
+              cp: prop.cp,
+              cisloBytu: prop.cislo_bytu || "",
+              typNemovitosti: prop.typ_nemovitosti,
+              nadoba: prop.nadoba || "",
+              cetnost: prop.cetnost || "",
+              psi: String(prop.pocet_psu || 0),
+              typDrzitele: prop.typ_drzitele || "dum",
+              bioodpad: prop.bioodpad || false,
+              bioodpadNadoba: prop.bioodpad_nadoba || "",
+              reminderDate: (rem === null || rem === void 0 ? void 0 : rem.reminder_date) || "",
+              extra: (rem === null || rem === void 0 ? void 0 : rem.extra_count) || 0
+            };
+            setData(loadedData);
+            setStep(3);
+            setMode("register");
+            _context6.n = 6;
+            break;
+          case 5:
+            _context6.p = 5;
+            _t5 = _context6.v;
+            // Fallback — pokud načtení dat selže, pošli na step 3 s emailem
+            setData({
+              email: user.email
+            });
+            setStep(3);
+            setMode("register");
+          case 6:
+            return _context6.a(2);
+        }
+      }, _callee6, null, [[0, 5]]);
+    }));
+    return _handleLoginSuccess.apply(this, arguments);
+  }
   function handleFinish() {
     return _handleFinish.apply(this, arguments);
   }
   function _handleFinish() {
-    _handleFinish = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee2() {
-      var _yield$sb$auth$signUp, authData, authError, _yield$sb$auth$signIn, signInData, signInError, userId, _yield$sb$from$upsert, profileError, _yield$sb$from$insert, prop, propError, _yield$sb$from$insert2, remError, _t;
-      return _regenerator().w(function (_context2) {
-        while (1) switch (_context2.p = _context2.n) {
+    _handleFinish = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee7() {
+      var _yield$sb$auth$signUp, authData, authError, _yield$sb$auth$signIn2, signInData, signInError, userId, _yield$sb$from$upsert, profileError, _yield$sb$from$insert, prop, propError, _yield$sb$from$insert2, remError, _t6;
+      return _regenerator().w(function (_context7) {
+        while (1) switch (_context7.p = _context7.n) {
           case 0:
             setSaving(true);
             setSaveError(null);
-            _context2.p = 1;
-            _context2.n = 2;
+            _context7.p = 1;
+            _context7.n = 2;
             return sb.auth.signUp({
               email: data.email,
               password: data.pass
             });
           case 2:
-            _yield$sb$auth$signUp = _context2.v;
+            _yield$sb$auth$signUp = _context7.v;
             authData = _yield$sb$auth$signUp.data;
             authError = _yield$sb$auth$signUp.error;
             if (!authError) {
-              _context2.n = 3;
+              _context7.n = 3;
               break;
             }
             throw authError;
           case 3:
-            _context2.n = 4;
+            _context7.n = 4;
             return sb.auth.signInWithPassword({
               email: data.email,
               password: data.pass
             });
           case 4:
-            _yield$sb$auth$signIn = _context2.v;
-            signInData = _yield$sb$auth$signIn.data;
-            signInError = _yield$sb$auth$signIn.error;
+            _yield$sb$auth$signIn2 = _context7.v;
+            signInData = _yield$sb$auth$signIn2.data;
+            signInError = _yield$sb$auth$signIn2.error;
             if (!signInError) {
-              _context2.n = 5;
+              _context7.n = 5;
               break;
             }
             throw signInError;
           case 5:
             userId = signInData.user.id; // 2. Doplnění profilu (trigger v DB vytvořil základní záznam,
             //    teď přidáme typ_subjektu a případné údaje SVJ)
-            _context2.n = 6;
+            _context7.n = 6;
             return sb.from("profiles").upsert({
               id: userId,
               typ_subjektu: data.typSubjektu,
@@ -1811,15 +2996,15 @@ function App() {
               ico: data.ico || null
             });
           case 6:
-            _yield$sb$from$upsert = _context2.v;
+            _yield$sb$from$upsert = _context7.v;
             profileError = _yield$sb$from$upsert.error;
             if (!profileError) {
-              _context2.n = 7;
+              _context7.n = 7;
               break;
             }
             throw profileError;
           case 7:
-            _context2.n = 8;
+            _context7.n = 8;
             return sb.from("properties").insert({
               user_id: userId,
               cast_obce: data.castObce,
@@ -1834,46 +3019,46 @@ function App() {
               bioodpad_nadoba: data.bioodpadNadoba || null
             }).select().single();
           case 8:
-            _yield$sb$from$insert = _context2.v;
+            _yield$sb$from$insert = _context7.v;
             prop = _yield$sb$from$insert.data;
             propError = _yield$sb$from$insert.error;
             if (!propError) {
-              _context2.n = 9;
+              _context7.n = 9;
               break;
             }
             throw propError;
           case 9:
-            _context2.n = 10;
+            _context7.n = 10;
             return sb.from("reminders").insert({
               property_id: prop.id,
               reminder_date: data.reminderDate,
               extra_count: data.extra || 0
             });
           case 10:
-            _yield$sb$from$insert2 = _context2.v;
+            _yield$sb$from$insert2 = _context7.v;
             remError = _yield$sb$from$insert2.error;
             if (!remError) {
-              _context2.n = 11;
+              _context7.n = 11;
               break;
             }
             throw remError;
           case 11:
             // Vše OK → přejdeme na potvrzovací obrazovku
             setStep(3);
-            _context2.n = 13;
+            _context7.n = 13;
             break;
           case 12:
-            _context2.p = 12;
-            _t = _context2.v;
-            setSaveError(_t.message || "Chyba při ukládání. Zkuste to znovu.");
+            _context7.p = 12;
+            _t6 = _context7.v;
+            setSaveError(_t6.message || "Chyba při ukládání. Zkuste to znovu.");
           case 13:
-            _context2.p = 13;
+            _context7.p = 13;
             setSaving(false);
-            return _context2.f(13);
+            return _context7.f(13);
           case 14:
-            return _context2.a(2);
+            return _context7.a(2);
         }
-      }, _callee2, null, [[1, 12, 13, 14]]);
+      }, _callee7, null, [[1, 12, 13, 14]]);
     }));
     return _handleFinish.apply(this, arguments);
   }
@@ -2013,14 +3198,55 @@ function App() {
       boxShadow: "0 1px 4px rgba(0,0,0,.07)",
       overflow: "hidden"
     }
-  }, step === 0 && /*#__PURE__*/React.createElement(Step1, {
+  }, mode === "new-password" && /*#__PURE__*/React.createElement(StepNewPassword, {
+    onDone: function onDone() {
+      return setMode("login");
+    }
+  }), mode === "login" && /*#__PURE__*/React.createElement(StepLogin, {
+    onSuccess: handleLoginSuccess,
+    onForgot: function onForgot() {
+      return setMode("forgot");
+    },
+    onRegister: function onRegister() {
+      return setMode("register");
+    }
+  }), mode === "forgot" && /*#__PURE__*/React.createElement(StepForgotPassword, {
+    onBack: function onBack() {
+      return setMode("login");
+    },
+    onSent: function onSent(email) {
+      setResetEmail(email);
+      setMode("reset-sent");
+    }
+  }), mode === "reset-sent" && /*#__PURE__*/React.createElement(StepResetSent, {
+    email: resetEmail,
+    onBack: function onBack() {
+      return setMode("login");
+    }
+  }), mode === "register" && step === 0 && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Step1, {
     onNext: function onNext(d) {
       setData(function (p) {
         return _objectSpread(_objectSpread({}, p), d);
       });
       setStep(1);
     }
-  }), step === 1 && /*#__PURE__*/React.createElement(Step2, {
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: "0 20px 20px",
+      textAlign: "center",
+      fontSize: 13,
+      color: C.muted
+    }
+  }, "Ji\u017E m\xE1te \xFA\u010Det?", " ", /*#__PURE__*/React.createElement("span", {
+    onClick: function onClick() {
+      return setMode("login");
+    },
+    style: {
+      color: C.red,
+      cursor: "pointer",
+      textDecoration: "underline"
+    }
+  }, "P\u0159ihlaste se"))), mode === "register" && step === 1 && /*#__PURE__*/React.createElement(Step2, {
     typSubjektu: data.typSubjektu,
     rates: rates,
     onNext: function onNext(d) {
@@ -2032,7 +3258,7 @@ function App() {
     onBack: function onBack() {
       return setStep(0);
     }
-  }), step === 2 && /*#__PURE__*/React.createElement(Step3, {
+  }), mode === "register" && step === 2 && /*#__PURE__*/React.createElement(Step3, {
     data: data,
     rates: rates,
     saving: saving,
@@ -2041,9 +3267,23 @@ function App() {
       return setStep(1);
     },
     onFinish: handleFinish
-  }), step === 3 && /*#__PURE__*/React.createElement(StepDone, {
+  }), mode === "register" && step === 3 && /*#__PURE__*/React.createElement(StepDone, {
     data: data,
-    rates: rates
+    rates: rates,
+    onEdit: function onEdit() {
+      return setMode("edit");
+    }
+  }), mode === "edit" && /*#__PURE__*/React.createElement(StepEdit, {
+    data: data,
+    rates: rates,
+    onSaved: function onSaved(newData) {
+      setData(newData);
+      setMode("register");
+      setStep(3);
+    },
+    onCancel: function onCancel() {
+      return setMode("register");
+    }
   }))), /*#__PURE__*/React.createElement("div", {
     style: {
       padding: "0 20px 32px",
