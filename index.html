@@ -7,7 +7,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js" onload="window.QRCodeLib=QRCode"></script>
   <style>* { box-sizing: border-box; margin: 0; padding: 0; } html { height: -webkit-fill-available; } body { background: #F5F5F5; }</style>
 </head>
 <body>
@@ -1474,31 +1473,25 @@ function Step3(_ref17) {
 // DONE – Potvrzení
 // ─────────────────────────────────────────────────────────────────────
 
-// Reálný Czech Payment QR kód (SPD formát)
+// Reálný Czech Payment QR kód (SPD formát, IBAN)
+// Účet 3725111/0100 → IBAN CZ4601000000000003725111
 function QRCode(_ref21) {
   var vs = _ref21.vs,
     amount = _ref21.amount;
-  var canvasRef = React.useRef(null);
-  useEffect(function () {
-    if (!canvasRef.current || !vs || !amount) return;
-    var spd = ["SPD*1.0", "ACC:3725111/0100", "AM:".concat(amount.toFixed(2)), "CC:CZK", "VS:".concat(vs), "MSG:Mistni poplatky 2026"].join("*");
-    // Použijeme qrcode knihovnu z CDN
-    if (typeof QRCodeLib === "undefined") return;
-    QRCodeLib.toCanvas(canvasRef.current, spd, {
-      width: 160,
-      margin: 1,
-      color: {
-        dark: "#111111",
-        light: "#ffffff"
-      }
-    }, function (err) {
-      if (err) console.error("QR error:", err);
-    });
-  }, [vs, amount]);
-  return /*#__PURE__*/React.createElement("canvas", {
-    ref: canvasRef,
+  if (!vs || !amount) return null;
+  var spd = ["SPD*1.0", "ACC:CZ4601000000000003725111", "AM:" + amount.toFixed(2), "CC:CZK", "VS:" + vs, "MSG:Mistni poplatky 2026"].join("*");
+  var url = "https://api.qrserver.com/v1/create-qr-code/?size=180x180&ecc=M&data=" + encodeURIComponent(spd);
+  return /*#__PURE__*/React.createElement("img", {
+    src: url,
+    alt: "QR platba",
+    width: 180,
+    height: 180,
     style: {
-      borderRadius: 4
+      borderRadius: 4,
+      display: "block"
+    },
+    onError: function onError(e) {
+      e.target.style.display = "none";
     }
   });
 }
