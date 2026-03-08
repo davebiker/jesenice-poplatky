@@ -2,718 +2,1402 @@
 <html lang="cs">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
   <title>Portál místních poplatků – Město Jesenice</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { height: -webkit-fill-available; }
     body { background: #F5F5F5; }
   </style>
 </head>
 <body>
   <div id="root"></div>
-  <script type="text/babel">
-const { useState } = React;
+  <script>
+"use strict";
+
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+var _excluded = ["label", "hint", "error"];
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
+function _arrayWithoutHoles(r) { if (Array.isArray(r)) return _arrayLikeToArray(r); }
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+function _objectWithoutProperties(e, t) { if (null == e) return {}; var o, r, i = _objectWithoutPropertiesLoose(e, t); if (Object.getOwnPropertySymbols) { var n = Object.getOwnPropertySymbols(e); for (r = 0; r < n.length; r++) o = n[r], -1 === t.indexOf(o) && {}.propertyIsEnumerable.call(e, o) && (i[o] = e[o]); } return i; }
+function _objectWithoutPropertiesLoose(r, e) { if (null == r) return {}; var t = {}; for (var n in r) if ({}.hasOwnProperty.call(r, n)) { if (-1 !== e.indexOf(n)) continue; t[n] = r[n]; } return t; }
+var _React = React,
+  useState = _React.useState;
 
 // ── Jesenice brand colors – přesně dle mujesenice.cz ─────────────────
-const C = {
-  red:          "#9B1C1C",
-  redDark:      "#7A1515",
-  redLight:     "#FEF2F2",
-  redBorder:    "#FECACA",
-  gold:         "#B45309",
-  goldLight:    "#FFFBEB",
-  goldBorder:   "#FDE68A",
-  bg:           "#F5F5F5",
-  card:         "#FFFFFF",
-  text:         "#111111",
-  textSoft:     "#374151",
-  muted:        "#6B7280",
-  border:       "#E5E7EB",
-  borderDark:   "#D1D5DB",
-  success:      "#166534",
+var C = {
+  red: "#9B1C1C",
+  redDark: "#7A1515",
+  redLight: "#FEF2F2",
+  redBorder: "#FECACA",
+  gold: "#B45309",
+  goldLight: "#FFFBEB",
+  goldBorder: "#FDE68A",
+  bg: "#F5F5F5",
+  card: "#FFFFFF",
+  text: "#111111",
+  textSoft: "#374151",
+  muted: "#6B7280",
+  border: "#E5E7EB",
+  borderDark: "#D1D5DB",
+  success: "#166534",
   successLight: "#F0FDF4",
-  successBorder:"#BBF7D0",
-  error:        "#B91C1C",
+  successBorder: "#BBF7D0",
+  error: "#B91C1C"
 };
-
-const font = "'Source Sans 3', 'Segoe UI', Arial, sans-serif";
+var font = "'Source Sans 3', 'Segoe UI', Arial, sans-serif";
 
 // ─────────────────────────────────────────────────────────────────────
 // UI COMPONENTS
 // ─────────────────────────────────────────────────────────────────────
 
-function FieldWrap({ label, hint, error, children }) {
-  return (
-    <div style={{ marginBottom: 16 }}>
-      {label && (
-        <label style={{ display: "block", fontSize: 13, fontWeight: 600, color: C.text, marginBottom: 5 }}>
-          {label}
-        </label>
-      )}
-      {children}
-      {hint && !error && <p style={{ margin: "4px 0 0", fontSize: 11, color: C.muted }}>{hint}</p>}
-      {error && <p style={{ margin: "4px 0 0", fontSize: 11, color: C.error }}>⚠ {error}</p>}
-    </div>
-  );
+function FieldWrap(_ref) {
+  var label = _ref.label,
+    hint = _ref.hint,
+    error = _ref.error,
+    children = _ref.children;
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginBottom: 16
+    }
+  }, label && /*#__PURE__*/React.createElement("label", {
+    style: {
+      display: "block",
+      fontSize: 13,
+      fontWeight: 600,
+      color: C.text,
+      marginBottom: 5
+    }
+  }, label), children, hint && !error && /*#__PURE__*/React.createElement("p", {
+    style: {
+      margin: "4px 0 0",
+      fontSize: 11,
+      color: C.muted
+    }
+  }, hint), error && /*#__PURE__*/React.createElement("p", {
+    style: {
+      margin: "4px 0 0",
+      fontSize: 11,
+      color: C.error
+    }
+  }, "\u26A0 ", error));
 }
-
-function Input({ label, hint, error, ...props }) {
-  const [focus, setFocus] = useState(false);
-  return (
-    <FieldWrap label={label} hint={hint} error={error}>
-      <input
-        {...props}
-        onFocus={() => setFocus(true)}
-        onBlur={() => setFocus(false)}
-        style={{
-          width: "100%", boxSizing: "border-box",
-          padding: "10px 12px", fontSize: 14,
-          border: `1.5px solid ${error ? C.error : focus ? C.red : C.border}`,
-          borderRadius: 5, outline: "none",
-          background: "#FAFAFA", color: C.text,
-          fontFamily: font, transition: "border-color .15s",
-        }}
-      />
-    </FieldWrap>
-  );
+function Input(_ref2) {
+  var label = _ref2.label,
+    hint = _ref2.hint,
+    error = _ref2.error,
+    props = _objectWithoutProperties(_ref2, _excluded);
+  var _useState = useState(false),
+    _useState2 = _slicedToArray(_useState, 2),
+    focus = _useState2[0],
+    setFocus = _useState2[1];
+  return /*#__PURE__*/React.createElement(FieldWrap, {
+    label: label,
+    hint: hint,
+    error: error
+  }, /*#__PURE__*/React.createElement("input", _extends({}, props, {
+    onFocus: function onFocus() {
+      return setFocus(true);
+    },
+    onBlur: function onBlur() {
+      return setFocus(false);
+    },
+    style: {
+      width: "100%",
+      boxSizing: "border-box",
+      padding: "10px 12px",
+      fontSize: 16,
+      border: "1.5px solid ".concat(error ? C.error : focus ? C.red : C.border),
+      borderRadius: 5,
+      outline: "none",
+      background: "#FAFAFA",
+      color: C.text,
+      fontFamily: font,
+      transition: "border-color .15s"
+    }
+  })));
 }
-
-function Select({ label, hint, error, children, value, onChange }) {
-  return (
-    <FieldWrap label={label} hint={hint} error={error}>
-      <div style={{ position: "relative" }}>
-        <select
-          value={value} onChange={onChange}
-          style={{
-            width: "100%", boxSizing: "border-box",
-            padding: "10px 34px 10px 12px", fontSize: 14,
-            border: `1.5px solid ${error ? C.error : C.border}`,
-            borderRadius: 5, outline: "none", appearance: "none",
-            background: "#FAFAFA", color: value ? C.text : C.muted,
-            fontFamily: font, cursor: "pointer",
-          }}
-        >
-          {children}
-        </select>
-        <svg style={{ position: "absolute", right: 11, top: "50%", transform: "translateY(-50%)", pointerEvents: "none" }}
-          width="11" height="7" viewBox="0 0 11 7" fill="none">
-          <path d="M1 1L5.5 6L10 1" stroke={C.muted} strokeWidth="1.6" strokeLinecap="round"/>
-        </svg>
-      </div>
-    </FieldWrap>
-  );
+function Select(_ref3) {
+  var label = _ref3.label,
+    hint = _ref3.hint,
+    error = _ref3.error,
+    children = _ref3.children,
+    value = _ref3.value,
+    onChange = _ref3.onChange;
+  return /*#__PURE__*/React.createElement(FieldWrap, {
+    label: label,
+    hint: hint,
+    error: error
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: "relative"
+    }
+  }, /*#__PURE__*/React.createElement("select", {
+    value: value,
+    onChange: onChange,
+    style: {
+      width: "100%",
+      boxSizing: "border-box",
+      padding: "10px 34px 10px 12px",
+      fontSize: 16,
+      border: "1.5px solid ".concat(error ? C.error : C.border),
+      borderRadius: 5,
+      outline: "none",
+      appearance: "none",
+      background: "#FAFAFA",
+      color: value ? C.text : C.muted,
+      fontFamily: font,
+      cursor: "pointer"
+    }
+  }, children), /*#__PURE__*/React.createElement("svg", {
+    style: {
+      position: "absolute",
+      right: 11,
+      top: "50%",
+      transform: "translateY(-50%)",
+      pointerEvents: "none"
+    },
+    width: "11",
+    height: "7",
+    viewBox: "0 0 11 7",
+    fill: "none"
+  }, /*#__PURE__*/React.createElement("path", {
+    d: "M1 1L5.5 6L10 1",
+    stroke: C.muted,
+    strokeWidth: "1.6",
+    strokeLinecap: "round"
+  }))));
 }
-
-function Checkbox({ checked, onChange, label, hint }) {
-  return (
-    <div onClick={() => onChange(!checked)}
-      style={{ display: "flex", gap: 10, cursor: "pointer", marginBottom: 10, userSelect: "none" }}>
-      <div style={{
-        width: 17, height: 17, borderRadius: 3, flexShrink: 0, marginTop: 1,
-        border: `2px solid ${checked ? C.red : C.borderDark}`,
-        background: checked ? C.red : "#FAFAFA",
-        display: "flex", alignItems: "center", justifyContent: "center",
-        transition: "all .12s",
-      }}>
-        {checked && (
-          <svg width="9" height="7" viewBox="0 0 9 7" fill="none">
-            <path d="M1 3.5L3.5 6L8 1" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        )}
-      </div>
-      <div>
-        <div style={{ fontSize: 13, color: C.text, fontWeight: 500 }}>{label}</div>
-        {hint && <div style={{ fontSize: 11, color: C.muted, marginTop: 1 }}>{hint}</div>}
-      </div>
-    </div>
-  );
+function Checkbox(_ref4) {
+  var checked = _ref4.checked,
+    onChange = _ref4.onChange,
+    label = _ref4.label,
+    hint = _ref4.hint;
+  return /*#__PURE__*/React.createElement("div", {
+    onClick: function onClick() {
+      return onChange(!checked);
+    },
+    style: {
+      display: "flex",
+      gap: 10,
+      cursor: "pointer",
+      marginBottom: 10,
+      userSelect: "none",
+      WebkitTapHighlightColor: "transparent",
+      touchAction: "manipulation"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: 17,
+      height: 17,
+      borderRadius: 3,
+      flexShrink: 0,
+      marginTop: 1,
+      border: "2px solid ".concat(checked ? C.red : C.borderDark),
+      background: checked ? C.red : "#FAFAFA",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      transition: "all .12s"
+    }
+  }, checked && /*#__PURE__*/React.createElement("svg", {
+    width: "9",
+    height: "7",
+    viewBox: "0 0 9 7",
+    fill: "none"
+  }, /*#__PURE__*/React.createElement("path", {
+    d: "M1 3.5L3.5 6L8 1",
+    stroke: "white",
+    strokeWidth: "1.8",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }))), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 13,
+      color: C.text,
+      fontWeight: 500
+    }
+  }, label), hint && /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: C.muted,
+      marginTop: 1
+    }
+  }, hint)));
 }
-
-function BtnPrimary({ children, onClick, mt = 8 }) {
-  const [hov, setHov] = useState(false);
-  return (
-    <button onClick={onClick}
-      onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
-      style={{
-        width: "100%", padding: "12px 16px", marginTop: mt,
-        border: "none", borderRadius: 5, cursor: "pointer",
-        background: hov ? C.redDark : C.red,
-        color: "#fff", fontSize: 15, fontWeight: 700,
-        fontFamily: font, transition: "background .15s",
-        letterSpacing: ".01em",
-      }}>
-      {children}
-    </button>
-  );
+function BtnPrimary(_ref5) {
+  var children = _ref5.children,
+    onClick = _ref5.onClick,
+    _ref5$mt = _ref5.mt,
+    mt = _ref5$mt === void 0 ? 8 : _ref5$mt;
+  var _useState3 = useState(false),
+    _useState4 = _slicedToArray(_useState3, 2),
+    hov = _useState4[0],
+    setHov = _useState4[1];
+  return /*#__PURE__*/React.createElement("button", {
+    onClick: onClick,
+    onMouseEnter: function onMouseEnter() {
+      return setHov(true);
+    },
+    onMouseLeave: function onMouseLeave() {
+      return setHov(false);
+    },
+    style: {
+      width: "100%",
+      padding: "13px 16px",
+      marginTop: mt,
+      border: "none",
+      borderRadius: 5,
+      cursor: "pointer",
+      background: hov ? C.redDark : C.red,
+      color: "#fff",
+      fontSize: 15,
+      fontWeight: 700,
+      fontFamily: font,
+      transition: "background .15s",
+      letterSpacing: ".01em",
+      WebkitTapHighlightColor: "transparent",
+      touchAction: "manipulation"
+    }
+  }, children);
 }
-
-function BtnGhost({ children, onClick }) {
-  return (
-    <button onClick={onClick}
-      style={{
-        width: "100%", padding: "11px 16px", marginTop: 8,
-        border: `1.5px solid ${C.borderDark}`, borderRadius: 5, cursor: "pointer",
-        background: "transparent", color: C.textSoft,
-        fontSize: 14, fontWeight: 500, fontFamily: font,
-      }}>
-      {children}
-    </button>
-  );
+function BtnGhost(_ref6) {
+  var children = _ref6.children,
+    onClick = _ref6.onClick;
+  return /*#__PURE__*/React.createElement("button", {
+    onClick: onClick,
+    style: {
+      width: "100%",
+      padding: "13px 16px",
+      marginTop: 8,
+      border: "1.5px solid ".concat(C.borderDark),
+      borderRadius: 5,
+      cursor: "pointer",
+      background: "transparent",
+      color: C.textSoft,
+      fontSize: 14,
+      fontWeight: 500,
+      fontFamily: font,
+      WebkitTapHighlightColor: "transparent",
+      touchAction: "manipulation"
+    }
+  }, children);
 }
-
-function Notice({ children, variant = "gold" }) {
-  const v = {
-    gold:    { bg: C.goldLight,    border: C.goldBorder,    color: C.gold },
-    red:     { bg: C.redLight,     border: C.redBorder,     color: C.red },
-    green:   { bg: C.successLight, border: C.successBorder, color: C.success },
-    neutral: { bg: "#F9FAFB",      border: C.border,        color: C.muted },
+function Notice(_ref7) {
+  var children = _ref7.children,
+    _ref7$variant = _ref7.variant,
+    variant = _ref7$variant === void 0 ? "gold" : _ref7$variant;
+  var v = {
+    gold: {
+      bg: C.goldLight,
+      border: C.goldBorder,
+      color: C.gold
+    },
+    red: {
+      bg: C.redLight,
+      border: C.redBorder,
+      color: C.red
+    },
+    green: {
+      bg: C.successLight,
+      border: C.successBorder,
+      color: C.success
+    },
+    neutral: {
+      bg: "#F9FAFB",
+      border: C.border,
+      color: C.muted
+    }
   }[variant];
-  return (
-    <div style={{
-      background: v.bg, border: `1px solid ${v.border}`,
-      borderRadius: 5, padding: "10px 13px",
-      fontSize: 12, color: v.color, lineHeight: 1.5, marginBottom: 14,
-    }}>
-      {children}
-    </div>
-  );
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: v.bg,
+      border: "1px solid ".concat(v.border),
+      borderRadius: 5,
+      padding: "10px 13px",
+      fontSize: 12,
+      color: v.color,
+      lineHeight: 1.5,
+      marginBottom: 14
+    }
+  }, children);
 }
-
-function Divider({ label }) {
-  return (
-    <div style={{
-      display: "flex", alignItems: "center", gap: 10,
-      margin: "20px 0 14px", fontSize: 11,
-      fontWeight: 700, color: C.muted,
-      textTransform: "uppercase", letterSpacing: ".07em",
-    }}>
-      <div style={{ flex: 1, height: 1, background: C.border }} />
-      {label}
-      <div style={{ flex: 1, height: 1, background: C.border }} />
-    </div>
-  );
+function Divider(_ref8) {
+  var label = _ref8.label;
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 10,
+      margin: "20px 0 14px",
+      fontSize: 11,
+      fontWeight: 700,
+      color: C.muted,
+      textTransform: "uppercase",
+      letterSpacing: ".07em"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1,
+      height: 1,
+      background: C.border
+    }
+  }), label, /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1,
+      height: 1,
+      background: C.border
+    }
+  }));
 }
 
 // ─────────────────────────────────────────────────────────────────────
 // STEP INDICATOR
 // ─────────────────────────────────────────────────────────────────────
-function StepBar({ step }) {
-  const steps = ["Váš účet", "Nemovitost", "Souhrn"];
-  return (
-    <div style={{ display: "flex", alignItems: "center", marginBottom: 24 }}>
-      {steps.map((s, i) => (
-        <div key={i} style={{ display: "flex", alignItems: "center", flex: i < 2 ? 1 : "none" }}>
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 4 }}>
-            <div style={{
-              width: 28, height: 28, borderRadius: "50%",
-              background: i <= step ? C.red : "#E5E7EB",
-              color: i <= step ? "#fff" : C.muted,
-              fontSize: 11, fontWeight: 800,
-              display: "flex", alignItems: "center", justifyContent: "center",
-              flexShrink: 0,
-              outline: i === step ? `3px solid #FECACA` : "none",
-              outlineOffset: 1,
-              transition: "all .2s",
-            }}>
-              {i < step ? "✓" : i + 1}
-            </div>
-            <span style={{ fontSize: 10, fontWeight: i === step ? 700 : 400, color: i === step ? C.red : C.muted, whiteSpace: "nowrap" }}>
-              {s}
-            </span>
-          </div>
-          {i < 2 && (
-            <div style={{ flex: 1, height: 2, background: i < step ? C.red : "#E5E7EB", margin: "0 6px", marginBottom: 14, transition: "background .3s" }} />
-          )}
-        </div>
-      ))}
-    </div>
-  );
+function StepBar(_ref9) {
+  var step = _ref9.step;
+  var steps = ["Váš účet", "Nemovitost", "Souhrn"];
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      marginBottom: 24
+    }
+  }, steps.map(function (s, i) {
+    return /*#__PURE__*/React.createElement("div", {
+      key: i,
+      style: {
+        display: "flex",
+        alignItems: "center",
+        flex: i < 2 ? 1 : "none"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: 4
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        width: 28,
+        height: 28,
+        borderRadius: "50%",
+        background: i <= step ? C.red : "#E5E7EB",
+        color: i <= step ? "#fff" : C.muted,
+        fontSize: 11,
+        fontWeight: 800,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        flexShrink: 0,
+        outline: i === step ? "3px solid #FECACA" : "none",
+        outlineOffset: 1,
+        transition: "all .2s"
+      }
+    }, i < step ? "✓" : i + 1), /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 10,
+        fontWeight: i === step ? 700 : 400,
+        color: i === step ? C.red : C.muted,
+        whiteSpace: "nowrap",
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+        maxWidth: 60
+      }
+    }, s)), i < 2 && /*#__PURE__*/React.createElement("div", {
+      style: {
+        flex: 1,
+        height: 2,
+        background: i < step ? C.red : "#E5E7EB",
+        margin: "0 6px",
+        marginBottom: 14,
+        transition: "background .3s"
+      }
+    }));
+  }));
 }
 
 // ─────────────────────────────────────────────────────────────────────
 // REMINDER TIMELINE
 // ─────────────────────────────────────────────────────────────────────
-const REMINDER_DATES = [
-  { value: "02-01", label: "1. února",  note: "2 měsíce předem" },
-  { value: "02-10", label: "10. února", note: "7 týdnů předem" },
-  { value: "02-15", label: "15. února", note: "6 týdnů předem" },
-  { value: "03-01", label: "1. března", note: "1 měsíc předem" },
-  { value: "03-10", label: "10. března",note: "3 týdny předem" },
-  { value: "03-20", label: "20. března",note: "11 dní před splatností" },
-];
-
-function Timeline({ dateVal, extra }) {
+var REMINDER_DATES = [{
+  value: "02-01",
+  label: "1. února",
+  note: "2 měsíce předem"
+}, {
+  value: "02-10",
+  label: "10. února",
+  note: "7 týdnů předem"
+}, {
+  value: "02-15",
+  label: "15. února",
+  note: "6 týdnů předem"
+}, {
+  value: "03-01",
+  label: "1. března",
+  note: "1 měsíc předem"
+}, {
+  value: "03-10",
+  label: "10. března",
+  note: "3 týdny předem"
+}, {
+  value: "03-20",
+  label: "20. března",
+  note: "11 dní před splatností"
+}];
+function Timeline(_ref0) {
+  var dateVal = _ref0.dateVal,
+    extra = _ref0.extra;
   if (!dateVal) return null;
-  const found = REMINDER_DATES.find(d => d.value === dateVal);
-  const items = [
-    { dot: C.red,  text: `📧 ${found.label} — Platební e-mail s QR kódem` },
-    ...(extra >= 1 ? [{ dot: C.gold, text: "📧 2. připomínka (automaticky +7 dní)" }] : []),
-    ...(extra >= 2 ? [{ dot: C.gold, text: "📧 3. připomínka — 28. března" }] : []),
-    { dot: C.muted, text: "⏰ 31. března — Splatnost poplatků" },
-  ];
-  return (
-    <div style={{ background: C.goldLight, border: `1px solid ${C.goldBorder}`, borderRadius: 5, padding: "11px 13px", marginTop: 8 }}>
-      <div style={{ fontSize: 10, fontWeight: 700, color: C.gold, textTransform: "uppercase", letterSpacing: ".07em", marginBottom: 9 }}>
-        Váš plán e-mailů
-      </div>
-      {items.map((item, i) => (
-        <div key={i} style={{ display: "flex", gap: 9, marginBottom: i < items.length - 1 ? 7 : 0 }}>
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingTop: 4 }}>
-            <div style={{ width: 6, height: 6, borderRadius: "50%", background: item.dot, flexShrink: 0 }} />
-            {i < items.length - 1 && <div style={{ width: 1, height: 13, background: C.goldBorder, marginTop: 2 }} />}
-          </div>
-          <div style={{ fontSize: 12, color: C.text, lineHeight: 1.4 }}>{item.text}</div>
-        </div>
-      ))}
-    </div>
-  );
+  var found = REMINDER_DATES.find(function (d) {
+    return d.value === dateVal;
+  });
+  var items = [{
+    dot: C.red,
+    text: "\uD83D\uDCE7 ".concat(found.label, " \u2014 Platebn\xED e-mail s QR k\xF3dem")
+  }].concat(_toConsumableArray(extra >= 1 ? [{
+    dot: C.gold,
+    text: "📧 2. připomínka (automaticky +7 dní)"
+  }] : []), _toConsumableArray(extra >= 2 ? [{
+    dot: C.gold,
+    text: "📧 3. připomínka — 28. března"
+  }] : []), [{
+    dot: C.muted,
+    text: "⏰ 31. března — Splatnost poplatků"
+  }]);
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: C.goldLight,
+      border: "1px solid ".concat(C.goldBorder),
+      borderRadius: 5,
+      padding: "11px 13px",
+      marginTop: 8
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 10,
+      fontWeight: 700,
+      color: C.gold,
+      textTransform: "uppercase",
+      letterSpacing: ".07em",
+      marginBottom: 9
+    }
+  }, "V\xE1\u0161 pl\xE1n e-mail\u016F"), items.map(function (item, i) {
+    return /*#__PURE__*/React.createElement("div", {
+      key: i,
+      style: {
+        display: "flex",
+        gap: 9,
+        marginBottom: i < items.length - 1 ? 7 : 0
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        paddingTop: 4
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        width: 6,
+        height: 6,
+        borderRadius: "50%",
+        background: item.dot,
+        flexShrink: 0
+      }
+    }), i < items.length - 1 && /*#__PURE__*/React.createElement("div", {
+      style: {
+        width: 1,
+        height: 13,
+        background: C.goldBorder,
+        marginTop: 2
+      }
+    })), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 12,
+        color: C.text,
+        lineHeight: 1.4
+      }
+    }, item.text));
+  }));
 }
 
 // ─────────────────────────────────────────────────────────────────────
 // SAZBY
 // ─────────────────────────────────────────────────────────────────────
-const ODPAD = {
-  "80_52": 2246,  "80_26": 1123,
-  "120_52": 3370, "120_26": 1685,
-  "240_52": 6739, "240_26": 3370,
-  "1100_52": 30888, "1100_104": 61776,
+var ODPAD = {
+  "80_52": 2246,
+  "80_26": 1123,
+  "120_52": 3370,
+  "120_26": 1685,
+  "240_52": 6739,
+  "240_26": 3370,
+  "1100_52": 30888,
+  "1100_104": 61776,
   rekreace_trvala: 1404,
-  rekreace_chata: 702,
+  rekreace_chata: 702
 };
-const PSI = {
-  dum:    [0, 360, 900, 1440, 1980, 2520],
-  byt:    [0, 540, 1350, 2160, 2970, 3780],
-  senior: [0, 100, 250, 400, 550, 700],
+var PSI = {
+  dum: [0, 360, 900, 1440, 1980, 2520],
+  byt: [0, 540, 1350, 2160, 2970, 3780],
+  senior: [0, 100, 250, 400, 550, 700]
 };
-const BIO = { "120": 1517, "240": 2525 };
-
+var BIO = {
+  "120": 1517,
+  "240": 2525
+};
 function calc(d) {
-  const isRec = d.typNemovitosti === "rekreace_trvala" || d.typNemovitosti === "rekreace_chata";
-  const odpadKey = isRec ? d.typNemovitosti : `${d.nadoba}_${d.cetnost}`;
-  const odpad = ODPAD[odpadKey] || 0;
-  const pes   = PSI[d.typDrzitele]?.[parseInt(d.psi)] || 0;
-  const bio   = d.bioodpad ? BIO[d.bioodpadNadoba] : 0;
-  return { odpad, pes, bio, celkem: odpad + pes + bio };
+  var _PSI$d$typDrzitele;
+  var isRec = d.typNemovitosti === "rekreace_trvala" || d.typNemovitosti === "rekreace_chata";
+  var odpadKey = isRec ? d.typNemovitosti : "".concat(d.nadoba, "_").concat(d.cetnost);
+  var odpad = ODPAD[odpadKey] || 0;
+  var pes = ((_PSI$d$typDrzitele = PSI[d.typDrzitele]) === null || _PSI$d$typDrzitele === void 0 ? void 0 : _PSI$d$typDrzitele[parseInt(d.psi)]) || 0;
+  var bio = d.bioodpad ? BIO[d.bioodpadNadoba] : 0;
+  return {
+    odpad: odpad,
+    pes: pes,
+    bio: bio,
+    celkem: odpad + pes + bio
+  };
 }
-
-const VS_PREFIX = { jesenice: "101", osnice: "102", zdimerice: "103" };
+var VS_PREFIX = {
+  jesenice: "101",
+  osnice: "102",
+  zdimerice: "103"
+};
 
 // ─────────────────────────────────────────────────────────────────────
 // STEP 1 – Účet + připomínky
 // ─────────────────────────────────────────────────────────────────────
-function Step1({ onNext }) {
-  const [typSubjektu,  setTypSubjektu]  = useState(""); // "fo" | "svj"
-  const [email,        setEmail]        = useState("");
-  const [pass,         setPass]         = useState("");
-  const [pass2,        setPass2]        = useState("");
-  const [nazevSVJ,     setNazevSVJ]     = useState("");
-  const [ico,          setIco]          = useState("");
-  const [reminderDate, setReminderDate] = useState("");
-  const [extra,        setExtra]        = useState(1);
-  const [err,          setErr]          = useState({});
-
+function Step1(_ref1) {
+  var onNext = _ref1.onNext;
+  var _useState5 = useState(""),
+    _useState6 = _slicedToArray(_useState5, 2),
+    typSubjektu = _useState6[0],
+    setTypSubjektu = _useState6[1]; // "fo" | "svj"
+  var _useState7 = useState(""),
+    _useState8 = _slicedToArray(_useState7, 2),
+    email = _useState8[0],
+    setEmail = _useState8[1];
+  var _useState9 = useState(""),
+    _useState0 = _slicedToArray(_useState9, 2),
+    pass = _useState0[0],
+    setPass = _useState0[1];
+  var _useState1 = useState(""),
+    _useState10 = _slicedToArray(_useState1, 2),
+    pass2 = _useState10[0],
+    setPass2 = _useState10[1];
+  var _useState11 = useState(""),
+    _useState12 = _slicedToArray(_useState11, 2),
+    nazevSVJ = _useState12[0],
+    setNazevSVJ = _useState12[1];
+  var _useState13 = useState(""),
+    _useState14 = _slicedToArray(_useState13, 2),
+    ico = _useState14[0],
+    setIco = _useState14[1];
+  var _useState15 = useState(""),
+    _useState16 = _slicedToArray(_useState15, 2),
+    reminderDate = _useState16[0],
+    setReminderDate = _useState16[1];
+  var _useState17 = useState(1),
+    _useState18 = _slicedToArray(_useState17, 2),
+    extra = _useState18[0],
+    setExtra = _useState18[1];
+  var _useState19 = useState({}),
+    _useState20 = _slicedToArray(_useState19, 2),
+    err = _useState20[0],
+    setErr = _useState20[1];
   function submit() {
-    const e = {};
-    if (!typSubjektu)              e.typSubjektu = "Vyberte typ";
-    if (!email.includes("@"))      e.email = "Zadejte platný e-mail";
-    if (pass.length < 8)           e.pass  = "Minimálně 8 znaků";
-    if (pass !== pass2)            e.pass2 = "Hesla se neshodují";
+    var e = {};
+    if (!typSubjektu) e.typSubjektu = "Vyberte typ";
+    if (!email.includes("@")) e.email = "Zadejte platný e-mail";
+    if (pass.length < 8) e.pass = "Minimálně 8 znaků";
+    if (pass !== pass2) e.pass2 = "Hesla se neshodují";
     if (typSubjektu === "svj" && !nazevSVJ) e.nazevSVJ = "Zadejte název SVJ";
-    if (typSubjektu === "svj" && !ico)      e.ico = "Zadejte IČO";
-    if (!reminderDate)             e.rem   = "Vyberte datum";
-    if (Object.keys(e).length) { setErr(e); return; }
-    onNext({ typSubjektu, email, pass, nazevSVJ, ico, reminderDate, extra });
+    if (typSubjektu === "svj" && !ico) e.ico = "Zadejte IČO";
+    if (!reminderDate) e.rem = "Vyberte datum";
+    if (Object.keys(e).length) {
+      setErr(e);
+      return;
+    }
+    onNext({
+      typSubjektu: typSubjektu,
+      email: email,
+      pass: pass,
+      nazevSVJ: nazevSVJ,
+      ico: ico,
+      reminderDate: reminderDate,
+      extra: extra
+    });
   }
-
-  const subjekty = [
-    {
-      v: "fo",
-      icon: "🏠",
-      label: "Fyzická osoba",
-      sub: "Vlastník nebo nájemník nemovitosti",
+  var subjekty = [{
+    v: "fo",
+    icon: "🏠",
+    label: "Fyzická osoba",
+    sub: "Vlastník nebo nájemník"
+  }, {
+    v: "svj",
+    icon: "🏢",
+    label: "SVJ / Správce",
+    sub: "Platí za celou budovu"
+  }];
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: "24px 20px 28px"
+    }
+  }, /*#__PURE__*/React.createElement(StepBar, {
+    step: 0
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginBottom: 20
+    }
+  }, /*#__PURE__*/React.createElement("h2", {
+    style: {
+      margin: 0,
+      fontSize: 19,
+      fontWeight: 800,
+      color: C.text
+    }
+  }, "Vytvo\u0159te si \xFA\u010Det"), /*#__PURE__*/React.createElement("p", {
+    style: {
+      margin: "4px 0 0",
+      fontSize: 13,
+      color: C.muted
+    }
+  }, "Jednou se zaregistrujte \u2014 ka\u017Ed\xFD rok zaplat\xEDte jedn\xEDm kliknut\xEDm")), /*#__PURE__*/React.createElement(FieldWrap, {
+    label: "Kdo se registruje?",
+    error: err.typSubjektu
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 10,
+      marginBottom: 4
+    }
+  }, subjekty.map(function (s) {
+    return /*#__PURE__*/React.createElement("div", {
+      key: s.v,
+      onClick: function onClick() {
+        return setTypSubjektu(s.v);
+      },
+      style: {
+        flex: 1,
+        padding: "12px 8px",
+        borderRadius: 6,
+        cursor: "pointer",
+        border: "2px solid ".concat(typSubjektu === s.v ? C.red : C.border),
+        background: typSubjektu === s.v ? C.redLight : "#FAFAFA",
+        textAlign: "center",
+        transition: "all .15s",
+        WebkitTapHighlightColor: "transparent",
+        touchAction: "manipulation"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 22,
+        marginBottom: 6
+      }
+    }, s.icon), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 13,
+        fontWeight: 700,
+        color: typSubjektu === s.v ? C.red : C.text,
+        lineHeight: 1.3
+      }
+    }, s.label), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        color: C.muted,
+        marginTop: 3,
+        lineHeight: 1.4
+      }
+    }, s.sub));
+  }))), typSubjektu === "svj" && /*#__PURE__*/React.createElement(Notice, {
+    variant: "gold"
+  }, "\uD83C\uDFE2 SVJ je ze z\xE1kona ", /*#__PURE__*/React.createElement("strong", null, "pl\xE1tcem poplatku"), " za celou budovu. Vyb\xEDr\xE1 poplatky od vlastn\xEDk\u016F byt\u016F a odv\xE1d\xED je m\u011Bstu jednou platbou. Poplatek za psy spravuj\xED jednotliv\xED vlastn\xEDci sami."), typSubjektu === "svj" && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Input, {
+    label: "N\xE1zev SVJ",
+    placeholder: "SVJ Ke \u0160kolce 142, Jesenice",
+    value: nazevSVJ,
+    onChange: function onChange(e) {
+      return setNazevSVJ(e.target.value);
     },
-    {
-      v: "svj",
-      icon: "🏢",
-      label: "SVJ / Správce domu",
-      sub: "Společenství vlastníků nebo správce bytového domu",
+    error: err.nazevSVJ
+  }), /*#__PURE__*/React.createElement(Input, {
+    label: "I\u010CO",
+    placeholder: "12345678",
+    value: ico,
+    onChange: function onChange(e) {
+      return setIco(e.target.value);
     },
-  ];
-
-  return (
-    <div style={{ padding: "28px 28px 32px" }}>
-      <StepBar step={0} />
-      <div style={{ marginBottom: 20 }}>
-        <h2 style={{ margin: 0, fontSize: 19, fontWeight: 800, color: C.text }}>Vytvořte si účet</h2>
-        <p style={{ margin: "4px 0 0", fontSize: 13, color: C.muted }}>
-          Jednou se zaregistrujte — každý rok zaplatíte jedním kliknutím
-        </p>
-      </div>
-
-      {/* Typ subjektu */}
-      <FieldWrap label="Kdo se registruje?" error={err.typSubjektu}>
-        <div style={{ display: "flex", gap: 10, marginBottom: 4 }}>
-          {subjekty.map(s => (
-            <div key={s.v} onClick={() => setTypSubjektu(s.v)} style={{
-              flex: 1, padding: "12px 10px", borderRadius: 6, cursor: "pointer",
-              border: `2px solid ${typSubjektu === s.v ? C.red : C.border}`,
-              background: typSubjektu === s.v ? C.redLight : "#FAFAFA",
-              textAlign: "center", transition: "all .15s",
-            }}>
-              <div style={{ fontSize: 22, marginBottom: 6 }}>{s.icon}</div>
-              <div style={{ fontSize: 13, fontWeight: 700, color: typSubjektu === s.v ? C.red : C.text, lineHeight: 1.3 }}>{s.label}</div>
-              <div style={{ fontSize: 11, color: C.muted, marginTop: 3, lineHeight: 1.4 }}>{s.sub}</div>
-            </div>
-          ))}
-        </div>
-      </FieldWrap>
-
-      {/* SVJ extra pole */}
-      {typSubjektu === "svj" && (
-        <Notice variant="gold">
-          🏢 SVJ je ze zákona <strong>plátcem poplatku</strong> za celou budovu. Vybírá poplatky od vlastníků bytů a odvádí je městu jednou platbou. Poplatek za psy spravují jednotliví vlastníci sami.
-        </Notice>
-      )}
-
-      {typSubjektu === "svj" && (
-        <>
-          <Input label="Název SVJ" placeholder="SVJ Ke Školce 142, Jesenice"
-            value={nazevSVJ} onChange={e => setNazevSVJ(e.target.value)} error={err.nazevSVJ} />
-          <Input label="IČO" placeholder="12345678"
-            value={ico} onChange={e => setIco(e.target.value)} error={err.ico} />
-        </>
-      )}
-
-      {typSubjektu && (
-        <>
-          <Input label="E-mailová adresa" type="email"
-            placeholder={typSubjektu === "svj" ? "predseda@svj-jesenice.cz" : "jan.novak@seznam.cz"}
-            value={email} onChange={e => setEmail(e.target.value)} error={err.email} />
-          <Input label="Heslo" type="password" placeholder="Minimálně 8 znaků"
-            value={pass} onChange={e => setPass(e.target.value)} error={err.pass} />
-          <Input label="Heslo znovu" type="password" placeholder="Zopakujte heslo"
-            value={pass2} onChange={e => setPass2(e.target.value)} error={err.pass2} />
-
-          <Divider label="🔔 Připomínky platby" />
-          <p style={{ margin: "-4px 0 12px", fontSize: 12, color: C.muted, lineHeight: 1.5 }}>
-            Splatnost je vždy <strong>31. března</strong>. Kdy vám máme poslat e-mail s QR kódem?
-          </p>
-
-          <Select label="Datum první připomínky" value={reminderDate}
-            onChange={e => setReminderDate(e.target.value)} error={err.rem}>
-            <option value="">Vyberte datum...</option>
-            {REMINDER_DATES.map(d => (
-              <option key={d.value} value={d.value}>{d.label} — {d.note}</option>
-            ))}
-          </Select>
-
-          <FieldWrap label="Další připomínky">
-            <div style={{ display: "flex", gap: 8 }}>
-              {[
-                { v: 0, label: "Žádná",   sub: "Jen 1 e-mail" },
-                { v: 1, label: "1 další", sub: "Celkem 2×" },
-                { v: 2, label: "2 další", sub: "Celkem 3×" },
-              ].map(opt => (
-                <div key={opt.v} onClick={() => setExtra(opt.v)} style={{
-                  flex: 1, padding: "9px 6px", borderRadius: 5, textAlign: "center", cursor: "pointer",
-                  border: `2px solid ${extra === opt.v ? C.red : C.border}`,
-                  background: extra === opt.v ? C.redLight : "#FAFAFA",
-                  transition: "all .15s",
-                }}>
-                  <div style={{ fontSize: 13, fontWeight: 700, color: extra === opt.v ? C.red : C.text }}>{opt.label}</div>
-                  <div style={{ fontSize: 11, color: C.muted, marginTop: 2 }}>{opt.sub}</div>
-                </div>
-              ))}
-            </div>
-          </FieldWrap>
-
-          <Timeline dateVal={reminderDate} extra={extra} />
-
-          <BtnPrimary onClick={submit} mt={20}>Pokračovat →</BtnPrimary>
-        </>
-      )}
-
-      <p style={{ textAlign: "center", fontSize: 12, color: C.muted, marginTop: 14 }}>
-        Již máte účet?{" "}
-        <span style={{ color: C.red, fontWeight: 600, cursor: "pointer", textDecoration: "underline" }}>
-          Přihlásit se
-        </span>
-      </p>
-    </div>
-  );
+    error: err.ico
+  })), typSubjektu && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Input, {
+    label: "E-mailov\xE1 adresa",
+    type: "email",
+    placeholder: typSubjektu === "svj" ? "predseda@svj-jesenice.cz" : "jan.novak@seznam.cz",
+    value: email,
+    onChange: function onChange(e) {
+      return setEmail(e.target.value);
+    },
+    error: err.email
+  }), /*#__PURE__*/React.createElement(Input, {
+    label: "Heslo",
+    type: "password",
+    placeholder: "Minim\xE1ln\u011B 8 znak\u016F",
+    value: pass,
+    onChange: function onChange(e) {
+      return setPass(e.target.value);
+    },
+    error: err.pass
+  }), /*#__PURE__*/React.createElement(Input, {
+    label: "Heslo znovu",
+    type: "password",
+    placeholder: "Zopakujte heslo",
+    value: pass2,
+    onChange: function onChange(e) {
+      return setPass2(e.target.value);
+    },
+    error: err.pass2
+  }), /*#__PURE__*/React.createElement(Divider, {
+    label: "\uD83D\uDD14 P\u0159ipom\xEDnky platby"
+  }), /*#__PURE__*/React.createElement("p", {
+    style: {
+      margin: "-4px 0 12px",
+      fontSize: 12,
+      color: C.muted,
+      lineHeight: 1.5
+    }
+  }, "Splatnost je v\u017Edy ", /*#__PURE__*/React.createElement("strong", null, "31. b\u0159ezna"), ". Kdy v\xE1m m\xE1me poslat e-mail s QR k\xF3dem?"), /*#__PURE__*/React.createElement(Select, {
+    label: "Datum prvn\xED p\u0159ipom\xEDnky",
+    value: reminderDate,
+    onChange: function onChange(e) {
+      return setReminderDate(e.target.value);
+    },
+    error: err.rem
+  }, /*#__PURE__*/React.createElement("option", {
+    value: ""
+  }, "Vyberte datum..."), REMINDER_DATES.map(function (d) {
+    return /*#__PURE__*/React.createElement("option", {
+      key: d.value,
+      value: d.value
+    }, d.label, " \u2014 ", d.note);
+  })), /*#__PURE__*/React.createElement(FieldWrap, {
+    label: "Dal\u0161\xED p\u0159ipom\xEDnky"
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 8
+    }
+  }, [{
+    v: 0,
+    label: "Žádná",
+    sub: "Jen 1 e-mail"
+  }, {
+    v: 1,
+    label: "1 další",
+    sub: "Celkem 2×"
+  }, {
+    v: 2,
+    label: "2 další",
+    sub: "Celkem 3×"
+  }].map(function (opt) {
+    return /*#__PURE__*/React.createElement("div", {
+      key: opt.v,
+      onClick: function onClick() {
+        return setExtra(opt.v);
+      },
+      style: {
+        flex: 1,
+        padding: "10px 6px",
+        borderRadius: 5,
+        textAlign: "center",
+        cursor: "pointer",
+        border: "2px solid ".concat(extra === opt.v ? C.red : C.border),
+        background: extra === opt.v ? C.redLight : "#FAFAFA",
+        transition: "all .15s",
+        WebkitTapHighlightColor: "transparent",
+        touchAction: "manipulation"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 13,
+        fontWeight: 700,
+        color: extra === opt.v ? C.red : C.text
+      }
+    }, opt.label), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        color: C.muted,
+        marginTop: 2
+      }
+    }, opt.sub));
+  }))), /*#__PURE__*/React.createElement(Timeline, {
+    dateVal: reminderDate,
+    extra: extra
+  }), /*#__PURE__*/React.createElement(BtnPrimary, {
+    onClick: submit,
+    mt: 20
+  }, "Pokra\u010Dovat \u2192")), /*#__PURE__*/React.createElement("p", {
+    style: {
+      textAlign: "center",
+      fontSize: 12,
+      color: C.muted,
+      marginTop: 14
+    }
+  }, "Ji\u017E m\xE1te \xFA\u010Det?", " ", /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: C.red,
+      fontWeight: 600,
+      cursor: "pointer",
+      textDecoration: "underline"
+    }
+  }, "P\u0159ihl\xE1sit se")));
 }
 
 // ─────────────────────────────────────────────────────────────────────
 // STEP 2 – Nemovitost
 // ─────────────────────────────────────────────────────────────────────
-function Step2({ onNext, onBack, typSubjektu }) {
-  const isSVJ = typSubjektu === "svj";
-
-  const [castObce,       setCastObce]       = useState("");
-  const [cp,             setCp]             = useState("");
-  const [cisloBytu,      setCisloBytu]      = useState("");
-  const [typNemovitosti, setTypNemovitosti] = useState(isSVJ ? "byt" : "");
-  const [nadoba,         setNadoba]         = useState(isSVJ ? "1100" : "");
-  const [cetnost,        setCetnost]        = useState("");
-  const [psi,            setPsi]            = useState("0");
-  const [typDrzitele,    setTypDrzitele]    = useState("byt");
-  const [bioodpad,       setBioodpad]       = useState(false);
-  const [bioodpadNadoba, setBioodpadNadoba] = useState("120");
-  const [err,            setErr]            = useState({});
-
-  const isRec = typNemovitosti === "rekreace_trvala" || typNemovitosti === "rekreace_chata";
-  const isByt = typNemovitosti === "byt";
-  const vsBase = castObce && cp ? `${VS_PREFIX[castObce]}${cp}` : null;
+function Step2(_ref10) {
+  var onNext = _ref10.onNext,
+    onBack = _ref10.onBack,
+    typSubjektu = _ref10.typSubjektu;
+  var isSVJ = typSubjektu === "svj";
+  var _useState21 = useState(""),
+    _useState22 = _slicedToArray(_useState21, 2),
+    castObce = _useState22[0],
+    setCastObce = _useState22[1];
+  var _useState23 = useState(""),
+    _useState24 = _slicedToArray(_useState23, 2),
+    cp = _useState24[0],
+    setCp = _useState24[1];
+  var _useState25 = useState(""),
+    _useState26 = _slicedToArray(_useState25, 2),
+    cisloBytu = _useState26[0],
+    setCisloBytu = _useState26[1];
+  var _useState27 = useState(isSVJ ? "byt" : ""),
+    _useState28 = _slicedToArray(_useState27, 2),
+    typNemovitosti = _useState28[0],
+    setTypNemovitosti = _useState28[1];
+  var _useState29 = useState(isSVJ ? "1100" : ""),
+    _useState30 = _slicedToArray(_useState29, 2),
+    nadoba = _useState30[0],
+    setNadoba = _useState30[1];
+  var _useState31 = useState(""),
+    _useState32 = _slicedToArray(_useState31, 2),
+    cetnost = _useState32[0],
+    setCetnost = _useState32[1];
+  var _useState33 = useState("0"),
+    _useState34 = _slicedToArray(_useState33, 2),
+    psi = _useState34[0],
+    setPsi = _useState34[1];
+  var _useState35 = useState("byt"),
+    _useState36 = _slicedToArray(_useState35, 2),
+    typDrzitele = _useState36[0],
+    setTypDrzitele = _useState36[1];
+  var _useState37 = useState(false),
+    _useState38 = _slicedToArray(_useState37, 2),
+    bioodpad = _useState38[0],
+    setBioodpad = _useState38[1];
+  var _useState39 = useState("120"),
+    _useState40 = _slicedToArray(_useState39, 2),
+    bioodpadNadoba = _useState40[0],
+    setBioodpadNadoba = _useState40[1];
+  var _useState41 = useState({}),
+    _useState42 = _slicedToArray(_useState41, 2),
+    err = _useState42[0],
+    setErr = _useState42[1];
+  var isRec = typNemovitosti === "rekreace_trvala" || typNemovitosti === "rekreace_chata";
+  var isByt = typNemovitosti === "byt";
+  var vsBase = castObce && cp ? "".concat(VS_PREFIX[castObce]).concat(cp) : null;
   // SVJ platí vždy za celou budovu → VS bez čísla bytu
-  const vs = vsBase ? (!isSVJ && isByt && cisloBytu ? `${vsBase}/${cisloBytu}` : vsBase) : null;
-  const preview = (isSVJ || typNemovitosti) ? calc({ typNemovitosti: typNemovitosti || "byt", nadoba, cetnost, psi: "0", typDrzitele, bioodpad, bioodpadNadoba }) : null;
-
+  var vs = vsBase ? !isSVJ && isByt && cisloBytu ? "".concat(vsBase, "/").concat(cisloBytu) : vsBase : null;
+  var preview = isSVJ || typNemovitosti ? calc({
+    typNemovitosti: typNemovitosti || "byt",
+    nadoba: nadoba,
+    cetnost: cetnost,
+    psi: "0",
+    typDrzitele: typDrzitele,
+    bioodpad: bioodpad,
+    bioodpadNadoba: bioodpadNadoba
+  }) : null;
   function submit() {
-    const e = {};
-    if (!castObce)                       e.castObce  = "Vyberte část obce";
-    if (!cp)                             e.cp        = "Zadejte číslo popisné";
-    if (!isSVJ && !typNemovitosti)       e.typ       = "Vyberte typ nemovitosti";
-    if (!isSVJ && isByt && !cisloBytu)   e.cisloBytu = "Zadejte číslo bytu";
-    if (!isRec && !nadoba)               e.nadoba    = "Vyberte nádobu";
-    if (!isRec && !cetnost)              e.cetnost   = "Vyberte četnost";
-    if (Object.keys(e).length) { setErr(e); return; }
-    onNext({ castObce, cp, cisloBytu, typNemovitosti: typNemovitosti || "byt",
-             nadoba, cetnost, psi: isSVJ ? "0" : psi, typDrzitele, bioodpad, bioodpadNadoba });
+    var e = {};
+    if (!castObce) e.castObce = "Vyberte část obce";
+    if (!cp) e.cp = "Zadejte číslo popisné";
+    if (!isSVJ && !typNemovitosti) e.typ = "Vyberte typ nemovitosti";
+    if (!isSVJ && isByt && !cisloBytu) e.cisloBytu = "Zadejte číslo bytu";
+    if (!isRec && !nadoba) e.nadoba = "Vyberte nádobu";
+    if (!isRec && !cetnost) e.cetnost = "Vyberte četnost";
+    if (Object.keys(e).length) {
+      setErr(e);
+      return;
+    }
+    onNext({
+      castObce: castObce,
+      cp: cp,
+      cisloBytu: cisloBytu,
+      typNemovitosti: typNemovitosti || "byt",
+      nadoba: nadoba,
+      cetnost: cetnost,
+      psi: isSVJ ? "0" : psi,
+      typDrzitele: typDrzitele,
+      bioodpad: bioodpad,
+      bioodpadNadoba: bioodpadNadoba
+    });
   }
-
-  return (
-    <div style={{ padding: "28px 28px 32px" }}>
-      <StepBar step={1} />
-      <div style={{ marginBottom: 16 }}>
-        <h2 style={{ margin: 0, fontSize: 19, fontWeight: 800, color: C.text }}>
-          {isSVJ ? "Váš bytový dům" : "Vaše nemovitost"}
-        </h2>
-        <p style={{ margin: "4px 0 0", fontSize: 13, color: C.muted }}>
-          {isSVJ ? "SVJ platí za celou budovu jednou platbou" : "Nastavíte jednou — systém si vše pamatuje pro každý rok"}
-        </p>
-      </div>
-
-      {isSVJ && (
-        <Notice variant="gold">
-          🏢 Jako SVJ zadáváte <strong>číslo popisné celé budovy</strong>. Systém vygeneruje jeden QR kód pro platbu za celý dům. Poplatky za psy spravují jednotliví vlastníci bytů <strong>samostatně</strong> ve vlastním účtu.
-        </Notice>
-      )}
-
-      <Select label="Část obce" value={castObce} onChange={e => setCastObce(e.target.value)} error={err.castObce}>
-        <option value="">Vyberte...</option>
-        <option value="jesenice">Jesenice / Horní Jirčany</option>
-        <option value="osnice">Osnice</option>
-        <option value="zdimerice">Zdiměřice</option>
-      </Select>
-
-      <Input label={isSVJ ? "Číslo popisné budovy" : "Číslo popisné"}
-        type="number" placeholder="např. 142"
-        value={cp} onChange={e => setCp(e.target.value)} error={err.cp}
-        hint={vs && (isSVJ || !isByt) ? `Variabilní symbol: ${vs}` : undefined} />
-
-      {/* Typ nemovitosti — jen pro fyzické osoby */}
-      {!isSVJ && (
-        <Select label="Typ nemovitosti" value={typNemovitosti}
-          onChange={e => {
-            const t = e.target.value;
-            setTypNemovitosti(t);
-            setNadoba(""); setCetnost(""); setCisloBytu("");
-            setTypDrzitele(t === "byt" ? "byt" : "dum");
-          }}
-          error={err.typ}>
-          <option value="">Vyberte...</option>
-          <option value="dum">Rodinný dům</option>
-          <option value="byt">Byt</option>
-          <option value="rekreace_trvala">Rekreační objekt – trvalé užívání</option>
-          <option value="rekreace_chata">Rekreační objekt – individuální rekreace (chata)</option>
-        </Select>
-      )}
-
-      {/* Číslo bytu — jen fyzická osoba v bytě */}
-      {!isSVJ && isByt && (
-        <div style={{ background: C.redLight, border: `1px solid ${C.redBorder}`, borderRadius: 5, padding: "12px 14px", marginBottom: 16 }}>
-          <div style={{ fontSize: 12, color: C.red, fontWeight: 600, marginBottom: 6 }}>⚠ Nutná identifikace bytu</div>
-          <div style={{ fontSize: 12, color: C.textSoft, marginBottom: 10, lineHeight: 1.5 }}>
-            Číslo popisné sdílí všechny byty v domě. Číslo bytu zajistí unikátní VS a správné přiřazení platby.
-          </div>
-          <Input label="Číslo bytu" type="number" placeholder="např. 5"
-            value={cisloBytu} onChange={e => setCisloBytu(e.target.value)} error={err.cisloBytu}
-            hint={vs ? `Váš variabilní symbol: ${vs}` : undefined} />
-        </div>
-      )}
-
-      {/* Nádoba — pro SVJ předvybrán 1100 l */}
-      {!isRec && (isSVJ || typNemovitosti) && (
-        <>
-          <Select label={isSVJ ? "Společná nádoba na odpad" : "Nádoba na odpad"}
-            value={nadoba} onChange={e => { setNadoba(e.target.value); setCetnost(""); }} error={err.nadoba}>
-            <option value="">Vyberte velikost...</option>
-            {!isSVJ && <><option value="80">80 litrů</option><option value="120">120 litrů</option><option value="240">240 litrů</option></>}
-            <option value="1100">1 100 litrů (kontejner){isSVJ ? " — doporučeno pro bytový dům" : ""}</option>
-          </Select>
-          {nadoba && (
-            <Select label="Četnost svozu" value={cetnost} onChange={e => setCetnost(e.target.value)} error={err.cetnost}>
-              <option value="">Vyberte...</option>
-              {!isSVJ && nadoba !== "1100" && <option value="52">1× týdně (52× ročně)</option>}
-              {!isSVJ && nadoba !== "1100" && <option value="26">1× za 2 týdny (26× ročně)</option>}
-              {(isSVJ || nadoba === "1100") && <option value="52">1× týdně (52× ročně)</option>}
-              {(isSVJ || nadoba === "1100") && <option value="104">2× týdně (104× ročně)</option>}
-            </Select>
-          )}
-        </>
-      )}
-
-      {isRec && <Notice variant="gold">🏕 Rekreační objekt: pytel 100 l — {typNemovitosti === "rekreace_trvala" ? "26× ročně · 1 404 Kč/rok" : "13× ročně · 702 Kč/rok"}</Notice>}
-      {castObce === "osnice" && <Notice variant="gold">📍 Oblast Osnice – Do Potočin: svoz formou pytlů.</Notice>}
-
-      {/* Psi — jen fyzické osoby */}
-      {!isSVJ && (
-        <>
-          <Divider label="🐕 Poplatek za psa" />
-          <Select label="Počet psů" value={psi} onChange={e => setPsi(e.target.value)}>
-            <option value="0">Bez psa</option>
-            <option value="1">1 pes</option><option value="2">2 psi</option>
-            <option value="3">3 psi</option><option value="4">4 psi</option><option value="5">5 psů</option>
-          </Select>
-          {parseInt(psi) > 0 && (
-            <Select label="Typ držitele" value={typDrzitele} onChange={e => setTypDrzitele(e.target.value)}>
-              <option value="dum">Rodinný dům</option>
-              <option value="byt">Byt</option>
-              <option value="senior">Osoba 65+ let</option>
-            </Select>
-          )}
-        </>
-      )}
-
-      {isSVJ && (
-        <Notice variant="neutral">
-          🐕 Poplatek za psa — každý vlastník bytu si jej registruje <strong>samostatně</strong> ve svém účtu fyzické osoby.
-        </Notice>
-      )}
-
-      <Divider label="🌿 Bioodpad (volitelné)" />
-      <Checkbox checked={bioodpad} onChange={setBioodpad}
-        label={isSVJ ? "Přihlásit společný svoz bioodpadu pro dům" : "Přihlásit svoz bioodpadu"}
-        hint="Sezóna 1. 3. – 1. 12. 2026, týdenní svoz" />
-      {bioodpad && (
-        <Select label="Nádoba na bioodpad" value={bioodpadNadoba} onChange={e => setBioodpadNadoba(e.target.value)}>
-          <option value="120">120 litrů — 1 517 Kč/rok</option>
-          <option value="240">240 litrů — 2 525 Kč/rok</option>
-        </Select>
-      )}
-
-      {preview && preview.celkem > 0 && (
-        <div style={{ background: C.redLight, border: `1px solid ${C.redBorder}`, borderRadius: 5, padding: "11px 14px", marginTop: 6, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <span style={{ fontSize: 13, color: C.red, fontWeight: 600 }}>{isSVJ ? "Celkem za dům 2026" : "Předběžný součet 2026"}</span>
-          <span style={{ fontSize: 20, fontWeight: 800, color: C.red }}>{preview.celkem.toLocaleString("cs-CZ")} Kč</span>
-        </div>
-      )}
-
-      <BtnPrimary onClick={submit} mt={20}>Pokračovat →</BtnPrimary>
-      <BtnGhost onClick={onBack}>← Zpět</BtnGhost>
-    </div>
-  );
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: "24px 20px 28px"
+    }
+  }, /*#__PURE__*/React.createElement(StepBar, {
+    step: 1
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginBottom: 16
+    }
+  }, /*#__PURE__*/React.createElement("h2", {
+    style: {
+      margin: 0,
+      fontSize: 19,
+      fontWeight: 800,
+      color: C.text
+    }
+  }, isSVJ ? "Váš bytový dům" : "Vaše nemovitost"), /*#__PURE__*/React.createElement("p", {
+    style: {
+      margin: "4px 0 0",
+      fontSize: 13,
+      color: C.muted
+    }
+  }, isSVJ ? "SVJ platí za celou budovu jednou platbou" : "Nastavíte jednou — systém si vše pamatuje pro každý rok")), isSVJ && /*#__PURE__*/React.createElement(Notice, {
+    variant: "gold"
+  }, "\uD83C\uDFE2 Jako SVJ zad\xE1v\xE1te ", /*#__PURE__*/React.createElement("strong", null, "\u010D\xEDslo popisn\xE9 cel\xE9 budovy"), ". Syst\xE9m vygeneruje jeden QR k\xF3d pro platbu za cel\xFD d\u016Fm. Poplatky za psy spravuj\xED jednotliv\xED vlastn\xEDci byt\u016F ", /*#__PURE__*/React.createElement("strong", null, "samostatn\u011B"), " ve vlastn\xEDm \xFA\u010Dtu."), /*#__PURE__*/React.createElement(Select, {
+    label: "\u010C\xE1st obce",
+    value: castObce,
+    onChange: function onChange(e) {
+      return setCastObce(e.target.value);
+    },
+    error: err.castObce
+  }, /*#__PURE__*/React.createElement("option", {
+    value: ""
+  }, "Vyberte..."), /*#__PURE__*/React.createElement("option", {
+    value: "jesenice"
+  }, "Jesenice / Horn\xED Jir\u010Dany"), /*#__PURE__*/React.createElement("option", {
+    value: "osnice"
+  }, "Osnice"), /*#__PURE__*/React.createElement("option", {
+    value: "zdimerice"
+  }, "Zdim\u011B\u0159ice")), /*#__PURE__*/React.createElement(Input, {
+    label: isSVJ ? "Číslo popisné budovy" : "Číslo popisné",
+    type: "number",
+    placeholder: "nap\u0159. 142",
+    value: cp,
+    onChange: function onChange(e) {
+      return setCp(e.target.value);
+    },
+    error: err.cp,
+    hint: vs && (isSVJ || !isByt) ? "Variabiln\xED symbol: ".concat(vs) : undefined
+  }), !isSVJ && /*#__PURE__*/React.createElement(Select, {
+    label: "Typ nemovitosti",
+    value: typNemovitosti,
+    onChange: function onChange(e) {
+      var t = e.target.value;
+      setTypNemovitosti(t);
+      setNadoba("");
+      setCetnost("");
+      setCisloBytu("");
+      setTypDrzitele(t === "byt" ? "byt" : "dum");
+    },
+    error: err.typ
+  }, /*#__PURE__*/React.createElement("option", {
+    value: ""
+  }, "Vyberte..."), /*#__PURE__*/React.createElement("option", {
+    value: "dum"
+  }, "Rodinn\xFD d\u016Fm"), /*#__PURE__*/React.createElement("option", {
+    value: "byt"
+  }, "Byt"), /*#__PURE__*/React.createElement("option", {
+    value: "rekreace_trvala"
+  }, "Rekrea\u010Dn\xED objekt \u2013 trval\xE9 u\u017E\xEDv\xE1n\xED"), /*#__PURE__*/React.createElement("option", {
+    value: "rekreace_chata"
+  }, "Rekrea\u010Dn\xED objekt \u2013 individu\xE1ln\xED rekreace (chata)")), !isSVJ && isByt && /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: C.redLight,
+      border: "1px solid ".concat(C.redBorder),
+      borderRadius: 5,
+      padding: "12px 14px",
+      marginBottom: 16
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      color: C.red,
+      fontWeight: 600,
+      marginBottom: 6
+    }
+  }, "\u26A0 Nutn\xE1 identifikace bytu"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      color: C.textSoft,
+      marginBottom: 10,
+      lineHeight: 1.5
+    }
+  }, "\u010C\xEDslo popisn\xE9 sd\xEDl\xED v\u0161echny byty v dom\u011B. \u010C\xEDslo bytu zajist\xED unik\xE1tn\xED VS a spr\xE1vn\xE9 p\u0159i\u0159azen\xED platby."), /*#__PURE__*/React.createElement(Input, {
+    label: "\u010C\xEDslo bytu",
+    type: "number",
+    placeholder: "nap\u0159. 5",
+    value: cisloBytu,
+    onChange: function onChange(e) {
+      return setCisloBytu(e.target.value);
+    },
+    error: err.cisloBytu,
+    hint: vs ? "V\xE1\u0161 variabiln\xED symbol: ".concat(vs) : undefined
+  })), !isRec && (isSVJ || typNemovitosti) && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Select, {
+    label: isSVJ ? "Společná nádoba na odpad" : "Nádoba na odpad",
+    value: nadoba,
+    onChange: function onChange(e) {
+      setNadoba(e.target.value);
+      setCetnost("");
+    },
+    error: err.nadoba
+  }, /*#__PURE__*/React.createElement("option", {
+    value: ""
+  }, "Vyberte velikost..."), !isSVJ && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("option", {
+    value: "80"
+  }, "80 litr\u016F"), /*#__PURE__*/React.createElement("option", {
+    value: "120"
+  }, "120 litr\u016F"), /*#__PURE__*/React.createElement("option", {
+    value: "240"
+  }, "240 litr\u016F")), /*#__PURE__*/React.createElement("option", {
+    value: "1100"
+  }, "1 100 litr\u016F (kontejner)", isSVJ ? " — doporučeno pro bytový dům" : "")), nadoba && /*#__PURE__*/React.createElement(Select, {
+    label: "\u010Cetnost svozu",
+    value: cetnost,
+    onChange: function onChange(e) {
+      return setCetnost(e.target.value);
+    },
+    error: err.cetnost
+  }, /*#__PURE__*/React.createElement("option", {
+    value: ""
+  }, "Vyberte..."), !isSVJ && nadoba !== "1100" && /*#__PURE__*/React.createElement("option", {
+    value: "52"
+  }, "1\xD7 t\xFDdn\u011B (52\xD7 ro\u010Dn\u011B)"), !isSVJ && nadoba !== "1100" && /*#__PURE__*/React.createElement("option", {
+    value: "26"
+  }, "1\xD7 za 2 t\xFDdny (26\xD7 ro\u010Dn\u011B)"), (isSVJ || nadoba === "1100") && /*#__PURE__*/React.createElement("option", {
+    value: "52"
+  }, "1\xD7 t\xFDdn\u011B (52\xD7 ro\u010Dn\u011B)"), (isSVJ || nadoba === "1100") && /*#__PURE__*/React.createElement("option", {
+    value: "104"
+  }, "2\xD7 t\xFDdn\u011B (104\xD7 ro\u010Dn\u011B)"))), isRec && /*#__PURE__*/React.createElement(Notice, {
+    variant: "gold"
+  }, "\uD83C\uDFD5 Rekrea\u010Dn\xED objekt: pytel 100 l \u2014 ", typNemovitosti === "rekreace_trvala" ? "26× ročně · 1 404 Kč/rok" : "13× ročně · 702 Kč/rok"), castObce === "osnice" && /*#__PURE__*/React.createElement(Notice, {
+    variant: "gold"
+  }, "\uD83D\uDCCD Oblast Osnice \u2013 Do Poto\u010Din: svoz formou pytl\u016F."), !isSVJ && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Divider, {
+    label: "\uD83D\uDC15 Poplatek za psa"
+  }), /*#__PURE__*/React.createElement(Select, {
+    label: "Po\u010Det ps\u016F",
+    value: psi,
+    onChange: function onChange(e) {
+      return setPsi(e.target.value);
+    }
+  }, /*#__PURE__*/React.createElement("option", {
+    value: "0"
+  }, "Bez psa"), /*#__PURE__*/React.createElement("option", {
+    value: "1"
+  }, "1 pes"), /*#__PURE__*/React.createElement("option", {
+    value: "2"
+  }, "2 psi"), /*#__PURE__*/React.createElement("option", {
+    value: "3"
+  }, "3 psi"), /*#__PURE__*/React.createElement("option", {
+    value: "4"
+  }, "4 psi"), /*#__PURE__*/React.createElement("option", {
+    value: "5"
+  }, "5 ps\u016F")), parseInt(psi) > 0 && /*#__PURE__*/React.createElement(Select, {
+    label: "Typ dr\u017Eitele",
+    value: typDrzitele,
+    onChange: function onChange(e) {
+      return setTypDrzitele(e.target.value);
+    }
+  }, /*#__PURE__*/React.createElement("option", {
+    value: "dum"
+  }, "Rodinn\xFD d\u016Fm"), /*#__PURE__*/React.createElement("option", {
+    value: "byt"
+  }, "Byt"), /*#__PURE__*/React.createElement("option", {
+    value: "senior"
+  }, "Osoba 65+ let"))), isSVJ && /*#__PURE__*/React.createElement(Notice, {
+    variant: "neutral"
+  }, "\uD83D\uDC15 Poplatek za psa \u2014 ka\u017Ed\xFD vlastn\xEDk bytu si jej registruje ", /*#__PURE__*/React.createElement("strong", null, "samostatn\u011B"), " ve sv\xE9m \xFA\u010Dtu fyzick\xE9 osoby."), /*#__PURE__*/React.createElement(Divider, {
+    label: "\uD83C\uDF3F Bioodpad (voliteln\xE9)"
+  }), /*#__PURE__*/React.createElement(Checkbox, {
+    checked: bioodpad,
+    onChange: setBioodpad,
+    label: isSVJ ? "Přihlásit společný svoz bioodpadu pro dům" : "Přihlásit svoz bioodpadu",
+    hint: "Sez\xF3na 1. 3. \u2013 1. 12. 2026, t\xFDdenn\xED svoz"
+  }), bioodpad && /*#__PURE__*/React.createElement(Select, {
+    label: "N\xE1doba na bioodpad",
+    value: bioodpadNadoba,
+    onChange: function onChange(e) {
+      return setBioodpadNadoba(e.target.value);
+    }
+  }, /*#__PURE__*/React.createElement("option", {
+    value: "120"
+  }, "120 litr\u016F \u2014 1 517 K\u010D/rok"), /*#__PURE__*/React.createElement("option", {
+    value: "240"
+  }, "240 litr\u016F \u2014 2 525 K\u010D/rok")), preview && preview.celkem > 0 && /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: C.redLight,
+      border: "1px solid ".concat(C.redBorder),
+      borderRadius: 5,
+      padding: "11px 14px",
+      marginTop: 6,
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center"
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 13,
+      color: C.red,
+      fontWeight: 600
+    }
+  }, isSVJ ? "Celkem za dům 2026" : "Předběžný součet 2026"), /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 20,
+      fontWeight: 800,
+      color: C.red
+    }
+  }, preview.celkem.toLocaleString("cs-CZ"), " K\u010D")), /*#__PURE__*/React.createElement(BtnPrimary, {
+    onClick: submit,
+    mt: 20
+  }, "Pokra\u010Dovat \u2192"), /*#__PURE__*/React.createElement(BtnGhost, {
+    onClick: onBack
+  }, "\u2190 Zp\u011Bt"));
 }
 
 // ─────────────────────────────────────────────────────────────────────
 // STEP 3 – Souhrn
 // ─────────────────────────────────────────────────────────────────────
-function Step3({ data, onBack, onFinish }) {
-  const { odpad, pes, bio, celkem } = calc(data);
-  const vsBase = `${VS_PREFIX[data.castObce]}${data.cp}`;
-  const vs = data.typNemovitosti === "byt" && data.cisloBytu ? `${vsBase}/${data.cisloBytu}` : vsBase;
-  const castLabel = { jesenice: "Jesenice / Horní Jirčany", osnice: "Osnice", zdimerice: "Zdiměřice" };
-  const typLabel  = { dum: "Rodinný dům", byt: "Byt", rekreace_trvala: "Rekr. obj. (trvalé)", rekreace_chata: "Rekr. obj. (chata)" };
-  const remLabel  = REMINDER_DATES.find(d => d.value === data.reminderDate)?.label;
-
-  const Row = ({ label, sub, value }) => (
-    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", padding: "10px 0", borderBottom: `1px solid ${C.border}` }}>
-      <div>
-        <div style={{ fontSize: 14, color: C.text }}>{label}</div>
-        {sub && <div style={{ fontSize: 11, color: C.muted, marginTop: 2 }}>{sub}</div>}
-      </div>
-      <div style={{ fontSize: 14, fontWeight: 600 }}>{value}</div>
-    </div>
-  );
-
-  return (
-    <div style={{ padding: "28px 28px 32px" }}>
-      <StepBar step={2} />
-      <div style={{ marginBottom: 20 }}>
-        <h2 style={{ margin: 0, fontSize: 19, fontWeight: 800, color: C.text }}>Souhrn a potvrzení</h2>
-        <p style={{ margin: "4px 0 0", fontSize: 13, color: C.muted }}>Zkontrolujte údaje před dokončením</p>
-      </div>
-
-      {/* Nemovitost */}
-      <div style={{ background: "#F9FAFB", border: `1px solid ${C.border}`, borderRadius: 6, padding: "13px 15px", marginBottom: 18 }}>
-        <div style={{ fontSize: 10, fontWeight: 700, color: C.muted, textTransform: "uppercase", letterSpacing: ".08em", marginBottom: 10 }}>
-          Nemovitost
-        </div>
-        {[
-          data.typSubjektu === "svj" && data.nazevSVJ && ["SVJ", data.nazevSVJ],
-          data.typSubjektu === "svj" && data.ico && ["IČO", data.ico],
-          ["Adresa",
-            data.typNemovitosti === "byt" && !data.typSubjektu?.startsWith("svj")
-              ? `${castLabel[data.castObce]}, č.p. ${data.cp}, byt č. ${data.cisloBytu}`
-              : `${castLabel[data.castObce]}, č.p. ${data.cp}`],
-          ["Typ", data.typSubjektu === "svj" ? "SVJ / Bytový dům" : typLabel[data.typNemovitosti]],
-        ].filter(Boolean).map(([l, v]) => (
-          <div key={l} style={{ display: "flex", justifyContent: "space-between", fontSize: 13, marginBottom: 5 }}>
-            <span style={{ color: C.muted }}>{l}</span>
-            <span style={{ fontWeight: 600 }}>{v}</span>
-          </div>
-        ))}
-        <div style={{ display: "flex", justifyContent: "space-between", fontSize: 13, marginTop: 2 }}>
-          <span style={{ color: C.muted }}>Variabilní symbol</span>
-          <span style={{ fontWeight: 800, color: C.red, fontSize: 16, letterSpacing: ".04em" }}>{vs}</span>
-        </div>
-      </div>
-
-      {/* Poplatky */}
-      <div style={{ fontSize: 11, fontWeight: 700, color: C.muted, textTransform: "uppercase", letterSpacing: ".08em", marginBottom: 4 }}>
-        Roční poplatky 2026
-      </div>
-      {odpad > 0 && (
-        <Row label="Komunální odpad"
-          sub={!["rekreace_trvala","rekreace_chata"].includes(data.typNemovitosti)
-            ? `${data.nadoba} l · ${data.cetnost === "52" ? "1× týdně" : data.cetnost === "104" ? "2× týdně" : "1× za 2 týdny"}`
-            : undefined}
-          value={`${odpad.toLocaleString("cs-CZ")} Kč`} />
-      )}
-      {pes > 0 && <Row label={`Poplatek za psa (${data.psi}×)`} value={`${pes.toLocaleString("cs-CZ")} Kč`} />}
-      {bio > 0 && <Row label={`Bioodpad (${data.bioodpadNadoba} l)`} sub="Sezóna 1. 3. – 1. 12. 2026" value={`${bio.toLocaleString("cs-CZ")} Kč`} />}
-
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "13px 0 2px", borderTop: `2px solid ${C.text}` }}>
-        <span style={{ fontSize: 15, fontWeight: 700 }}>Celkem 2026</span>
-        <span style={{ fontSize: 22, fontWeight: 800, color: C.red }}>{celkem.toLocaleString("cs-CZ")} Kč</span>
-      </div>
-      <p style={{ margin: "3px 0 18px", fontSize: 11, color: C.muted }}>
-        Splatnost 31. 3. 2026 · Účet 3725111/0100 · VS {vs}
-      </p>
-
-      {/* Připomínky */}
-      <div style={{ background: C.goldLight, border: `1px solid ${C.goldBorder}`, borderRadius: 5, padding: "11px 13px", marginBottom: 16 }}>
-        <div style={{ fontSize: 10, fontWeight: 700, color: C.gold, textTransform: "uppercase", letterSpacing: ".07em", marginBottom: 6 }}>
-          🔔 Plán připomínek
-        </div>
-        <div style={{ fontSize: 13, color: C.text }}>
-          První e-mail: <strong>{remLabel}</strong>
-          {" · "}
-          {data.extra === 0 ? "žádné další" : `+${data.extra} ${data.extra === 1 ? "připomínka" : "připomínky"} navíc`}
-        </div>
-      </div>
-
-      <Notice variant="neutral">
-        📬 Platební výzva bude každý rok zasílána na <strong>{data.email}</strong>
-      </Notice>
-
-      <BtnPrimary onClick={onFinish} mt={4}>✓ Dokončit registraci</BtnPrimary>
-      <BtnGhost onClick={onBack}>← Zpět a upravit</BtnGhost>
-    </div>
-  );
+function Step3(_ref11) {
+  var _REMINDER_DATES$find, _data$typSubjektu;
+  var data = _ref11.data,
+    onBack = _ref11.onBack,
+    onFinish = _ref11.onFinish;
+  var _calc = calc(data),
+    odpad = _calc.odpad,
+    pes = _calc.pes,
+    bio = _calc.bio,
+    celkem = _calc.celkem;
+  var vsBase = "".concat(VS_PREFIX[data.castObce]).concat(data.cp);
+  var vs = data.typNemovitosti === "byt" && data.cisloBytu ? "".concat(vsBase, "/").concat(data.cisloBytu) : vsBase;
+  var castLabel = {
+    jesenice: "Jesenice / Horní Jirčany",
+    osnice: "Osnice",
+    zdimerice: "Zdiměřice"
+  };
+  var typLabel = {
+    dum: "Rodinný dům",
+    byt: "Byt",
+    rekreace_trvala: "Rekr. obj. (trvalé)",
+    rekreace_chata: "Rekr. obj. (chata)"
+  };
+  var remLabel = (_REMINDER_DATES$find = REMINDER_DATES.find(function (d) {
+    return d.value === data.reminderDate;
+  })) === null || _REMINDER_DATES$find === void 0 ? void 0 : _REMINDER_DATES$find.label;
+  var Row = function Row(_ref12) {
+    var label = _ref12.label,
+      sub = _ref12.sub,
+      value = _ref12.value;
+    return /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "baseline",
+        padding: "10px 0",
+        borderBottom: "1px solid ".concat(C.border)
+      }
+    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 14,
+        color: C.text
+      }
+    }, label), sub && /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        color: C.muted,
+        marginTop: 2
+      }
+    }, sub)), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 14,
+        fontWeight: 600
+      }
+    }, value));
+  };
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: "24px 20px 28px"
+    }
+  }, /*#__PURE__*/React.createElement(StepBar, {
+    step: 2
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginBottom: 20
+    }
+  }, /*#__PURE__*/React.createElement("h2", {
+    style: {
+      margin: 0,
+      fontSize: 19,
+      fontWeight: 800,
+      color: C.text
+    }
+  }, "Souhrn a potvrzen\xED"), /*#__PURE__*/React.createElement("p", {
+    style: {
+      margin: "4px 0 0",
+      fontSize: 13,
+      color: C.muted
+    }
+  }, "Zkontrolujte \xFAdaje p\u0159ed dokon\u010Den\xEDm")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: "#F9FAFB",
+      border: "1px solid ".concat(C.border),
+      borderRadius: 6,
+      padding: "13px 15px",
+      marginBottom: 18
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 10,
+      fontWeight: 700,
+      color: C.muted,
+      textTransform: "uppercase",
+      letterSpacing: ".08em",
+      marginBottom: 10
+    }
+  }, "Nemovitost"), [data.typSubjektu === "svj" && data.nazevSVJ && ["SVJ", data.nazevSVJ], data.typSubjektu === "svj" && data.ico && ["IČO", data.ico], ["Adresa", data.typNemovitosti === "byt" && !((_data$typSubjektu = data.typSubjektu) !== null && _data$typSubjektu !== void 0 && _data$typSubjektu.startsWith("svj")) ? "".concat(castLabel[data.castObce], ", \u010D.p. ").concat(data.cp, ", byt \u010D. ").concat(data.cisloBytu) : "".concat(castLabel[data.castObce], ", \u010D.p. ").concat(data.cp)], ["Typ", data.typSubjektu === "svj" ? "SVJ / Bytový dům" : typLabel[data.typNemovitosti]]].filter(Boolean).map(function (_ref13) {
+    var _ref14 = _slicedToArray(_ref13, 2),
+      l = _ref14[0],
+      v = _ref14[1];
+    return /*#__PURE__*/React.createElement("div", {
+      key: l,
+      style: {
+        display: "flex",
+        justifyContent: "space-between",
+        fontSize: 13,
+        marginBottom: 5
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        color: C.muted
+      }
+    }, l), /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontWeight: 600
+      }
+    }, v));
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      justifyContent: "space-between",
+      fontSize: 13,
+      marginTop: 2
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: C.muted
+    }
+  }, "Variabiln\xED symbol"), /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontWeight: 800,
+      color: C.red,
+      fontSize: 16,
+      letterSpacing: ".04em"
+    }
+  }, vs))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      fontWeight: 700,
+      color: C.muted,
+      textTransform: "uppercase",
+      letterSpacing: ".08em",
+      marginBottom: 4
+    }
+  }, "Ro\u010Dn\xED poplatky 2026"), odpad > 0 && /*#__PURE__*/React.createElement(Row, {
+    label: "Komun\xE1ln\xED odpad",
+    sub: !["rekreace_trvala", "rekreace_chata"].includes(data.typNemovitosti) ? "".concat(data.nadoba, " l \xB7 ").concat(data.cetnost === "52" ? "1× týdně" : data.cetnost === "104" ? "2× týdně" : "1× za 2 týdny") : undefined,
+    value: "".concat(odpad.toLocaleString("cs-CZ"), " K\u010D")
+  }), pes > 0 && /*#__PURE__*/React.createElement(Row, {
+    label: "Poplatek za psa (".concat(data.psi, "\xD7)"),
+    value: "".concat(pes.toLocaleString("cs-CZ"), " K\u010D")
+  }), bio > 0 && /*#__PURE__*/React.createElement(Row, {
+    label: "Bioodpad (".concat(data.bioodpadNadoba, " l)"),
+    sub: "Sez\xF3na 1. 3. \u2013 1. 12. 2026",
+    value: "".concat(bio.toLocaleString("cs-CZ"), " K\u010D")
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      padding: "13px 0 2px",
+      borderTop: "2px solid ".concat(C.text)
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 15,
+      fontWeight: 700
+    }
+  }, "Celkem 2026"), /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 22,
+      fontWeight: 800,
+      color: C.red
+    }
+  }, celkem.toLocaleString("cs-CZ"), " K\u010D")), /*#__PURE__*/React.createElement("p", {
+    style: {
+      margin: "3px 0 18px",
+      fontSize: 11,
+      color: C.muted
+    }
+  }, "Splatnost 31. 3. 2026 \xB7 \xDA\u010Det 3725111/0100 \xB7 VS ", vs), /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: C.goldLight,
+      border: "1px solid ".concat(C.goldBorder),
+      borderRadius: 5,
+      padding: "11px 13px",
+      marginBottom: 16
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 10,
+      fontWeight: 700,
+      color: C.gold,
+      textTransform: "uppercase",
+      letterSpacing: ".07em",
+      marginBottom: 6
+    }
+  }, "\uD83D\uDD14 Pl\xE1n p\u0159ipom\xEDnek"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 13,
+      color: C.text
+    }
+  }, "Prvn\xED e-mail: ", /*#__PURE__*/React.createElement("strong", null, remLabel), " · ", data.extra === 0 ? "žádné další" : "+".concat(data.extra, " ").concat(data.extra === 1 ? "připomínka" : "připomínky", " nav\xEDc"))), /*#__PURE__*/React.createElement(Notice, {
+    variant: "neutral"
+  }, "\uD83D\uDCEC Platebn\xED v\xFDzva bude ka\u017Ed\xFD rok zas\xEDl\xE1na na ", /*#__PURE__*/React.createElement("strong", null, data.email)), /*#__PURE__*/React.createElement(BtnPrimary, {
+    onClick: onFinish,
+    mt: 4
+  }, "\u2713 Dokon\u010Dit registraci"), /*#__PURE__*/React.createElement(BtnGhost, {
+    onClick: onBack
+  }, "\u2190 Zp\u011Bt a upravit"));
 }
 
 // ─────────────────────────────────────────────────────────────────────
@@ -722,208 +1406,419 @@ function Step3({ data, onBack, onFinish }) {
 
 // Minimalistický QR-like pattern
 function QRMock() {
-  const pat = [
-    1,1,1,0,1,0,1,1,1,
-    1,0,1,0,0,0,1,0,1,
-    1,0,1,1,0,1,1,0,1,
-    0,0,0,1,0,1,0,0,0,
-    1,0,1,0,1,0,1,0,1,
-    0,0,0,0,1,0,0,1,0,
-    1,1,1,0,0,1,1,1,1,
-    1,0,1,0,1,0,0,0,1,
-    1,0,1,1,0,1,1,0,1,
-  ];
-  return (
-    <div style={{ display: "inline-grid", gridTemplateColumns: "repeat(9, 10px)", gap: 2 }}>
-      {pat.map((c, i) => (
-        <div key={i} style={{ width: 10, height: 10, background: c ? C.text : "transparent", borderRadius: 1 }} />
-      ))}
-    </div>
-  );
+  var pat = [1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1];
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "inline-grid",
+      gridTemplateColumns: "repeat(9, 10px)",
+      gap: 2
+    }
+  }, pat.map(function (c, i) {
+    return /*#__PURE__*/React.createElement("div", {
+      key: i,
+      style: {
+        width: 10,
+        height: 10,
+        background: c ? C.text : "transparent",
+        borderRadius: 1
+      }
+    });
+  }));
 }
-
-function StepDone({ data }) {
-  const { odpad, pes, bio, celkem } = calc(data);
-  const vsBase = `${VS_PREFIX[data.castObce]}${data.cp}`;
-  const vs = data.typNemovitosti === "byt" && data.cisloBytu ? `${vsBase}/${data.cisloBytu}` : vsBase;
-  const remLabel = REMINDER_DATES.find(d => d.value === data.reminderDate)?.label;
-
-  return (
-    <>
-      {/* Green success header */}
-      <div style={{ background: C.success, padding: "28px 28px 24px", textAlign: "center" }}>
-        <div style={{
-          width: 56, height: 56, borderRadius: "50%",
-          background: "rgba(255,255,255,.2)",
-          display: "flex", alignItems: "center", justifyContent: "center",
-          fontSize: 26, margin: "0 auto 14px", color: "#fff",
-        }}>✓</div>
-        <h2 style={{ margin: 0, fontSize: 20, fontWeight: 800, color: "#fff" }}>Registrace dokončena!</h2>
-        <p style={{ margin: "6px 0 0", fontSize: 13, color: "rgba(255,255,255,.75)", lineHeight: 1.5 }}>
-          Každý rok vám pošleme platbu připravenou k zaplacení
-        </p>
-      </div>
-
-      <div style={{ padding: "24px 28px 32px" }}>
-        {/* QR mock */}
-        <div style={{
-          border: `2px dashed ${C.border}`, borderRadius: 10,
-          padding: "20px 16px", textAlign: "center", marginBottom: 20,
-        }}>
-          <div style={{ fontSize: 10, fontWeight: 700, color: C.muted, textTransform: "uppercase", letterSpacing: ".08em", marginBottom: 14 }}>
-            Ukázka QR kódu — obdržíte e-mailem {remLabel}
-          </div>
-          <QRMock />
-          <div style={{ fontSize: 22, fontWeight: 800, color: C.red, margin: "12px 0 2px" }}>
-            {celkem.toLocaleString("cs-CZ")} Kč
-          </div>
-          <div style={{ fontSize: 11, color: C.muted }}>VS: {vs} · 3725111/0100</div>
-        </div>
-
-        {/* Jak to funguje */}
-        <div style={{ marginBottom: 20 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: C.muted, textTransform: "uppercase", letterSpacing: ".08em", marginBottom: 12 }}>
-            Jak to bude fungovat
-          </div>
-          {[
-            { ico: "📧", t: `${remLabel} — e-mail s QR kódem na ${data.email}` },
-            { ico: "📱", t: "Otevřete bankovní appku a naskenujete QR kód" },
-            { ico: "⚡", t: "Částka i VS jsou předvyplněny — platba do 30 sekund" },
-            { ico: "✅", t: "Potvrzení přijde automaticky e-mailem" },
-          ].map((item, i) => (
-            <div key={i} style={{ display: "flex", gap: 12, marginBottom: 12, alignItems: "flex-start" }}>
-              <div style={{
-                width: 34, height: 34, borderRadius: 8,
-                background: C.redLight, flexShrink: 0,
-                display: "flex", alignItems: "center", justifyContent: "center", fontSize: 16,
-              }}>
-                {item.ico}
-              </div>
-              <div style={{ fontSize: 13, color: C.text, paddingTop: 8, lineHeight: 1.4 }}>{item.t}</div>
-            </div>
-          ))}
-        </div>
-
-        {/* Souhrn */}
-        <div style={{ background: "#F9FAFB", border: `1px solid ${C.border}`, borderRadius: 6, padding: "13px 15px", marginBottom: 20 }}>
-          <div style={{ fontSize: 10, fontWeight: 700, color: C.muted, textTransform: "uppercase", letterSpacing: ".08em", marginBottom: 10 }}>
-            Vaše poplatky 2026
-          </div>
-          {[
-            odpad > 0 && ["Komunální odpad", odpad],
-            pes > 0   && [`Poplatek za psa (${data.psi}×)`, pes],
-            bio > 0   && [`Bioodpad (${data.bioodpadNadoba} l)`, bio],
-          ].filter(Boolean).map(([l, v]) => (
-            <div key={l} style={{ display: "flex", justifyContent: "space-between", fontSize: 13, marginBottom: 5 }}>
-              <span style={{ color: C.muted }}>{l}</span>
-              <span>{v.toLocaleString("cs-CZ")} Kč</span>
-            </div>
-          ))}
-          <div style={{ display: "flex", justifyContent: "space-between", fontSize: 14, fontWeight: 700, borderTop: `1px solid ${C.border}`, paddingTop: 8, marginTop: 4 }}>
-            <span>Celkem</span>
-            <span style={{ color: C.red }}>{celkem.toLocaleString("cs-CZ")} Kč</span>
-          </div>
-        </div>
-
-        <button style={{
-          width: "100%", padding: "11px", borderRadius: 5,
-          border: `1.5px solid ${C.borderDark}`, background: "transparent",
-          color: C.textSoft, fontSize: 14, fontWeight: 500,
-          cursor: "pointer", fontFamily: font,
-        }}>
-          ✎ Upravit nastavení
-        </button>
-      </div>
-    </>
-  );
+function StepDone(_ref15) {
+  var _REMINDER_DATES$find2;
+  var data = _ref15.data;
+  var _calc2 = calc(data),
+    odpad = _calc2.odpad,
+    pes = _calc2.pes,
+    bio = _calc2.bio,
+    celkem = _calc2.celkem;
+  var vsBase = "".concat(VS_PREFIX[data.castObce]).concat(data.cp);
+  var vs = data.typNemovitosti === "byt" && data.cisloBytu ? "".concat(vsBase, "/").concat(data.cisloBytu) : vsBase;
+  var remLabel = (_REMINDER_DATES$find2 = REMINDER_DATES.find(function (d) {
+    return d.value === data.reminderDate;
+  })) === null || _REMINDER_DATES$find2 === void 0 ? void 0 : _REMINDER_DATES$find2.label;
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: C.success,
+      padding: "24px 20px 20px",
+      textAlign: "center"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: 56,
+      height: 56,
+      borderRadius: "50%",
+      background: "rgba(255,255,255,.2)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      fontSize: 26,
+      margin: "0 auto 14px",
+      color: "#fff"
+    }
+  }, "\u2713"), /*#__PURE__*/React.createElement("h2", {
+    style: {
+      margin: 0,
+      fontSize: 20,
+      fontWeight: 800,
+      color: "#fff"
+    }
+  }, "Registrace dokon\u010Dena!"), /*#__PURE__*/React.createElement("p", {
+    style: {
+      margin: "6px 0 0",
+      fontSize: 13,
+      color: "rgba(255,255,255,.75)",
+      lineHeight: 1.5
+    }
+  }, "Ka\u017Ed\xFD rok v\xE1m po\u0161leme platbu p\u0159ipravenou k zaplacen\xED")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: "20px 20px 28px"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      border: "2px dashed ".concat(C.border),
+      borderRadius: 10,
+      padding: "20px 16px",
+      textAlign: "center",
+      marginBottom: 20
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 10,
+      fontWeight: 700,
+      color: C.muted,
+      textTransform: "uppercase",
+      letterSpacing: ".08em",
+      marginBottom: 14
+    }
+  }, "Uk\xE1zka QR k\xF3du \u2014 obdr\u017E\xEDte e-mailem ", remLabel), /*#__PURE__*/React.createElement(QRMock, null), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 22,
+      fontWeight: 800,
+      color: C.red,
+      margin: "12px 0 2px"
+    }
+  }, celkem.toLocaleString("cs-CZ"), " K\u010D"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: C.muted
+    }
+  }, "VS: ", vs, " \xB7 3725111/0100")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginBottom: 20
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      fontWeight: 700,
+      color: C.muted,
+      textTransform: "uppercase",
+      letterSpacing: ".08em",
+      marginBottom: 12
+    }
+  }, "Jak to bude fungovat"), [{
+    ico: "📧",
+    t: "".concat(remLabel, " \u2014 e-mail s QR k\xF3dem na ").concat(data.email)
+  }, {
+    ico: "📱",
+    t: "Otevřete bankovní appku a naskenujete QR kód"
+  }, {
+    ico: "⚡",
+    t: "Částka i VS jsou předvyplněny — platba do 30 sekund"
+  }, {
+    ico: "✅",
+    t: "Potvrzení přijde automaticky e-mailem"
+  }].map(function (item, i) {
+    return /*#__PURE__*/React.createElement("div", {
+      key: i,
+      style: {
+        display: "flex",
+        gap: 12,
+        marginBottom: 12,
+        alignItems: "flex-start"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        width: 34,
+        height: 34,
+        borderRadius: 8,
+        background: C.redLight,
+        flexShrink: 0,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        fontSize: 16
+      }
+    }, item.ico), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 13,
+        color: C.text,
+        paddingTop: 8,
+        lineHeight: 1.4
+      }
+    }, item.t));
+  })), /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: "#F9FAFB",
+      border: "1px solid ".concat(C.border),
+      borderRadius: 6,
+      padding: "13px 15px",
+      marginBottom: 20
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 10,
+      fontWeight: 700,
+      color: C.muted,
+      textTransform: "uppercase",
+      letterSpacing: ".08em",
+      marginBottom: 10
+    }
+  }, "Va\u0161e poplatky 2026"), [odpad > 0 && ["Komunální odpad", odpad], pes > 0 && ["Poplatek za psa (".concat(data.psi, "\xD7)"), pes], bio > 0 && ["Bioodpad (".concat(data.bioodpadNadoba, " l)"), bio]].filter(Boolean).map(function (_ref16) {
+    var _ref17 = _slicedToArray(_ref16, 2),
+      l = _ref17[0],
+      v = _ref17[1];
+    return /*#__PURE__*/React.createElement("div", {
+      key: l,
+      style: {
+        display: "flex",
+        justifyContent: "space-between",
+        fontSize: 13,
+        marginBottom: 5
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        color: C.muted
+      }
+    }, l), /*#__PURE__*/React.createElement("span", null, v.toLocaleString("cs-CZ"), " K\u010D"));
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      justifyContent: "space-between",
+      fontSize: 14,
+      fontWeight: 700,
+      borderTop: "1px solid ".concat(C.border),
+      paddingTop: 8,
+      marginTop: 4
+    }
+  }, /*#__PURE__*/React.createElement("span", null, "Celkem"), /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: C.red
+    }
+  }, celkem.toLocaleString("cs-CZ"), " K\u010D"))), /*#__PURE__*/React.createElement("button", {
+    style: {
+      width: "100%",
+      padding: "11px",
+      borderRadius: 5,
+      border: "1.5px solid ".concat(C.borderDark),
+      background: "transparent",
+      color: C.textSoft,
+      fontSize: 14,
+      fontWeight: 500,
+      cursor: "pointer",
+      fontFamily: font
+    }
+  }, "\u270E Upravit nastaven\xED")));
 }
 
 // ─────────────────────────────────────────────────────────────────────
 // APP SHELL
 // ─────────────────────────────────────────────────────────────────────
 function App() {
-  const [step, setStep] = useState(0);
-  const [data, setData] = useState({});
-
-  return (
-    <div style={{ minHeight: "100vh", background: C.bg, fontFamily: font }}>
-      <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-
-      <div style={{ maxWidth: 480, margin: "0 auto" }}>
-
-        {/* ── Logo header (bílý, jako na webu) ── */}
-        <div style={{ background: "#fff", borderBottom: `1px solid ${C.border}`, padding: "12px 20px", display: "flex", alignItems: "center", gap: 14 }}>
-          {/* Erb */}
-          <svg width="42" height="50" viewBox="0 0 42 50" fill="none">
-            <path d="M2 2H40V32Q40 48 21 50Q2 48 2 32Z" fill={C.red} stroke={C.redDark} strokeWidth="1.5"/>
-            <path d="M2 2H40V32Q40 48 21 50Q2 48 2 32Z" fill="url(#g1)"/>
-            <defs>
-              <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stopColor="rgba(255,255,255,0.15)"/>
-                <stop offset="100%" stopColor="rgba(0,0,0,0.08)"/>
-              </linearGradient>
-            </defs>
-            <text x="21" y="32" textAnchor="middle" fontSize="20" fill="#F5C132" fontFamily="serif">⚜</text>
-          </svg>
-          <div>
-            <div style={{ fontSize: 11, color: C.muted, fontWeight: 600, letterSpacing: ".06em", textTransform: "uppercase" }}>Město</div>
-            <div style={{ fontSize: 22, fontWeight: 800, color: C.text, letterSpacing: "-.2px", lineHeight: 1 }}>JESENICE</div>
-          </div>
-        </div>
-
-        {/* ── Červený navigační pruh ── */}
-        <div style={{ background: C.red, padding: "11px 20px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <span style={{ color: "#fff", fontWeight: 700, fontSize: 13, letterSpacing: ".03em", textTransform: "uppercase" }}>
-            Portál místních poplatků
-          </span>
-          <span style={{ background: "#F5C132", color: C.text, fontSize: 10, fontWeight: 800, padding: "2px 7px", borderRadius: 3, letterSpacing: ".04em" }}>
-            BETA
-          </span>
-        </div>
-
-        {/* ── Breadcrumb ── */}
-        <div style={{ padding: "9px 20px", fontSize: 11, color: C.muted }}>
-          <span style={{ color: C.red, cursor: "pointer" }}>Titulní stránka</span>
-          {" › "}
-          <span style={{ color: C.red, cursor: "pointer" }}>Radnice</span>
-          {" › "}
-          Místní poplatky – online registrace
-        </div>
-
-        {/* ── Page title (jako na webu) ── */}
-        <div style={{ padding: "0 20px 14px" }}>
-          {step < 3 && (
-            <h1 style={{ margin: 0, fontSize: 26, fontWeight: 800, color: C.text, textTransform: "uppercase", letterSpacing: "-.3px" }}>
-              MÍSTNÍ POPLATKY
-            </h1>
-          )}
-        </div>
-
-        {/* ── Card ── */}
-        <div style={{ margin: "0 16px 40px" }}>
-          <div style={{ background: C.card, border: `1px solid ${C.border}`, borderRadius: 6, boxShadow: "0 1px 4px rgba(0,0,0,.07)", overflow: "hidden" }}>
-            {step === 0 && <Step1 onNext={d => { setData(p => ({...p,...d})); setStep(1); }} />}
-            {step === 1 && <Step2 typSubjektu={data.typSubjektu} onNext={d => { setData(p => ({...p,...d})); setStep(2); }} onBack={() => setStep(0)} />}
-            {step === 2 && <Step3 data={data} onBack={() => setStep(1)} onFinish={() => setStep(3)} />}
-            {step === 3 && <StepDone data={data} />}
-          </div>
-        </div>
-
-        {/* ── Footer ── */}
-        <div style={{ padding: "0 20px 32px", textAlign: "center", fontSize: 11, color: C.muted, lineHeight: 1.9 }}>
-          Městský úřad Jesenice · Budějovická 303/1 · 252 42 Jesenice<br/>
-          +420 241 003 111 · podatelna@mujesenice.cz<br/>
-          <span style={{ color: C.red, cursor: "pointer" }}>mujesenice.cz</span>
-          {" · "}
-          <span style={{ cursor: "pointer" }}>Ochrana osobních údajů</span>
-        </div>
-
-      </div>
-    </div>
-  );
+  var _useState43 = useState(0),
+    _useState44 = _slicedToArray(_useState43, 2),
+    step = _useState44[0],
+    setStep = _useState44[1];
+  var _useState45 = useState({}),
+    _useState46 = _slicedToArray(_useState45, 2),
+    data = _useState46[0],
+    setData = _useState46[1];
+  return /*#__PURE__*/React.createElement("div", {
+    style: _defineProperty(_defineProperty(_defineProperty({
+      minHeight: "100vh"
+    }, "minHeight", "-webkit-fill-available"), "background", C.bg), "fontFamily", font)
+  }, /*#__PURE__*/React.createElement("link", {
+    href: "https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700;800&display=swap",
+    rel: "stylesheet"
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      maxWidth: 480,
+      margin: "0 auto"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: "#fff",
+      borderBottom: "1px solid ".concat(C.border),
+      padding: "12px 20px",
+      display: "flex",
+      alignItems: "center",
+      gap: 14
+    }
+  }, /*#__PURE__*/React.createElement("svg", {
+    width: "42",
+    height: "50",
+    viewBox: "0 0 42 50",
+    fill: "none"
+  }, /*#__PURE__*/React.createElement("path", {
+    d: "M2 2H40V32Q40 48 21 50Q2 48 2 32Z",
+    fill: C.red,
+    stroke: C.redDark,
+    strokeWidth: "1.5"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M2 2H40V32Q40 48 21 50Q2 48 2 32Z",
+    fill: "url(#g1)"
+  }), /*#__PURE__*/React.createElement("defs", null, /*#__PURE__*/React.createElement("linearGradient", {
+    id: "g1",
+    x1: "0",
+    y1: "0",
+    x2: "1",
+    y2: "1"
+  }, /*#__PURE__*/React.createElement("stop", {
+    offset: "0%",
+    stopColor: "rgba(255,255,255,0.15)"
+  }), /*#__PURE__*/React.createElement("stop", {
+    offset: "100%",
+    stopColor: "rgba(0,0,0,0.08)"
+  }))), /*#__PURE__*/React.createElement("text", {
+    x: "21",
+    y: "32",
+    textAnchor: "middle",
+    fontSize: "20",
+    fill: "#F5C132",
+    fontFamily: "serif"
+  }, "\u269C")), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: C.muted,
+      fontWeight: 600,
+      letterSpacing: ".06em",
+      textTransform: "uppercase"
+    }
+  }, "M\u011Bsto"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 22,
+      fontWeight: 800,
+      color: C.text,
+      letterSpacing: "-.2px",
+      lineHeight: 1
+    }
+  }, "JESENICE"))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: C.red,
+      padding: "11px 20px",
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center"
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: "#fff",
+      fontWeight: 700,
+      fontSize: 13,
+      letterSpacing: ".03em",
+      textTransform: "uppercase"
+    }
+  }, "Port\xE1l m\xEDstn\xEDch poplatk\u016F"), /*#__PURE__*/React.createElement("span", {
+    style: {
+      background: "#F5C132",
+      color: C.text,
+      fontSize: 10,
+      fontWeight: 800,
+      padding: "2px 7px",
+      borderRadius: 3,
+      letterSpacing: ".04em"
+    }
+  }, "BETA")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: "9px 20px",
+      fontSize: 11,
+      color: C.muted
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: C.red,
+      cursor: "pointer"
+    }
+  }, "Tituln\xED str\xE1nka"), " › ", /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: C.red,
+      cursor: "pointer"
+    }
+  }, "Radnice"), " › ", "M\xEDstn\xED poplatky \u2013 online registrace"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: "0 20px 14px"
+    }
+  }, step < 3 && /*#__PURE__*/React.createElement("h1", {
+    style: {
+      margin: 0,
+      fontSize: 26,
+      fontWeight: 800,
+      color: C.text,
+      textTransform: "uppercase",
+      letterSpacing: "-.3px"
+    }
+  }, "M\xCDSTN\xCD POPLATKY")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      margin: "0 16px 40px"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: C.card,
+      border: "1px solid ".concat(C.border),
+      borderRadius: 6,
+      boxShadow: "0 1px 4px rgba(0,0,0,.07)",
+      overflow: "hidden"
+    }
+  }, step === 0 && /*#__PURE__*/React.createElement(Step1, {
+    onNext: function onNext(d) {
+      setData(function (p) {
+        return _objectSpread(_objectSpread({}, p), d);
+      });
+      setStep(1);
+    }
+  }), step === 1 && /*#__PURE__*/React.createElement(Step2, {
+    typSubjektu: data.typSubjektu,
+    onNext: function onNext(d) {
+      setData(function (p) {
+        return _objectSpread(_objectSpread({}, p), d);
+      });
+      setStep(2);
+    },
+    onBack: function onBack() {
+      return setStep(0);
+    }
+  }), step === 2 && /*#__PURE__*/React.createElement(Step3, {
+    data: data,
+    onBack: function onBack() {
+      return setStep(1);
+    },
+    onFinish: function onFinish() {
+      return setStep(3);
+    }
+  }), step === 3 && /*#__PURE__*/React.createElement(StepDone, {
+    data: data
+  }))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: "0 20px 32px",
+      textAlign: "center",
+      fontSize: 11,
+      color: C.muted,
+      lineHeight: 1.9
+    }
+  }, "M\u011Bstsk\xFD \xFA\u0159ad Jesenice \xB7 Bud\u011Bjovick\xE1 303/1 \xB7 252 42 Jesenice", /*#__PURE__*/React.createElement("br", null), "+420 241 003 111 \xB7 podatelna@mujesenice.cz", /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: C.red,
+      cursor: "pointer"
+    }
+  }, "mujesenice.cz"), " · ", /*#__PURE__*/React.createElement("span", {
+    style: {
+      cursor: "pointer"
+    }
+  }, "Ochrana osobn\xEDch \xFAdaj\u016F"))));
 }
   const root = ReactDOM.createRoot(document.getElementById('root'));
-  root.render(<App />);
+  root.render(React.createElement(App));
   </script>
 </body>
 </html>
