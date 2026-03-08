@@ -458,30 +458,39 @@ function App() {
   async function loadAll() {
     setLoading(true);
     try {
-      // Načti sazby
+      // Sazby
       const { data: rates } = await sb.from("fee_rates").select("*").order("year,fee_type,key");
       setDbRates(rates || []);
       const uniqueYears = [...new Set((rates || []).map(r => r.year))].sort((a,b) => b-a);
       if (uniqueYears.length) { setYears(uniqueYears); setYear(uniqueYears[0]); }
 
-      // Načti nemovitosti s profily a remindery (JOIN přes view není možný z frontend,
-      // takže načteme properties + reminders a e-maily z profiles view)
-      const { data: props } = await sb
+      // Nemovitosti — bez nested join, explicitní dotazy
+      const { data: props, error: propsErr } = await sb
         .from("properties")
-        .select("*, reminders(reminder_date, extra_count)")
+        .select("*")
         .order("created_at", { ascending: false });
+      if (propsErr) console.error("properties:", propsErr);
 
-      // Načti e-maily přes auth.users není dostupné z anon key →
-      // používáme profiles tabulku
-      const { data: profiles } = await sb.from("profiles").select("id, typ_subjektu, nazev_svj");
+      const { data: rems, error: remsErr } = await sb
+        .from("reminders")
+        .select("*");
+      if (remsErr) console.error("reminders:", remsErr);
 
-      // Připoj typ_subjektu k properties
+      const { data: profiles, error: profErr } = await sb
+        .from("profiles")
+        .select("id, typ_subjektu, nazev_svj");
+      if (profErr) console.error("profiles:", profErr);
+
+      // Spoj data
+      const remMap     = Object.fromEntries((rems     || []).map(r => [r.property_id, r]));
       const profileMap = Object.fromEntries((profiles || []).map(p => [p.id, p]));
+
       const enriched = (props || []).map(p => ({
         ...p,
-        reminder_date: p.reminders?.[0]?.reminder_date || null,
-        extra_count:   p.reminders?.[0]?.extra_count   || 0,
+        reminder_date: remMap[p.id]?.reminder_date || null,
+        extra_count:   remMap[p.id]?.extra_count   || 0,
         typ_subjektu:  profileMap[p.user_id]?.typ_subjektu || null,
+        nazev_svj:     profileMap[p.user_id]?.nazev_svj   || null,
       }));
       setProperties(enriched);
     } finally {
