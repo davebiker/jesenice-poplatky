@@ -1548,7 +1548,8 @@ function StepDone(_ref22) {
   var _REMINDER_DATES$find2;
   var data = _ref22.data,
     rates = _ref22.rates,
-    onEdit = _ref22.onEdit;
+    onEdit = _ref22.onEdit,
+    onAddProperty = _ref22.onAddProperty;
   var _calc2 = calc(data, rates),
     odpad = _calc2.odpad,
     pes = _calc2.pes,
@@ -1742,9 +1743,24 @@ function StepDone(_ref22) {
       fontSize: 14,
       fontWeight: 500,
       cursor: "pointer",
+      fontFamily: font,
+      marginBottom: onAddProperty ? 8 : 0
+    }
+  }, "\u270E Upravit nastaven\xED"), onAddProperty && /*#__PURE__*/React.createElement("button", {
+    onClick: onAddProperty,
+    style: {
+      width: "100%",
+      padding: "11px",
+      borderRadius: 5,
+      border: "1.5px solid ".concat(C.borderDark),
+      background: "transparent",
+      color: C.textSoft,
+      fontSize: 14,
+      fontWeight: 500,
+      cursor: "pointer",
       fontFamily: font
     }
-  }, "\u270E Upravit nastaven\xED")));
+  }, "+ P\u0159idat dal\u0161\xED nemovitost")));
 }
 
 // ─────────────────────────────────────────────────────────────────────
@@ -2794,7 +2810,7 @@ function StepNewPassword(_ref29) {
 // APP SHELL
 // ─────────────────────────────────────────────────────────────────────
 function App() {
-  // mode: "register" | "login" | "forgot" | "reset-sent" | "new-password"
+  // mode: "register" | "login" | "forgot" | "reset-sent" | "new-password" | "edit" | "add-property"
   var _useState87 = useState("register"),
     _useState88 = _slicedToArray(_useState87, 2),
     mode = _useState88[0],
@@ -2823,6 +2839,14 @@ function App() {
     _useState100 = _slicedToArray(_useState99, 2),
     resetEmail = _useState100[0],
     setResetEmail = _useState100[1];
+  var _useState101 = useState([]),
+    _useState102 = _slicedToArray(_useState101, 2),
+    properties = _useState102[0],
+    setProperties = _useState102[1]; // všechny nemovitosti uživatele
+  var _useState103 = useState(0),
+    _useState104 = _slicedToArray(_useState103, 2),
+    activePropIdx = _useState104[0],
+    setActivePropIdx = _useState104[1]; // index aktivní nemovitosti
 
   // Načtení sazeb + detekce reset tokenu v URL hash
   useEffect(function () {
@@ -2865,13 +2889,36 @@ function App() {
     loadRates();
   }, []);
 
-  // Po úspěšném přihlášení — načti data uživatele a zobraz StepDone
+  // Pomocná — sestav data objekt z DB prop + rem + profile
+  function buildDataFromDB(profile, prop, rem, email) {
+    return {
+      email: email,
+      propId: prop.id,
+      typSubjektu: (profile === null || profile === void 0 ? void 0 : profile.typ_subjektu) || "fo",
+      nazevSVJ: (profile === null || profile === void 0 ? void 0 : profile.nazev_svj) || "",
+      ico: (profile === null || profile === void 0 ? void 0 : profile.ico) || "",
+      castObce: prop.cast_obce,
+      cp: prop.cp,
+      cisloBytu: prop.cislo_bytu || "",
+      typNemovitosti: prop.typ_nemovitosti,
+      nadoba: prop.nadoba || "",
+      cetnost: prop.cetnost || "",
+      psi: String(prop.pocet_psu || 0),
+      typDrzitele: prop.typ_drzitele || "dum",
+      bioodpad: prop.bioodpad || false,
+      bioodpadNadoba: prop.bioodpad_nadoba || "",
+      reminderDate: (rem === null || rem === void 0 ? void 0 : rem.reminder_date) || "",
+      extra: (rem === null || rem === void 0 ? void 0 : rem.extra_count) || 0
+    };
+  }
+
+  // Po úspěšném přihlášení — načti všechny nemovitosti
   function handleLoginSuccess(_x) {
     return _handleLoginSuccess.apply(this, arguments);
   } // Volá se po kliknutí "Dokončit registraci" v Step3
   function _handleLoginSuccess() {
     _handleLoginSuccess = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee6(user) {
-      var _yield$sb$from$select3, profile, _yield$sb$from$select4, prop, _yield$sb$from$select5, rem, loadedData, _t5;
+      var _yield$sb$from$select3, profile, _yield$sb$from$select4, props, propIds, _yield$sb$from$select5, rems, remMap, allProps, _t5;
       return _regenerator().w(function (_context6) {
         while (1) switch (_context6.p = _context6.n) {
           case 0:
@@ -2882,20 +2929,14 @@ function App() {
             _yield$sb$from$select3 = _context6.v;
             profile = _yield$sb$from$select3.data;
             _context6.n = 2;
-            return sb.from("properties").select("*").eq("user_id", user.id).order("created_at").limit(1).single();
+            return sb.from("properties").select("*").eq("user_id", user.id).order("created_at");
           case 2:
             _yield$sb$from$select4 = _context6.v;
-            prop = _yield$sb$from$select4.data;
-            _context6.n = 3;
-            return sb.from("reminders").select("*").eq("property_id", prop === null || prop === void 0 ? void 0 : prop.id).single();
-          case 3:
-            _yield$sb$from$select5 = _context6.v;
-            rem = _yield$sb$from$select5.data;
-            if (prop) {
-              _context6.n = 4;
+            props = _yield$sb$from$select4.data;
+            if (!(!props || props.length === 0)) {
+              _context6.n = 3;
               break;
             }
-            // Uživatel existuje ale nemá nemovitost → nová registrace od step 1
             setData({
               email: user.email,
               typSubjektu: (profile === null || profile === void 0 ? void 0 : profile.typ_subjektu) || "fo"
@@ -2903,27 +2944,25 @@ function App() {
             setStep(1);
             setMode("register");
             return _context6.a(2);
+          case 3:
+            // Načti remindery pro všechny nemovitosti najednou
+            propIds = props.map(function (p) {
+              return p.id;
+            });
+            _context6.n = 4;
+            return sb.from("reminders").select("*")["in"]("property_id", propIds);
           case 4:
-            // Sestav data objekt ze DB záznamů
-            loadedData = {
-              email: user.email,
-              typSubjektu: (profile === null || profile === void 0 ? void 0 : profile.typ_subjektu) || "fo",
-              nazevSVJ: (profile === null || profile === void 0 ? void 0 : profile.nazev_svj) || "",
-              ico: (profile === null || profile === void 0 ? void 0 : profile.ico) || "",
-              castObce: prop.cast_obce,
-              cp: prop.cp,
-              cisloBytu: prop.cislo_bytu || "",
-              typNemovitosti: prop.typ_nemovitosti,
-              nadoba: prop.nadoba || "",
-              cetnost: prop.cetnost || "",
-              psi: String(prop.pocet_psu || 0),
-              typDrzitele: prop.typ_drzitele || "dum",
-              bioodpad: prop.bioodpad || false,
-              bioodpadNadoba: prop.bioodpad_nadoba || "",
-              reminderDate: (rem === null || rem === void 0 ? void 0 : rem.reminder_date) || "",
-              extra: (rem === null || rem === void 0 ? void 0 : rem.extra_count) || 0
-            };
-            setData(loadedData);
+            _yield$sb$from$select5 = _context6.v;
+            rems = _yield$sb$from$select5.data;
+            remMap = Object.fromEntries((rems || []).map(function (r) {
+              return [r.property_id, r];
+            })); // Sestav pole data objektů
+            allProps = props.map(function (p) {
+              return buildDataFromDB(profile, p, remMap[p.id], user.email);
+            });
+            setProperties(allProps);
+            setActivePropIdx(0);
+            setData(allProps[0]);
             setStep(3);
             setMode("register");
             _context6.n = 6;
@@ -2931,7 +2970,6 @@ function App() {
           case 5:
             _context6.p = 5;
             _t5 = _context6.v;
-            // Fallback — pokud načtení dat selže, pošli na step 3 s emailem
             setData({
               email: user.email
             });
@@ -2949,7 +2987,7 @@ function App() {
   }
   function _handleFinish() {
     _handleFinish = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee7() {
-      var _yield$sb$auth$signUp, authData, authError, _yield$sb$auth$signIn2, signInData, signInError, userId, _yield$sb$from$upsert, profileError, _yield$sb$from$insert, prop, propError, _yield$sb$from$insert2, remError, _t6;
+      var userId, _yield$sb$auth$getSes2, existingSession, _yield$sb$auth$signUp, authError, _yield$sb$auth$signIn2, signInData, signInError, _yield$sb$from$upsert, profileError, _yield$sb$from$insert, prop, propError, _yield$sb$from$insert2, remError, newPropData, updatedProps, _t6;
       return _regenerator().w(function (_context7) {
         while (1) switch (_context7.p = _context7.n) {
           case 0:
@@ -2957,54 +2995,66 @@ function App() {
             setSaveError(null);
             _context7.p = 1;
             _context7.n = 2;
+            return sb.auth.getSession();
+          case 2:
+            _yield$sb$auth$getSes2 = _context7.v;
+            existingSession = _yield$sb$auth$getSes2.data.session;
+            if (!existingSession) {
+              _context7.n = 3;
+              break;
+            }
+            userId = existingSession.user.id;
+            _context7.n = 8;
+            break;
+          case 3:
+            _context7.n = 4;
             return sb.auth.signUp({
               email: data.email,
               password: data.pass
             });
-          case 2:
+          case 4:
             _yield$sb$auth$signUp = _context7.v;
-            authData = _yield$sb$auth$signUp.data;
             authError = _yield$sb$auth$signUp.error;
             if (!authError) {
-              _context7.n = 3;
+              _context7.n = 5;
               break;
             }
             throw authError;
-          case 3:
-            _context7.n = 4;
+          case 5:
+            _context7.n = 6;
             return sb.auth.signInWithPassword({
               email: data.email,
               password: data.pass
             });
-          case 4:
+          case 6:
             _yield$sb$auth$signIn2 = _context7.v;
             signInData = _yield$sb$auth$signIn2.data;
             signInError = _yield$sb$auth$signIn2.error;
             if (!signInError) {
-              _context7.n = 5;
+              _context7.n = 7;
               break;
             }
             throw signInError;
-          case 5:
-            userId = signInData.user.id; // 2. Doplnění profilu (trigger v DB vytvořil základní záznam,
-            //    teď přidáme typ_subjektu a případné údaje SVJ)
-            _context7.n = 6;
+          case 7:
+            userId = signInData.user.id;
+          case 8:
+            _context7.n = 9;
             return sb.from("profiles").upsert({
               id: userId,
               typ_subjektu: data.typSubjektu,
               nazev_svj: data.nazevSVJ || null,
               ico: data.ico || null
             });
-          case 6:
+          case 9:
             _yield$sb$from$upsert = _context7.v;
             profileError = _yield$sb$from$upsert.error;
             if (!profileError) {
-              _context7.n = 7;
+              _context7.n = 10;
               break;
             }
             throw profileError;
-          case 7:
-            _context7.n = 8;
+          case 10:
+            _context7.n = 11;
             return sb.from("properties").insert({
               user_id: userId,
               cast_obce: data.castObce,
@@ -3018,47 +3068,54 @@ function App() {
               bioodpad: data.bioodpad || false,
               bioodpad_nadoba: data.bioodpadNadoba || null
             }).select().single();
-          case 8:
+          case 11:
             _yield$sb$from$insert = _context7.v;
             prop = _yield$sb$from$insert.data;
             propError = _yield$sb$from$insert.error;
             if (!propError) {
-              _context7.n = 9;
+              _context7.n = 12;
               break;
             }
             throw propError;
-          case 9:
-            _context7.n = 10;
+          case 12:
+            _context7.n = 13;
             return sb.from("reminders").insert({
               property_id: prop.id,
               reminder_date: data.reminderDate,
               extra_count: data.extra || 0
             });
-          case 10:
+          case 13:
             _yield$sb$from$insert2 = _context7.v;
             remError = _yield$sb$from$insert2.error;
             if (!remError) {
-              _context7.n = 11;
+              _context7.n = 14;
               break;
             }
             throw remError;
-          case 11:
-            // Vše OK → přejdeme na potvrzovací obrazovku
+          case 14:
+            // Vše OK — přidej do pole properties a přepni na novou
+            newPropData = _objectSpread(_objectSpread({}, data), {}, {
+              propId: prop.id
+            });
+            updatedProps = [].concat(_toConsumableArray(properties), [newPropData]);
+            setProperties(updatedProps);
+            setActivePropIdx(updatedProps.length - 1);
+            setData(newPropData);
             setStep(3);
-            _context7.n = 13;
+            _context7.n = 16;
             break;
-          case 12:
-            _context7.p = 12;
+          case 15:
+            _context7.p = 15;
             _t6 = _context7.v;
             setSaveError(_t6.message || "Chyba při ukládání. Zkuste to znovu.");
-          case 13:
-            _context7.p = 13;
+          case 16:
+            _context7.p = 16;
             setSaving(false);
-            return _context7.f(13);
-          case 14:
+            return _context7.f(16);
+          case 17:
             return _context7.a(2);
         }
-      }, _callee7, null, [[1, 12, 13, 14]]);
+      }, _callee7, null, [[1, 15, 16, 17]]);
     }));
     return _handleFinish.apply(this, arguments);
   }
@@ -3267,16 +3324,76 @@ function App() {
       return setStep(1);
     },
     onFinish: handleFinish
-  }), mode === "register" && step === 3 && /*#__PURE__*/React.createElement(StepDone, {
+  }), mode === "register" && step === 3 && /*#__PURE__*/React.createElement(React.Fragment, null, properties.length > 1 && /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: "14px 16px 0",
+      display: "flex",
+      gap: 8,
+      flexWrap: "wrap"
+    }
+  }, properties.map(function (p, i) {
+    return /*#__PURE__*/React.createElement("button", {
+      key: i,
+      onClick: function onClick() {
+        setActivePropIdx(i);
+        setData(properties[i]);
+      },
+      style: {
+        padding: "6px 12px",
+        borderRadius: 20,
+        fontSize: 12,
+        fontWeight: 700,
+        border: "2px solid ".concat(i === activePropIdx ? C.red : C.border),
+        background: i === activePropIdx ? C.redLight : "#fff",
+        color: i === activePropIdx ? C.red : C.textSoft,
+        cursor: "pointer",
+        fontFamily: font
+      }
+    }, p.castObce ? "".concat(p.castObce.charAt(0).toUpperCase() + p.castObce.slice(1), " \u010D.p. ").concat(p.cp) : "Nemovitost ".concat(i + 1));
+  }), /*#__PURE__*/React.createElement("button", {
+    onClick: function onClick() {
+      setData({
+        email: data.email,
+        typSubjektu: data.typSubjektu,
+        nazevSVJ: data.nazevSVJ,
+        ico: data.ico
+      });
+      setStep(1);
+    },
+    style: {
+      padding: "6px 12px",
+      borderRadius: 20,
+      fontSize: 12,
+      fontWeight: 700,
+      border: "2px dashed ".concat(C.border),
+      background: "#fff",
+      color: C.muted,
+      cursor: "pointer",
+      fontFamily: font
+    }
+  }, "+ P\u0159idat")), /*#__PURE__*/React.createElement(StepDone, {
     data: data,
     rates: rates,
     onEdit: function onEdit() {
       return setMode("edit");
-    }
-  }), mode === "edit" && /*#__PURE__*/React.createElement(StepEdit, {
+    },
+    onAddProperty: properties.length <= 1 ? function () {
+      setData({
+        email: data.email,
+        typSubjektu: data.typSubjektu,
+        nazevSVJ: data.nazevSVJ,
+        ico: data.ico
+      });
+      setStep(1);
+    } : null
+  })), mode === "edit" && /*#__PURE__*/React.createElement(StepEdit, {
     data: data,
     rates: rates,
     onSaved: function onSaved(newData) {
+      var updated = properties.map(function (p, i) {
+        return i === activePropIdx ? newData : p;
+      });
+      setProperties(updated);
       setData(newData);
       setMode("register");
       setStep(3);
