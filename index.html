@@ -6,11 +6,8 @@
   <title>Portál místních poplatků – Město Jesenice</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { height: -webkit-fill-available; }
-    body { background: #F5F5F5; }
-  </style>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <style>* { box-sizing: border-box; margin: 0; padding: 0; } html { height: -webkit-fill-available; } body { background: #F5F5F5; }</style>
 </head>
 <body>
   <div id="root"></div>
@@ -18,12 +15,16 @@
 "use strict";
 
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
-var _excluded = ["label", "hint", "error"];
+var _excluded = ["label", "hint", "error", "onFocus", "onBlur"];
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
 function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _regenerator() { /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE */ var e, t, r = "function" == typeof Symbol ? Symbol : {}, n = r.iterator || "@@iterator", o = r.toStringTag || "@@toStringTag"; function i(r, n, o, i) { var c = n && n.prototype instanceof Generator ? n : Generator, u = Object.create(c.prototype); return _regeneratorDefine2(u, "_invoke", function (r, n, o) { var i, c, u, f = 0, p = o || [], y = !1, G = { p: 0, n: 0, v: e, a: d, f: d.bind(e, 4), d: function d(t, r) { return i = t, c = 0, u = e, G.n = r, a; } }; function d(r, n) { for (c = r, u = n, t = 0; !y && f && !o && t < p.length; t++) { var o, i = p[t], d = G.p, l = i[2]; r > 3 ? (o = l === n) && (u = i[(c = i[4]) ? 5 : (c = 3, 3)], i[4] = i[5] = e) : i[0] <= d && ((o = r < 2 && d < i[1]) ? (c = 0, G.v = n, G.n = i[1]) : d < l && (o = r < 3 || i[0] > n || n > l) && (i[4] = r, i[5] = n, G.n = l, c = 0)); } if (o || r > 1) return a; throw y = !0, n; } return function (o, p, l) { if (f > 1) throw TypeError("Generator is already running"); for (y && 1 === p && d(p, l), c = p, u = l; (t = c < 2 ? e : u) || !y;) { i || (c ? c < 3 ? (c > 1 && (G.n = -1), d(c, u)) : G.n = u : G.v = u); try { if (f = 2, i) { if (c || (o = "next"), t = i[o]) { if (!(t = t.call(i, u))) throw TypeError("iterator result is not an object"); if (!t.done) return t; u = t.value, c < 2 && (c = 0); } else 1 === c && (t = i["return"]) && t.call(i), c < 2 && (u = TypeError("The iterator does not provide a '" + o + "' method"), c = 1); i = e; } else if ((t = (y = G.n < 0) ? u : r.call(n, G)) !== a) break; } catch (t) { i = e, c = 1, u = t; } finally { f = 1; } } return { value: t, done: y }; }; }(r, o, i), !0), u; } var a = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} t = Object.getPrototypeOf; var c = [][n] ? t(t([][n]())) : (_regeneratorDefine2(t = {}, n, function () { return this; }), t), u = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(c); function f(e) { return Object.setPrototypeOf ? Object.setPrototypeOf(e, GeneratorFunctionPrototype) : (e.__proto__ = GeneratorFunctionPrototype, _regeneratorDefine2(e, o, "GeneratorFunction")), e.prototype = Object.create(u), e; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, _regeneratorDefine2(u, "constructor", GeneratorFunctionPrototype), _regeneratorDefine2(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = "GeneratorFunction", _regeneratorDefine2(GeneratorFunctionPrototype, o, "GeneratorFunction"), _regeneratorDefine2(u), _regeneratorDefine2(u, o, "Generator"), _regeneratorDefine2(u, n, function () { return this; }), _regeneratorDefine2(u, "toString", function () { return "[object Generator]"; }), (_regenerator = function _regenerator() { return { w: i, m: f }; })(); }
+function _regeneratorDefine2(e, r, n, t) { var i = Object.defineProperty; try { i({}, "", {}); } catch (e) { i = 0; } _regeneratorDefine2 = function _regeneratorDefine(e, r, n, t) { function o(r, n) { _regeneratorDefine2(e, r, function (e) { return this._invoke(r, n, e); }); } r ? i ? i(e, r, { value: n, enumerable: !t, configurable: !t, writable: !t }) : e[r] = n : (o("next", 0), o("throw", 1), o("return", 2)); }, _regeneratorDefine2(e, r, n, t); }
+function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
+function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
 function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
@@ -38,7 +39,13 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 function _objectWithoutProperties(e, t) { if (null == e) return {}; var o, r, i = _objectWithoutPropertiesLoose(e, t); if (Object.getOwnPropertySymbols) { var n = Object.getOwnPropertySymbols(e); for (r = 0; r < n.length; r++) o = n[r], -1 === t.indexOf(o) && {}.propertyIsEnumerable.call(e, o) && (i[o] = e[o]); } return i; }
 function _objectWithoutPropertiesLoose(r, e) { if (null == r) return {}; var t = {}; for (var n in r) if ({}.hasOwnProperty.call(r, n)) { if (-1 !== e.indexOf(n)) continue; t[n] = r[n]; } return t; }
 var _React = React,
-  useState = _React.useState;
+  useState = _React.useState,
+  useEffect = _React.useEffect;
+
+// ── Supabase klient ───────────────────────────────────────────────────
+var _supabase = supabase,
+  createClient = _supabase.createClient;
+var sb = createClient("https://qfepmxkiyuisrdicmvnb.supabase.co", "sb_publishable_NMcW9ck5Vn1eS_FRI39sgw_M141ES-K");
 
 // ── Jesenice brand colors – přesně dle mujesenice.cz ─────────────────
 var C = {
@@ -102,6 +109,8 @@ function Input(_ref2) {
   var label = _ref2.label,
     hint = _ref2.hint,
     error = _ref2.error,
+    _onFocus = _ref2.onFocus,
+    _onBlur = _ref2.onBlur,
     props = _objectWithoutProperties(_ref2, _excluded);
   var _useState = useState(false),
     _useState2 = _slicedToArray(_useState, 2),
@@ -112,11 +121,13 @@ function Input(_ref2) {
     hint: hint,
     error: error
   }, /*#__PURE__*/React.createElement("input", _extends({}, props, {
-    onFocus: function onFocus() {
-      return setFocus(true);
+    onFocus: function onFocus(e) {
+      setFocus(true);
+      _onFocus && _onFocus(e);
     },
-    onBlur: function onBlur() {
-      return setFocus(false);
+    onBlur: function onBlur(e) {
+      setFocus(false);
+      _onBlur && _onBlur(e);
     },
     style: {
       width: "100%",
@@ -245,13 +256,15 @@ function BtnPrimary(_ref5) {
   var children = _ref5.children,
     onClick = _ref5.onClick,
     _ref5$mt = _ref5.mt,
-    mt = _ref5$mt === void 0 ? 8 : _ref5$mt;
+    mt = _ref5$mt === void 0 ? 8 : _ref5$mt,
+    _ref5$disabled = _ref5.disabled,
+    disabled = _ref5$disabled === void 0 ? false : _ref5$disabled;
   var _useState3 = useState(false),
     _useState4 = _slicedToArray(_useState3, 2),
     hov = _useState4[0],
     setHov = _useState4[1];
   return /*#__PURE__*/React.createElement("button", {
-    onClick: onClick,
+    onClick: disabled ? undefined : onClick,
     onMouseEnter: function onMouseEnter() {
       return setHov(true);
     },
@@ -264,8 +277,8 @@ function BtnPrimary(_ref5) {
       marginTop: mt,
       border: "none",
       borderRadius: 5,
-      cursor: "pointer",
-      background: hov ? C.redDark : C.red,
+      cursor: disabled ? "not-allowed" : "pointer",
+      background: disabled ? C.muted : hov ? C.redDark : C.red,
       color: "#fff",
       fontSize: 15,
       fontWeight: 700,
@@ -273,7 +286,8 @@ function BtnPrimary(_ref5) {
       transition: "background .15s",
       letterSpacing: ".01em",
       WebkitTapHighlightColor: "transparent",
-      touchAction: "manipulation"
+      touchAction: "manipulation",
+      opacity: disabled ? 0.7 : 1
     }
   }, children);
 }
@@ -540,36 +554,80 @@ function Timeline(_ref0) {
 }
 
 // ─────────────────────────────────────────────────────────────────────
-// SAZBY
-// ─────────────────────────────────────────────────────────────────────
-var ODPAD = {
-  "80_52": 2246,
-  "80_26": 1123,
-  "120_52": 3370,
-  "120_26": 1685,
-  "240_52": 6739,
-  "240_26": 3370,
-  "1100_52": 30888,
-  "1100_104": 61776,
-  rekreace_trvala: 1404,
-  rekreace_chata: 702
+// STEP 1 – Účet + připomínky
+
+// Sestaví lookup tabulku ze řádků fee_rates z DB
+// Výsledek: { odpad: {...}, psi: {...}, bio: {...} }
+function buildRateLookup(rows) {
+  var lookup = {
+    odpad: {},
+    psi: {
+      dum: [0],
+      byt: [0],
+      senior: [0]
+    },
+    bio: {}
+  };
+  rows.forEach(function (r) {
+    if (r.fee_type === "odpad") {
+      lookup.odpad[r.key] = Number(r.amount);
+    } else if (r.fee_type === "pes") {
+      // klíč formátu 'dum_1', 'byt_2', 'senior_3'
+      var _r$key$split = r.key.split("_"),
+        _r$key$split2 = _slicedToArray(_r$key$split, 2),
+        typ = _r$key$split2[0],
+        idx = _r$key$split2[1];
+      if (!lookup.psi[typ]) lookup.psi[typ] = [0];
+      lookup.psi[typ][parseInt(idx)] = Number(r.amount);
+    } else if (r.fee_type === "bio") {
+      lookup.bio[r.key] = Number(r.amount);
+    }
+  });
+  return lookup;
+}
+
+// Hardcoded fallback sazby (použijí se pokud DB není dostupná)
+var FALLBACK_RATES = buildRateLookup([].concat(_toConsumableArray([["80_52", 2246], ["80_26", 1123], ["120_52", 3370], ["120_26", 1685], ["240_52", 6739], ["240_26", 3370], ["1100_52", 30888], ["1100_104", 61776], ["rekreace_trvala", 1404], ["rekreace_chata", 702]].map(function (_ref1) {
+  var _ref10 = _slicedToArray(_ref1, 2),
+    key = _ref10[0],
+    amount = _ref10[1];
+  return {
+    fee_type: "odpad",
+    key: key,
+    amount: amount
+  };
+})), _toConsumableArray([["dum_1", 360], ["dum_2", 900], ["dum_3", 1440], ["dum_4", 1980], ["dum_5", 2520], ["byt_1", 540], ["byt_2", 1350], ["byt_3", 2160], ["byt_4", 2970], ["byt_5", 3780], ["senior_1", 100], ["senior_2", 250], ["senior_3", 400], ["senior_4", 550], ["senior_5", 700]].map(function (_ref11) {
+  var _ref12 = _slicedToArray(_ref11, 2),
+    key = _ref12[0],
+    amount = _ref12[1];
+  return {
+    fee_type: "pes",
+    key: key,
+    amount: amount
+  };
+})), _toConsumableArray([["120", 1517], ["240", 2525]].map(function (_ref13) {
+  var _ref14 = _slicedToArray(_ref13, 2),
+    key = _ref14[0],
+    amount = _ref14[1];
+  return {
+    fee_type: "bio",
+    key: key,
+    amount: amount
+  };
+}))));
+var VS_PREFIX = {
+  jesenice: "101",
+  osnice: "102",
+  zdimerice: "103"
 };
-var PSI = {
-  dum: [0, 360, 900, 1440, 1980, 2520],
-  byt: [0, 540, 1350, 2160, 2970, 3780],
-  senior: [0, 100, 250, 400, 550, 700]
-};
-var BIO = {
-  "120": 1517,
-  "240": 2525
-};
-function calc(d) {
-  var _PSI$d$typDrzitele;
+function calc(d, rates) {
+  var _r$psi$d$typDrzitele;
+  var r = rates || FALLBACK_RATES;
   var isRec = d.typNemovitosti === "rekreace_trvala" || d.typNemovitosti === "rekreace_chata";
   var odpadKey = isRec ? d.typNemovitosti : "".concat(d.nadoba, "_").concat(d.cetnost);
-  var odpad = ODPAD[odpadKey] || 0;
-  var pes = ((_PSI$d$typDrzitele = PSI[d.typDrzitele]) === null || _PSI$d$typDrzitele === void 0 ? void 0 : _PSI$d$typDrzitele[parseInt(d.psi)]) || 0;
-  var bio = d.bioodpad ? BIO[d.bioodpadNadoba] : 0;
+  var odpad = r.odpad[odpadKey] || 0;
+  var pes = ((_r$psi$d$typDrzitele = r.psi[d.typDrzitele]) === null || _r$psi$d$typDrzitele === void 0 ? void 0 : _r$psi$d$typDrzitele[parseInt(d.psi)]) || 0;
+  var bio = d.bioodpad ? r.bio[d.bioodpadNadoba] || 0 : 0;
   return {
     odpad: odpad,
     pes: pes,
@@ -577,17 +635,9 @@ function calc(d) {
     celkem: odpad + pes + bio
   };
 }
-var VS_PREFIX = {
-  jesenice: "101",
-  osnice: "102",
-  zdimerice: "103"
-};
-
 // ─────────────────────────────────────────────────────────────────────
-// STEP 1 – Účet + připomínky
-// ─────────────────────────────────────────────────────────────────────
-function Step1(_ref1) {
-  var onNext = _ref1.onNext;
+function Step1(_ref15) {
+  var onNext = _ref15.onNext;
   var _useState5 = useState(""),
     _useState6 = _slicedToArray(_useState5, 2),
     typSubjektu = _useState6[0],
@@ -749,6 +799,7 @@ function Step1(_ref1) {
   })), typSubjektu && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Input, {
     label: "E-mailov\xE1 adresa",
     type: "email",
+    autoComplete: "email",
     placeholder: typSubjektu === "svj" ? "predseda@svj-jesenice.cz" : "jan.novak@seznam.cz",
     value: email,
     onChange: function onChange(e) {
@@ -758,6 +809,7 @@ function Step1(_ref1) {
   }), /*#__PURE__*/React.createElement(Input, {
     label: "Heslo",
     type: "password",
+    autoComplete: "new-password",
     placeholder: "Minim\xE1ln\u011B 8 znak\u016F",
     value: pass,
     onChange: function onChange(e) {
@@ -767,6 +819,7 @@ function Step1(_ref1) {
   }), /*#__PURE__*/React.createElement(Input, {
     label: "Heslo znovu",
     type: "password",
+    autoComplete: "new-password",
     placeholder: "Zopakujte heslo",
     value: pass2,
     onChange: function onChange(e) {
@@ -872,10 +925,11 @@ function Step1(_ref1) {
 // ─────────────────────────────────────────────────────────────────────
 // STEP 2 – Nemovitost
 // ─────────────────────────────────────────────────────────────────────
-function Step2(_ref10) {
-  var onNext = _ref10.onNext,
-    onBack = _ref10.onBack,
-    typSubjektu = _ref10.typSubjektu;
+function Step2(_ref16) {
+  var onNext = _ref16.onNext,
+    onBack = _ref16.onBack,
+    typSubjektu = _ref16.typSubjektu,
+    rates = _ref16.rates;
   var isSVJ = typSubjektu === "svj";
   var _useState21 = useState(""),
     _useState22 = _slicedToArray(_useState21, 2),
@@ -934,7 +988,7 @@ function Step2(_ref10) {
     typDrzitele: typDrzitele,
     bioodpad: bioodpad,
     bioodpadNadoba: bioodpadNadoba
-  }) : null;
+  }, rates) : null;
   function submit() {
     var e = {};
     if (!castObce) e.castObce = "Vyberte část obce";
@@ -1002,15 +1056,22 @@ function Step2(_ref10) {
     value: "zdimerice"
   }, "Zdim\u011B\u0159ice")), /*#__PURE__*/React.createElement(Input, {
     label: isSVJ ? "Číslo popisné budovy" : "Číslo popisné",
-    type: "number",
+    type: "text",
+    inputMode: "numeric",
+    pattern: "[0-9]*",
     placeholder: "nap\u0159. 142",
     value: cp,
     onChange: function onChange(e) {
       return setCp(e.target.value);
     },
-    error: err.cp,
-    hint: vs && (isSVJ || !isByt) ? "Variabiln\xED symbol: ".concat(vs) : undefined
-  }), !isSVJ && /*#__PURE__*/React.createElement(Select, {
+    error: err.cp
+  }), vs && (isSVJ || !isByt) && /*#__PURE__*/React.createElement("p", {
+    style: {
+      margin: "-10px 0 14px",
+      fontSize: 11,
+      color: C.muted
+    }
+  }, "Variabiln\xED symbol: ", /*#__PURE__*/React.createElement("strong", null, vs)), !isSVJ && /*#__PURE__*/React.createElement(Select, {
     label: "Typ nemovitosti",
     value: typNemovitosti,
     onChange: function onChange(e) {
@@ -1056,7 +1117,9 @@ function Step2(_ref10) {
     }
   }, "\u010C\xEDslo popisn\xE9 sd\xEDl\xED v\u0161echny byty v dom\u011B. \u010C\xEDslo bytu zajist\xED unik\xE1tn\xED VS a spr\xE1vn\xE9 p\u0159i\u0159azen\xED platby."), /*#__PURE__*/React.createElement(Input, {
     label: "\u010C\xEDslo bytu",
-    type: "number",
+    type: "text",
+    inputMode: "numeric",
+    pattern: "[0-9]*",
     placeholder: "nap\u0159. 5",
     value: cisloBytu,
     onChange: function onChange(e) {
@@ -1188,12 +1251,15 @@ function Step2(_ref10) {
 // ─────────────────────────────────────────────────────────────────────
 // STEP 3 – Souhrn
 // ─────────────────────────────────────────────────────────────────────
-function Step3(_ref11) {
+function Step3(_ref17) {
   var _REMINDER_DATES$find, _data$typSubjektu;
-  var data = _ref11.data,
-    onBack = _ref11.onBack,
-    onFinish = _ref11.onFinish;
-  var _calc = calc(data),
+  var data = _ref17.data,
+    onBack = _ref17.onBack,
+    onFinish = _ref17.onFinish,
+    rates = _ref17.rates,
+    saving = _ref17.saving,
+    saveError = _ref17.saveError;
+  var _calc = calc(data, rates),
     odpad = _calc.odpad,
     pes = _calc.pes,
     bio = _calc.bio,
@@ -1214,10 +1280,10 @@ function Step3(_ref11) {
   var remLabel = (_REMINDER_DATES$find = REMINDER_DATES.find(function (d) {
     return d.value === data.reminderDate;
   })) === null || _REMINDER_DATES$find === void 0 ? void 0 : _REMINDER_DATES$find.label;
-  var Row = function Row(_ref12) {
-    var label = _ref12.label,
-      sub = _ref12.sub,
-      value = _ref12.value;
+  var Row = function Row(_ref18) {
+    var label = _ref18.label,
+      sub = _ref18.sub,
+      value = _ref18.value;
     return /*#__PURE__*/React.createElement("div", {
       style: {
         display: "flex",
@@ -1284,10 +1350,10 @@ function Step3(_ref11) {
       letterSpacing: ".08em",
       marginBottom: 10
     }
-  }, "Nemovitost"), [data.typSubjektu === "svj" && data.nazevSVJ && ["SVJ", data.nazevSVJ], data.typSubjektu === "svj" && data.ico && ["IČO", data.ico], ["Adresa", data.typNemovitosti === "byt" && !((_data$typSubjektu = data.typSubjektu) !== null && _data$typSubjektu !== void 0 && _data$typSubjektu.startsWith("svj")) ? "".concat(castLabel[data.castObce], ", \u010D.p. ").concat(data.cp, ", byt \u010D. ").concat(data.cisloBytu) : "".concat(castLabel[data.castObce], ", \u010D.p. ").concat(data.cp)], ["Typ", data.typSubjektu === "svj" ? "SVJ / Bytový dům" : typLabel[data.typNemovitosti]]].filter(Boolean).map(function (_ref13) {
-    var _ref14 = _slicedToArray(_ref13, 2),
-      l = _ref14[0],
-      v = _ref14[1];
+  }, "Nemovitost"), [data.typSubjektu === "svj" && data.nazevSVJ && ["SVJ", data.nazevSVJ], data.typSubjektu === "svj" && data.ico && ["IČO", data.ico], ["Adresa", data.typNemovitosti === "byt" && !((_data$typSubjektu = data.typSubjektu) !== null && _data$typSubjektu !== void 0 && _data$typSubjektu.startsWith("svj")) ? "".concat(castLabel[data.castObce], ", \u010D.p. ").concat(data.cp, ", byt \u010D. ").concat(data.cisloBytu) : "".concat(castLabel[data.castObce], ", \u010D.p. ").concat(data.cp)], ["Typ", data.typSubjektu === "svj" ? "SVJ / Bytový dům" : typLabel[data.typNemovitosti]]].filter(Boolean).map(function (_ref19) {
+    var _ref20 = _slicedToArray(_ref19, 2),
+      l = _ref20[0],
+      v = _ref20[1];
     return /*#__PURE__*/React.createElement("div", {
       key: l,
       style: {
@@ -1392,10 +1458,13 @@ function Step3(_ref11) {
     }
   }, "Prvn\xED e-mail: ", /*#__PURE__*/React.createElement("strong", null, remLabel), " · ", data.extra === 0 ? "žádné další" : "+".concat(data.extra, " ").concat(data.extra === 1 ? "připomínka" : "připomínky", " nav\xEDc"))), /*#__PURE__*/React.createElement(Notice, {
     variant: "neutral"
-  }, "\uD83D\uDCEC Platebn\xED v\xFDzva bude ka\u017Ed\xFD rok zas\xEDl\xE1na na ", /*#__PURE__*/React.createElement("strong", null, data.email)), /*#__PURE__*/React.createElement(BtnPrimary, {
+  }, "\uD83D\uDCEC Platebn\xED v\xFDzva bude ka\u017Ed\xFD rok zas\xEDl\xE1na na ", /*#__PURE__*/React.createElement("strong", null, data.email)), saveError && /*#__PURE__*/React.createElement(Notice, {
+    variant: "red"
+  }, "\u26A0 ", saveError), /*#__PURE__*/React.createElement(BtnPrimary, {
     onClick: onFinish,
-    mt: 4
-  }, "\u2713 Dokon\u010Dit registraci"), /*#__PURE__*/React.createElement(BtnGhost, {
+    mt: 4,
+    disabled: saving
+  }, saving ? "Ukládám…" : "✓ Dokončit registraci"), /*#__PURE__*/React.createElement(BtnGhost, {
     onClick: onBack
   }, "\u2190 Zp\u011Bt a upravit"));
 }
@@ -1425,10 +1494,11 @@ function QRMock() {
     });
   }));
 }
-function StepDone(_ref15) {
+function StepDone(_ref21) {
   var _REMINDER_DATES$find2;
-  var data = _ref15.data;
-  var _calc2 = calc(data),
+  var data = _ref21.data,
+    rates = _ref21.rates;
+  var _calc2 = calc(data, rates),
     odpad = _calc2.odpad,
     pes = _calc2.pes,
     bio = _calc2.bio,
@@ -1575,10 +1645,10 @@ function StepDone(_ref15) {
       letterSpacing: ".08em",
       marginBottom: 10
     }
-  }, "Va\u0161e poplatky 2026"), [odpad > 0 && ["Komunální odpad", odpad], pes > 0 && ["Poplatek za psa (".concat(data.psi, "\xD7)"), pes], bio > 0 && ["Bioodpad (".concat(data.bioodpadNadoba, " l)"), bio]].filter(Boolean).map(function (_ref16) {
-    var _ref17 = _slicedToArray(_ref16, 2),
-      l = _ref17[0],
-      v = _ref17[1];
+  }, "Va\u0161e poplatky 2026"), [odpad > 0 && ["Komunální odpad", odpad], pes > 0 && ["Poplatek za psa (".concat(data.psi, "\xD7)"), pes], bio > 0 && ["Bioodpad (".concat(data.bioodpadNadoba, " l)"), bio]].filter(Boolean).map(function (_ref22) {
+    var _ref23 = _slicedToArray(_ref22, 2),
+      l = _ref23[0],
+      v = _ref23[1];
     return /*#__PURE__*/React.createElement("div", {
       key: l,
       style: {
@@ -1634,6 +1704,154 @@ function App() {
     _useState46 = _slicedToArray(_useState45, 2),
     data = _useState46[0],
     setData = _useState46[1];
+  var _useState47 = useState(null),
+    _useState48 = _slicedToArray(_useState47, 2),
+    rates = _useState48[0],
+    setRates = _useState48[1]; // sazby z DB
+  var _useState49 = useState(false),
+    _useState50 = _slicedToArray(_useState49, 2),
+    saving = _useState50[0],
+    setSaving = _useState50[1]; // probíhá ukládání
+  var _useState51 = useState(null),
+    _useState52 = _slicedToArray(_useState51, 2),
+    saveError = _useState52[0],
+    setSaveError = _useState52[1]; // chyba při ukládání
+
+  // Načtení sazeb z DB při startu aplikace
+  useEffect(function () {
+    function loadRates() {
+      return _loadRates.apply(this, arguments);
+    }
+    function _loadRates() {
+      _loadRates = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee() {
+        var _yield$sb$from$select, rows, error;
+        return _regenerator().w(function (_context) {
+          while (1) switch (_context.n) {
+            case 0:
+              _context.n = 1;
+              return sb.from("fee_rates").select("fee_type, key, amount").eq("year", 2026);
+            case 1:
+              _yield$sb$from$select = _context.v;
+              rows = _yield$sb$from$select.data;
+              error = _yield$sb$from$select.error;
+              if (!error && rows !== null && rows !== void 0 && rows.length) {
+                setRates(buildRateLookup(rows));
+              }
+              // Při chybě zůstane rates=null → calc() použije FALLBACK_RATES
+            case 2:
+              return _context.a(2);
+          }
+        }, _callee);
+      }));
+      return _loadRates.apply(this, arguments);
+    }
+    loadRates();
+  }, []);
+
+  // Volá se po kliknutí "Dokončit registraci" v Step3
+  function handleFinish() {
+    return _handleFinish.apply(this, arguments);
+  }
+  function _handleFinish() {
+    _handleFinish = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee2() {
+      var _yield$sb$auth$signUp, authData, authError, userId, _yield$sb$from$upsert, profileError, _yield$sb$from$insert, prop, propError, _yield$sb$from$insert2, remError, _t;
+      return _regenerator().w(function (_context2) {
+        while (1) switch (_context2.p = _context2.n) {
+          case 0:
+            setSaving(true);
+            setSaveError(null);
+            _context2.p = 1;
+            _context2.n = 2;
+            return sb.auth.signUp({
+              email: data.email,
+              password: data.pass
+            });
+          case 2:
+            _yield$sb$auth$signUp = _context2.v;
+            authData = _yield$sb$auth$signUp.data;
+            authError = _yield$sb$auth$signUp.error;
+            if (!authError) {
+              _context2.n = 3;
+              break;
+            }
+            throw authError;
+          case 3:
+            userId = authData.user.id; // 2. Doplnění profilu (trigger v DB vytvořil základní záznam,
+            //    teď přidáme typ_subjektu a případné údaje SVJ)
+            _context2.n = 4;
+            return sb.from("profiles").upsert({
+              id: userId,
+              typ_subjektu: data.typSubjektu,
+              nazev_svj: data.nazevSVJ || null,
+              ico: data.ico || null
+            });
+          case 4:
+            _yield$sb$from$upsert = _context2.v;
+            profileError = _yield$sb$from$upsert.error;
+            if (!profileError) {
+              _context2.n = 5;
+              break;
+            }
+            throw profileError;
+          case 5:
+            _context2.n = 6;
+            return sb.from("properties").insert({
+              user_id: userId,
+              cast_obce: data.castObce,
+              cp: data.cp,
+              cislo_bytu: data.cisloBytu || null,
+              typ_nemovitosti: data.typNemovitosti,
+              nadoba: data.nadoba || null,
+              cetnost: data.cetnost || null,
+              pocet_psu: parseInt(data.psi) || 0,
+              typ_drzitele: data.typDrzitele || null,
+              bioodpad: data.bioodpad || false,
+              bioodpad_nadoba: data.bioodpadNadoba || null
+            }).select().single();
+          case 6:
+            _yield$sb$from$insert = _context2.v;
+            prop = _yield$sb$from$insert.data;
+            propError = _yield$sb$from$insert.error;
+            if (!propError) {
+              _context2.n = 7;
+              break;
+            }
+            throw propError;
+          case 7:
+            _context2.n = 8;
+            return sb.from("reminders").insert({
+              property_id: prop.id,
+              reminder_date: data.reminderDate,
+              extra_count: data.extra || 0
+            });
+          case 8:
+            _yield$sb$from$insert2 = _context2.v;
+            remError = _yield$sb$from$insert2.error;
+            if (!remError) {
+              _context2.n = 9;
+              break;
+            }
+            throw remError;
+          case 9:
+            // Vše OK → přejdeme na potvrzovací obrazovku
+            setStep(3);
+            _context2.n = 11;
+            break;
+          case 10:
+            _context2.p = 10;
+            _t = _context2.v;
+            setSaveError(_t.message || "Chyba při ukládání. Zkuste to znovu.");
+          case 11:
+            _context2.p = 11;
+            setSaving(false);
+            return _context2.f(11);
+          case 12:
+            return _context2.a(2);
+        }
+      }, _callee2, null, [[1, 10, 11, 12]]);
+    }));
+    return _handleFinish.apply(this, arguments);
+  }
   return /*#__PURE__*/React.createElement("div", {
     style: _defineProperty(_defineProperty(_defineProperty({
       minHeight: "100vh"
@@ -1779,6 +1997,7 @@ function App() {
     }
   }), step === 1 && /*#__PURE__*/React.createElement(Step2, {
     typSubjektu: data.typSubjektu,
+    rates: rates,
     onNext: function onNext(d) {
       setData(function (p) {
         return _objectSpread(_objectSpread({}, p), d);
@@ -1790,14 +2009,16 @@ function App() {
     }
   }), step === 2 && /*#__PURE__*/React.createElement(Step3, {
     data: data,
+    rates: rates,
+    saving: saving,
+    saveError: saveError,
     onBack: function onBack() {
       return setStep(1);
     },
-    onFinish: function onFinish() {
-      return setStep(3);
-    }
+    onFinish: handleFinish
   }), step === 3 && /*#__PURE__*/React.createElement(StepDone, {
-    data: data
+    data: data,
+    rates: rates
   }))), /*#__PURE__*/React.createElement("div", {
     style: {
       padding: "0 20px 32px",
@@ -1817,8 +2038,5 @@ function App() {
     }
   }, "Ochrana osobn\xEDch \xFAdaj\u016F"))));
 }
-  const root = ReactDOM.createRoot(document.getElementById('root'));
-  root.render(React.createElement(App));
-  </script>
-</body>
-</html>
+  const root = ReactDOM.createRoot(document.getElementById('root')); root.render(React.createElement(App));
+  </script></body></html>
