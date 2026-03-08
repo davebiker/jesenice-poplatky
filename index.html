@@ -1482,7 +1482,7 @@ function QRCode(_ref21) {
   useEffect(function () {
     if (!divRef.current || !vs || !amount) return;
     divRef.current.innerHTML = "";
-    var spd = ["SPD*1.0", "ACC:CZ4601000000000003725111", "AM:" + amount.toFixed(2), "CC:CZK", "VS:" + vs, "MSG:Mistni poplatky 2026"].join("*");
+    var spd = ["SPD*1.0", "ACC:CZ4601000000000003725111", "AM:" + amount.toFixed(2), "CC:CZK", "X-VS:" + vs, "MSG:Mistni poplatky 2026"].join("*");
     new window.QRCode(divRef.current, {
       text: spd,
       width: 180,
