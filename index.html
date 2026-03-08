@@ -1491,7 +1491,7 @@ function Step3(_ref17) {
 // ─────────────────────────────────────────────────────────────────────
 
 // QR kód — qrcodejs2 renderuje přímo do DOM divu
-function QRCode(_ref21) {
+function QRCodeWidget(_ref21) {
   var vs = _ref21.vs,
     amount = _ref21.amount;
   var divRef = React.useRef(null);
@@ -1587,7 +1587,7 @@ function StepDone(_ref22) {
       letterSpacing: ".08em",
       marginBottom: 14
     }
-  }, "Uk\xE1zka QR k\xF3du \u2014 obdr\u017E\xEDte e-mailem ", remLabel), /*#__PURE__*/React.createElement(QRCode, {
+  }, "Uk\xE1zka QR k\xF3du \u2014 obdr\u017E\xEDte e-mailem ", remLabel), /*#__PURE__*/React.createElement(QRCodeWidget, {
     vs: vs,
     amount: celkem
   }), /*#__PURE__*/React.createElement("div", {
