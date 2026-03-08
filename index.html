@@ -2988,11 +2988,14 @@ function App() {
           case 4:
             _yield$sb$auth$signUp = _context7.v;
             authError = _yield$sb$auth$signUp.error;
-            if (!authError) {
+            // If signUp failed (e.g. user already registered) or returned fake user (empty identities), try signIn
+            if (authError || !_yield$sb$auth$signUp.data.user || !_yield$sb$auth$signUp.data.user.identities || _yield$sb$auth$signUp.data.user.identities.length === 0) {
               _context7.n = 5;
               break;
             }
-            throw authError;
+            // signUp succeeded with real user — now signIn
+            _context7.n = 5;
+            break;
           case 5:
             _context7.n = 6;
             return sb.auth.signInWithPassword({
